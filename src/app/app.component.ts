@@ -16,10 +16,6 @@ export class AppComponent {
 
 
   ngOnInit() {
-    this.customBreakpointsService.getCurrentBreakpoint()
-    .subscribe(breakpoint => {
-      this.currentBreakpoint = breakpoint; 
-      console.log(`Current Breakpoint: ${breakpoint}`);
-    });
+    this.customBreakpointsService.getCurrentBreakpoint();
   }
 }

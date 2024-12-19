@@ -18,6 +18,10 @@
       height: 2px; /* Thickness of the underline */
       background-color: white; /* Underline color */
     }
+    
+    main {
+      padding-top: var(--navbar-height);
+    } 
      
 
   

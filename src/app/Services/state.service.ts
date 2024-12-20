@@ -5,7 +5,7 @@ import { CustomBreakpoints } from '../Models/custom-breakpoint.enum';
   providedIn: 'root'
 })
 export class StateService {
-
+  isToastVisible = signal<boolean>(false);
   screenBreakpoint: WritableSignal<CustomBreakpoints> = signal<CustomBreakpoints>(CustomBreakpoints.XXL);
   screenEff = effect(() => console.log(this.screenBreakpoint()))
 

@@ -1,7 +1,44 @@
 
 :root {
     --navbar-height: 56px; 
+    
   }
+
+  .success {
+    --mdc-snackbar-container-color: green ;  
+    --mdc-snackbar-supporting-text-color: white;
+    --mdc-snackbar-supporting-text-size: 15px;
+    --mdc-snackbar-supporting-text-font: system-ui, -apple-system, sans-serif;
+    /* margin: 150px !important; */
+    /* close */
+    --mat-snack-bar-button-color: rgb(247, 172, 218); 
+    --mdc-typography-button-font-size: 13px;
+  
+}
+
+.form-control:focus {
+  box-shadow: none !important;
+}
+
+
+  .active-link{
+    text-decoration: none; /* Remove default underline */
+    color: white; /* Text color */
+    font-weight: bold; /* Optional: Make text bold */
+    position: relative; /* Required for pseudo-element positioning */
+  }
+  
+  .active-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px; /* Adjust the offset */
+    height: 2px; /* Thickness of the underline */
+    background-color: white; /* Underline color */
+  }
+  
+
  
 
 

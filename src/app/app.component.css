@@ -1,23 +1,7 @@
 
-  .navbar {
-    height: var(--navbar-height);
-    }
-    .active{
-      text-decoration: none; /* Remove default underline */
-      color: white; /* Text color */
-      font-weight: bold; /* Optional: Make text bold */
-      position: relative; /* Required for pseudo-element positioning */
-    }
+ 
+   
     
-    .active::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: -3px; /* Adjust the offset */
-      height: 2px; /* Thickness of the underline */
-      background-color: white; /* Underline color */
-    }
     
      
 

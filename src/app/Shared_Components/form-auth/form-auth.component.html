@@ -1,0 +1,22 @@
+<form class="d-flex gap-2" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="col-sm">
+      <input 
+      type="email" 
+      name="email"
+      formControlName="email"
+      class="form-control" 
+      placeholder="email" 
+      aria-label="email">
+    </div>
+    <div class="col-sm">
+      <input 
+      type="text"
+      name="password"
+      formControlName="password" 
+      class="form-control" 
+      placeholder="password" 
+      aria-label="password">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+

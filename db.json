@@ -1,65 +1,111 @@
 {
   "posts": [
-    { 
-        "id": "1", 
-        "name": "froo"
+    {
+      "id": "1",
+      "name": "froo"
     },
-    { 
-        "id": "2", 
-        "name": "sam" 
+    {
+      "id": "2",
+      "name": "sam"
     },
-    { 
-        "id": "3", 
-        "name": "gandalf"
+    {
+      "id": "3",
+      "name": "gandalf"
     },
-    { 
-        "id": "4", 
-        "name": "aragorn"
+    {
+      "id": "4",
+      "name": "aragorn"
     },
-    { 
-        "id": "5", 
-        "name": "gimli"
+    {
+      "id": "5",
+      "name": "gimli"
     },
-    { 
-        "id": "6", 
-        "name": "legolas"
+    {
+      "id": "6",
+      "name": "legolas"
     },
-    { 
-        "id": "7", 
-        "name": "garandiela"
+    {
+      "id": "7",
+      "name": "garandiela"
     },
-    { 
-        "id": "8", 
-        "name": "fili"
+    {
+      "id": "8",
+      "name": "fili"
     },
-    { 
-        "id": "9", 
-        "name": "kili"
+    {
+      "id": "9",
+      "name": "kili"
     },
-    { 
-        "id": "10", 
-        "name": "pipin"
+    {
+      "id": "10",
+      "name": "pipin"
     },
-    { 
-        "id": "11", 
-        "name": "mary"
+    {
+      "id": "11",
+      "name": "mary"
     },
-    { 
-        "id": "12", 
-        "name": "azog"
+    {
+      "id": "12",
+      "name": "azog"
     },
-    { 
-        "id": "13", 
-        "name": "sauron"
+    {
+      "id": "13",
+      "name": "sauron"
     },
-    { 
-        "id": "14", 
-        "name": "saruman"
+    {
+      "id": "14",
+      "name": "saruman"
     },
-    { 
-        "id": "15", 
-        "name": "balin"
+    {
+      "id": "15",
+      "name": "balin"
     }
-
+  ],
+  "auth": [
+    {
+      "id": "5d06",
+      "email": "marcin.mierzwa81@gmail.com",
+      "password": "a"
+    },
+    {
+      "id": "15c5",
+      "email": "marcin.mierzwa81@gmail.com",
+      "password": "a"
+    },
+    {
+      "id": "681f",
+      "email": "marcin.mierzwa81@gmail.com",
+      "password": "a"
+    },
+    {
+      "id": "39c0",
+      "email": "marcin.mierzwa81@gmail.com",
+      "password": "a"
+    },
+    {
+      "id": "1b94",
+      "email": "marcin.mierzwa81@gmail.com",
+      "password": "a"
+    },
+    {
+      "id": "bdf3",
+      "email": "marcin.mierzwa81@gmail.com",
+      "password": "a"
+    },
+    {
+      "id": "3058",
+      "email": "marcin.mierzwa81@gmail.com",
+      "password": "a"
+    },
+    {
+      "id": "a88c",
+      "email": "marcin.mierzwa81@gmail.com",
+      "password": "a"
+    },
+    {
+      "id": "bfd1",
+      "email": "marcin.mierzwa81@gmail.com",
+      "password": "a"
+    }
   ]
 }

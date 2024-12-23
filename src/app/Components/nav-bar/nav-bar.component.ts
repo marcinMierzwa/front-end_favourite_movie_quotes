@@ -1,26 +1,15 @@
-import { Component, inject } from '@angular/core';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { Component} from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { FormAuthComponent } from "../../Shared_Components/form-auth/form-auth.component";
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, FormAuthComponent],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent {
 
-  private snackBar: MatSnackBar = inject(MatSnackBar);
-
-
-  onLogin() {
-    const config = new MatSnackBarConfig();
-    // config.duration = 3000;  // Czas trwania SnackBar
-    config.horizontalPosition = 'center'; // Pozycja pozioma
-    config.verticalPosition = 'bottom';      // Pozycja pionowa
-    // config.panelClass = ["my-snackbar"];  // Klasa CSS
-    this.snackBar.open('message', 'Close', config);
-  }
 
 }

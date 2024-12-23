@@ -11,5 +11,5 @@ import { FormAuthComponent } from "../../Shared_Components/form-auth/form-auth.c
 })
 export class NavBarComponent {
 
-
+  label = 'Login'
 }

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../Services/auth.service';
 import { LoginRequestInterface } from '../../Models/login-request.interface';
@@ -20,6 +20,8 @@ export class FormAuthComponent {
     email: [''],
     password: ['']
   })
+
+  label = input('')
 
 
   onSubmit() {

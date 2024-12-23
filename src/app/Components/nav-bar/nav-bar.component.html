@@ -2,9 +2,12 @@
     <a class="nav-link text-white" routerLink="home" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Bootstrap</a>
     <a class="nav-link text-white" routerLink="material" routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">Material</a>
     <app-form-auth
-    [label]="label"
-    ></app-form-auth>
+    >
+    <button type="submit" class="btn btn-primary">Login</button>
+</app-form-auth>
     <app-form-auth
-    [label]="'Register'"
-    ></app-form-auth>
+    >
+    <button type="submit" class="btn btn-primary">Register</button>
+
+</app-form-auth>
 </nav>

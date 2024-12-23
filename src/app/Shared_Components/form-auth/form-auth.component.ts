@@ -21,9 +21,6 @@ export class FormAuthComponent {
     password: ['']
   })
 
-  label = input('')
-
-
   onSubmit() {
     const formValue: LoginRequestInterface = this.form.getRawValue();
     this.authService.login(formValue).subscribe({

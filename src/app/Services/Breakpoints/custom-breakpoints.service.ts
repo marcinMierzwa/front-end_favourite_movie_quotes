@@ -1,8 +1,8 @@
 import { BreakpointObserver } from "@angular/cdk/layout";
 import { inject, Injectable } from "@angular/core";
 import { map} from 'rxjs';
-import { CustomBreakpoints } from "../Models/custom-breakpoint.enum";
-import { StateService } from "./state.service";
+import { CustomBreakpoints } from "../../Models/custom-breakpoint.enum";
+import { StateService } from "../State/state.service";
 
 @Injectable({
     providedIn: 'root'

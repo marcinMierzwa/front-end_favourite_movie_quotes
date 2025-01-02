@@ -1,6 +1,6 @@
 import { inject, Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { SnackBarConfigInterface } from "../Models/snackbar-success-config.interface";
+import { SnackBarConfigInterface } from "../../Models/snackbar-success-config.interface";
 
 
 @Injectable({

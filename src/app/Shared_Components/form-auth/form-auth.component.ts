@@ -1,8 +1,8 @@
 import { Component, inject, input } from '@angular/core';
 import { FormGroup, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../../Services/auth.service';
+import { AuthService } from '../../Services/Auth/auth.service';
 import { LoginRequestInterface } from '../../Models/login-request.interface';
-import { SnackBarService } from '../../Services/snackbar.service';
+import { SnackBarService } from '../../Services/Snackbar/snackbar.service';
 import { SnackBarSuccessConfig } from '../../Utills/snackbar-config';
 
 @Component({

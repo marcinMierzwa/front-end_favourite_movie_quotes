@@ -1,20 +1,24 @@
 import { Routes } from '@angular/router';
-import { MainMaterialComponent } from './Components/main-material/main-material.component';
-import { MainBootstrapComponent } from './Components/main-bootstrap/main-bootstrap.component';
+import { LoginComponent } from './Layout/login/login.component';
+import { SignUpComponent } from './Layout/sign-up/sign-up.component';
 
 export const routes: Routes = [
     {
-        path: 'material',
-        component: MainMaterialComponent
-    },
-    {
         path: '',
         redirectTo: 'home',
-        pathMatch: 'full'
+        pathMatch: 'full',
+        title: 'Home'
     },
     {
-        path: 'home',
-        component: MainBootstrapComponent
-    }
+        path: 'login',
+        component: LoginComponent,
+        title: 'Login'
+    },
+    {
+        path: 'sign-up',
+        component: SignUpComponent,
+        title: 'Sing-Up'
+    },
+
 
 ];

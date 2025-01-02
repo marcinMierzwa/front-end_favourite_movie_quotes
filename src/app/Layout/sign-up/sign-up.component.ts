@@ -6,7 +6,7 @@ import { FormAuthComponent } from "../../Shared_Components/form-auth/form-auth.c
   standalone: true,
   imports: [FormAuthComponent],
   templateUrl: './sign-up.component.html',
-  styleUrl: './sign-up.component.css'
+  styleUrl: './sign-up.component.scss'
 })
 export class SignUpComponent {
 

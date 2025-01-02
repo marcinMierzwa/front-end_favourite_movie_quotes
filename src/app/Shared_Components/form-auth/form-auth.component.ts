@@ -10,7 +10,7 @@ import { SnackBarSuccessConfig } from '../../Utills/snackbar-config';
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './form-auth.component.html',
-  styleUrl: './form-auth.component.css'
+  styleUrl: './form-auth.component.scss'
 })
 export class FormAuthComponent {
   private snackbarService: SnackBarService = inject(SnackBarService); 

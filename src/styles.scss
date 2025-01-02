@@ -1,8 +1,23 @@
 
 :root {
     --navbar-height: 56px; 
-    
+    --dropdown-bg:  red !important;
   }
+//   .dropdown-menu {
+//     background-color: #FF0000 !important; 
+//     color: #24c53f !important
+//   }
+
+//   .dropdown-item{
+//     background-color: #FF0000 !important; 
+//     color: aqua !important;
+// }
+
+
+//   .dropdown-item:hover {
+//       background-color: #FF0000 !important; 
+//       color: aqua !important;
+//   }
 
   .success {
     --mdc-snackbar-container-color: green ;  

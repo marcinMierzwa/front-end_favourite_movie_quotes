@@ -7,7 +7,7 @@ import { FormAuthComponent } from "../../Shared_Components/form-auth/form-auth.c
   standalone: true,
   imports: [RouterLink, RouterLinkActive, FormAuthComponent],
   templateUrl: './nav-bar.component.html',
-  styleUrl: './nav-bar.component.css'
+  styleUrl: './nav-bar.component.scss'
 })
 export class NavBarComponent {
 

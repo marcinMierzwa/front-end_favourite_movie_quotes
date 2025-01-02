@@ -10,7 +10,7 @@ import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
   imports: [RouterOutlet, SnackbarComponent, NavBarComponent],
 
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
   customBreakpointsService: CustomBreakpointsService = inject(

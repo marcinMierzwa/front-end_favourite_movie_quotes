@@ -1,4 +1,7 @@
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+<nav
+  class="navbar navbar-expand-sm navbar-dark bg-dark"
+  [ngClass]="{ 'fixed-top': stateService.isScrollMode() }"
+>
   <div class="container-fluid">
     <!-- logo -->
     <a class="navbar-brand" href="#">logo</a>
@@ -29,7 +32,6 @@
         ></button>
       </div>
       <div class="offcanvas-body">
-
         <!-- nav links -->
         <ul class="navbar-nav justify-content-center flex-grow-1 gap-sm-5">
           <li class="nav-item">
@@ -42,43 +44,15 @@
             >
           </li>
 
-            <!-- Movies -->
-
+          <!-- Movies -->
           <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle text-white"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Movies
-            </a>
-            <!-- Movies dropdown menu -->
-            <ul class="dropdown-menu dropdown-menu-dark bg-transparent">
-              <li><a class="dropdown-item text-white" href="#">Action</a></li>
-              <li><a class="dropdown-item text-white" href="#">Another action</a></li>
-              <li></li>
-            </ul>
+            <app-dropdown [title]="'Movies'"></app-dropdown>
           </li>
 
           <!-- Characters -->
 
           <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle text-white"
-              role="button"
-              data-bs-toggle="dropdown"
-              aria-expanded="false"
-            >
-              Characters
-            </a>
-
-            <!-- Characters dropdown menu -->
-            <ul class="dropdown-menu dropdown-menu-dark bg-secondary ">
-              <li><a class="dropdown-item text-white" href="#">Action</a></li>
-              <li><a class="dropdown-item text-white" href="#">Another action</a></li>
-              <li></li>
-            </ul>
+            <app-dropdown [title]="'Characters'"></app-dropdown>
           </li>
 
           <!-- contact -->
@@ -91,8 +65,6 @@
               >Contact</a
             >
           </li>
-
-          
         </ul>
 
         <!-- auth scection -->
@@ -103,8 +75,7 @@
           <li class="nav-item">
             <a class="nav-link text-white" routerLink="login">Login</a>
           </li>
-      </ul>
-
+        </ul>
       </div>
     </div>
   </div>

@@ -2,10 +2,14 @@
 :root {
     // --navbar-height: 56px; 
   }
-  .dropdown-menu {
-    background-color: #FF0000 !important; 
-    color: #24c53f !important
+
+  .dropdown-toggle::after {
+    display: none !important; 
   }
+  // .dropdown-menu {
+  //   background-color: #FF0000 !important; 
+  //   color: #24c53f !important
+  // }
 
 
 //   .dropdown-item{

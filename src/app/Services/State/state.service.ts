@@ -5,11 +5,10 @@ import { CustomBreakpoints } from '../../Models/custom-breakpoint.enum';
   providedIn: 'root',
 })
 export class StateService {
-  screenBreakpoint: WritableSignal<CustomBreakpoints> =
-    signal<CustomBreakpoints>(CustomBreakpoints.XXL);
-  isSrollMode: WritableSignal<boolean> = signal<boolean>(false);
+  public readonly screenBreakpoint: WritableSignal<CustomBreakpoints> = signal<CustomBreakpoints>(CustomBreakpoints.XXL);
+  public readonly isScrollMode: WritableSignal<boolean> = signal<boolean>(false);
   screenEff = effect(() => {
     console.log('current breakpoint',this.screenBreakpoint()),
-    console.log('isScrollMode',this.isSrollMode());
+    console.log('isScrollMode',this.isScrollMode());
   });
 }

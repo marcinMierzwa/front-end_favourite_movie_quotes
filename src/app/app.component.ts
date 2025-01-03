@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CustomBreakpointsService } from './Services/Breakpoints/custom-breakpoints.service';
 import { SnackbarComponent } from './Shared_Components/snackbar/snackbar.component';
@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   private customBreakpointsService: CustomBreakpointsService = inject(
     CustomBreakpointsService
   );
-  stateService: StateService = inject(StateService);
+   public stateService: StateService = inject(StateService);
 
 
   ngOnInit() {

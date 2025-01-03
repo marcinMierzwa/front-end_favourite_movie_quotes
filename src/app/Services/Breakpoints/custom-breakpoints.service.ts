@@ -43,7 +43,7 @@ export class CustomBreakpointsService {
             return state.matches;
           })
         ).subscribe(isActive => {
-          this.stateService.isSrollMode.set(isActive);
+          this.stateService.isScrollMode.set(isActive);
         });
     }      
 }

@@ -9,7 +9,7 @@ export class StateService {
     signal<CustomBreakpoints>(CustomBreakpoints.XXL);
   isSrollMode: WritableSignal<boolean> = signal<boolean>(false);
   screenEff = effect(() => {
-    console.log(this.screenBreakpoint()),
-    console.log(this.isSrollMode());
+    console.log('current breakpoint',this.screenBreakpoint()),
+    console.log('isScrollMode',this.isSrollMode());
   });
 }

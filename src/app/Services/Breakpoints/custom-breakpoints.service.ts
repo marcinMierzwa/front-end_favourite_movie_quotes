@@ -1,4 +1,4 @@
-import { BreakpointObserver } from "@angular/cdk/layout";
+import { BreakpointObserver, BreakpointState } from "@angular/cdk/layout";
 import { inject, Injectable } from "@angular/core";
 import { map} from 'rxjs';
 import { CustomBreakpoints } from "../../Models/custom-breakpoint.enum";
@@ -14,7 +14,7 @@ export class CustomBreakpointsService {
      private stateService: StateService = inject(StateService);
 
 
-    getCurrentBreakpoint() {
+    getCurrentBreakpoint():void {
         this.breakpointObserver
           .observe(Object.values(CustomBreakpoints))
           .pipe(
@@ -22,11 +22,28 @@ export class CustomBreakpointsService {
               for (const [key, query] of Object.entries(CustomBreakpoints)) {
                 if (state.breakpoints[query]) {
                   const breakpoint = key as CustomBreakpoints; 
-                  this.stateService.screenBreakpoint.set(breakpoint);                   
+                  this.stateService.screenBreakpoint.set(breakpoint);   
+                  this.setScrollMode()                
                 }
               }
               return 'Unknown'; 
             })
           ).subscribe();
       }
+
+      setScrollMode():void {
+        const breakpoints = {
+          xs: CustomBreakpoints.XS,
+          sm: CustomBreakpoints.SM
+        };
+        this.breakpointObserver
+        .observe([breakpoints.xs, breakpoints.sm])
+        .pipe(
+          map((state: BreakpointState) => {
+            return state.matches;
+          })
+        ).subscribe(isActive => {
+          this.stateService.isSrollMode.set(isActive);
+        });
+    }      
 }

@@ -31,7 +31,7 @@
       <div class="offcanvas-body">
 
         <!-- nav links -->
-        <ul class="navbar-nav justify-content-center flex-grow-1 gap-5">
+        <ul class="navbar-nav justify-content-center flex-grow-1 gap-sm-5">
           <li class="nav-item">
             <a
               class="nav-link text-white"
@@ -47,9 +47,6 @@
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle text-white"
-              routerLink="characters"
-              routerLinkActive="active-link"
-              [routerLinkActiveOptions]="{ exact: true }"
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
@@ -57,7 +54,7 @@
               Movies
             </a>
             <!-- Movies dropdown menu -->
-            <ul class="dropdown-menu dropdown-menu-dark bg-transparent border-0">
+            <ul class="dropdown-menu dropdown-menu-dark bg-transparent">
               <li><a class="dropdown-item text-white" href="#">Action</a></li>
               <li><a class="dropdown-item text-white" href="#">Another action</a></li>
               <li></li>
@@ -69,9 +66,6 @@
           <li class="nav-item dropdown">
             <a
               class="nav-link dropdown-toggle text-white"
-              routerLink="characters"
-              routerLinkActive="active-link"
-              [routerLinkActiveOptions]="{ exact: true }"
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
@@ -80,7 +74,7 @@
             </a>
 
             <!-- Characters dropdown menu -->
-            <ul class="dropdown-menu dropdown-menu-dark bg-transparent border-0">
+            <ul class="dropdown-menu dropdown-menu-dark bg-secondary ">
               <li><a class="dropdown-item text-white" href="#">Action</a></li>
               <li><a class="dropdown-item text-white" href="#">Another action</a></li>
               <li></li>

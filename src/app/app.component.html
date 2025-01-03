@@ -1,19 +1,16 @@
 
 <div 
 class="vh-100"
+[ngStyle]="{ 'overflow': this.stateService.isSrollMode()  ? 'visible' : 'hidden' }"
 >
     
     <app-navbar></app-navbar>
-
-
 
     <app-snackbar></app-snackbar>
    
   
 
-<main style="padding-top: var(--navbar-height)">
 <router-outlet/>
-</main>
 
 </div>
 

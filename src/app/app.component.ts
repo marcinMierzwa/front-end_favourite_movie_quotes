@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
   private customBreakpointsService: CustomBreakpointsService = inject(
     CustomBreakpointsService
   );
-  private stateService: StateService = inject(StateService);
+  stateService: StateService = inject(StateService);
 
 
   ngOnInit() {

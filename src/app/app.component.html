@@ -1,17 +1,18 @@
-
-<div 
-class="vh-100"
-[ngStyle]="{ 'overflow': this.stateService.isScrollMode() ? 'visible' : 'hidden' }"
+<div
+  class="vh-100"
+  [ngStyle]="{
+    overflow: this.stateService.isScrollMode() ? 'visible' : 'hidden'
+  }"
 >
-    
-    <app-navbar></app-navbar>
+  <app-navbar></app-navbar>
 
-    <app-snackbar></app-snackbar>
-   
-  
+  <app-snackbar></app-snackbar>
 
-<router-outlet/>
+  <router-outlet />
+
+  @if (this.stateService.isScrollMode()) {
+    <app-bottom-navbar></app-bottom-navbar>
+  }
+
 
 </div>
-
-<!-- [ngStyle]="{ 'overflow': this.stateService.isScrollMode()  ? 'visible' : 'hidden' }" -->

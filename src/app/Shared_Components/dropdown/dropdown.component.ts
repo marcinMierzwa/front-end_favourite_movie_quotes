@@ -1,11 +1,10 @@
 import { Component, inject, input } from '@angular/core';
 import { StateService } from '../../Services/State/state.service';
-import { NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-dropdown',
   standalone: true,
-  imports: [NgClass],
+  imports: [],
   templateUrl: './dropdown.component.html',
   styleUrl: './dropdown.component.scss'
 })

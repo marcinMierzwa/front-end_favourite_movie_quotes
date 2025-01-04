@@ -5,11 +5,12 @@ import { SnackbarComponent } from './Shared_Components/snackbar/snackbar.compone
 import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { NgStyle } from '@angular/common';
 import { StateService } from './Services/State/state.service';
+import { BottomNavbarComponent } from "./Components/bottom-navbar/bottom-navbar.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgStyle, SnackbarComponent, NavBarComponent],
+  imports: [RouterOutlet, NgStyle, SnackbarComponent, NavBarComponent, BottomNavbarComponent],
 
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

@@ -1,0 +1,28 @@
+<nav
+  class="navbar fixed-bottom p-0"
+  style="background-color: #88162f;"
+>
+<div class="w-100 bg-secondary" style="height: 10px;"></div>
+  <ul class="w-100 d-flex justify-content-evenly align-items-center m-0 p-0">
+    <!-- search icon box -->
+    <li class="icon-box border-end border-dark">
+      <i class="bi bi-search"></i>
+      <p class="icon-box-title">Search</p>
+    </li>
+    <!-- filter icon box -->
+    <li class="icon-box border-end border-dark">
+        <i class="bi bi-filter-circle"></i>
+        <p class="icon-box-title">Filter</p>
+      </li>
+    <!-- filter icon box -->
+    <li class="icon-box border-end border-dark">
+        <i class="bi bi-heart"></i>
+        <p class="icon-box-title">Favourites</p>
+      </li>
+    <!-- filter icon box -->
+    <li class="icon-box">
+        <i class="bi bi-person-circle"></i>        
+        <p class="icon-box-title">Account</p>
+      </li>
+  </ul>
+</nav>

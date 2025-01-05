@@ -4,15 +4,17 @@
     overflow: this.stateService.isScrollMode() ? 'visible' : 'hidden'
   }"
 >
-  <app-navbar></app-navbar>
+  <app-navbar/>
 
-  <app-snackbar></app-snackbar>
 
-  <router-outlet />
+  <router-outlet/>
 
   @if (this.stateService.isScrollMode()) {
-    <app-bottom-navbar></app-bottom-navbar>
+    <app-bottom-navbar/>
+  }
+  @else {
+    <app-footer/>
   }
 
-
+  <app-snackbar/>
 </div>

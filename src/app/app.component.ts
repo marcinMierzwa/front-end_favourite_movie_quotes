@@ -6,11 +6,12 @@ import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { NgStyle } from '@angular/common';
 import { StateService } from './Services/State/state.service';
 import { BottomNavbarComponent } from "./Components/bottom-navbar/bottom-navbar.component";
+import { FooterComponent } from "./Components/footer/footer.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgStyle, SnackbarComponent, NavBarComponent, BottomNavbarComponent],
+  imports: [RouterOutlet, NgStyle, SnackbarComponent, NavBarComponent, BottomNavbarComponent, FooterComponent],
 
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

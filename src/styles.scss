@@ -1,6 +1,15 @@
 :root {
+  // navbaars
   // --navbar-height: 56px;
+  // --navbar-bottom-height: 56px;
+
+
 }
+
+// .navbar-bottom {
+//   height: 56px;
+// }
+
 
 .dropdown-toggle::after {
   display: none !important;
@@ -57,18 +66,24 @@
   align-items: center;
   justify-content: center;
   width: 25%;
+  color: rgb(233, 224, 224);
   cursor: pointer;
   padding-block: 2px;
-  .bi {
-    color: rgb(233, 224, 224);
-    font-size: 24px;
-  }
-  .icon-box-title {
-    color: rgb(233, 224, 224);
-    font-size: 10px;
-    margin: 0;
-    letter-spacing: 0.7px;
-    padding: 2px;
-    font-weight: 600;
-  }
+  transition: all ease-in 1s;
 }
+
+.icon-box .bi {
+  color: rgb(233, 224, 224);
+  font-size: 24px;
+}
+
+.icon-box .icon-box-link {
+  color: rgb(233, 224, 224);
+  font-size: 12px;
+  margin: 0;
+  letter-spacing: 0.7px;
+  padding: 2px;
+  font-weight: 600;
+  text-decoration: none;
+}
+

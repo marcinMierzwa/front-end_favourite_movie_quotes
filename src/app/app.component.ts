@@ -7,11 +7,13 @@ import { NgStyle } from '@angular/common';
 import { StateService } from './Services/State/state.service';
 import { FooterComponent } from "./Components/footer/footer.component";
 import { FooterMobileComponent } from "./Components/footer-mobile/footer-mobile.component";
+import { SearchbarComponent } from "./Components/searchbar/searchbar.component";
+import { FilterComponent } from "./Components/filter/filter.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgStyle, SnackbarComponent, NavBarComponent, FooterComponent, FooterMobileComponent],
+  imports: [RouterOutlet, NgStyle, SnackbarComponent, NavBarComponent, FooterComponent, FooterMobileComponent, SearchbarComponent, FilterComponent],
 
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

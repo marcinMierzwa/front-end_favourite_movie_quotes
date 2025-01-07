@@ -1,43 +1,16 @@
+
+  
 <nav class="navbar bg-dark p-0">
+  <ul class="w-100 d-flex justify-content-evenly align-items-center m-0 p-0">
 
-    <ul class="w-100 d-flex justify-content-evenly align-items-center m-0 p-0">
-
-    <!-- collapse search -->
-    <li
-      class="icon-box border-end border-secondary"
-      data-bs-toggle="collapse"
-      href="#search"
-      role="button"
-      aria-expanded="false"
-      aria-controls="collapseExample"
-        >
-    <i class="bi bi-search"></i>
-    <a class="icon-box-link">Search</a>
+    @for (iconBox of iconsBox; track iconBox.id) {
+    <li 
+    class="icon-box rounded-0 btn btn-dark"
+    >
+      <i [class]="iconBox.className"></i>
+      <p class="icon-box-title">{{ iconBox.title }}</p>
     </li>
-
-    <!-- collapse filter -->
-    <li
-      class="icon-box border-end border-secondary"
-      data-bs-toggle="collapse"
-      href="#filter"
-      role="button"
-      aria-expanded="false"
-      aria-controls="collapseExample"
-      >
-      <i class="bi bi-filter-circle"></i>
-      <a class="icon-box-link"> Filter </a>
-    </li>
-
-    <!-- favourites -->
-    <li class="icon-box border-end border-secondary">
-      <i class="bi bi-heart"></i>
-      <a class="icon-box-link"> Favourites </a>
-    </li>
-
-    <!-- account -->
-    <li class="icon-box border-end border-secondary">
-      <i class="bi bi-person-circle"></i>
-      <a class="icon-box-link"> Account </a>
-    </li>
+  }
   </ul>
 </nav>
+

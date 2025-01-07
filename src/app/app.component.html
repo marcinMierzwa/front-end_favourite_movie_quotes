@@ -5,12 +5,13 @@
   }"
 >
   <app-navbar />
+  <app-searchbar />
+  <app-filter />
 
   <router-outlet />
 
   @if (this.stateService.isScrollMode()) {
   <app-footer-mobile />
-
   } @else {
   <app-footer />
   }

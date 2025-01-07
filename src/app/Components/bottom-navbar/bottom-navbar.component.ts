@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-// import { IconBox } from './model/icon-box.interface';
+import { Component, inject, WritableSignal } from '@angular/core';
+import { IconBox } from './model/icon-box.interface';
+import { BottomNavbarService } from '../../Services/bottom-navbar.service';
 
 @Component({
   selector: 'app-bottom-navbar',
@@ -9,7 +10,12 @@ import { Component } from '@angular/core';
   styleUrl: './bottom-navbar.component.scss'
 })
 export class BottomNavbarComponent {
-  } 
-  
 
+  private bottomNavbarService: BottomNavbarService = inject(BottomNavbarService);
+
+  readonly iconsBox: IconBox[] = this.bottomNavbarService.iconBox;
+
+
+
+}
 

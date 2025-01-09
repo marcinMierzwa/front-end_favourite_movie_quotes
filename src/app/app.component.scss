@@ -12,12 +12,12 @@
     right: 0;
     bottom: 0;
     background: linear-gradient(
-        rgba(0, 0, 0, 0.75), 
-        rgba(0, 0, 0, 0.85)
+        rgba(0, 0, 0, 0.77), 
+        rgba(0, 0, 0, 0.7)
       ), 
-      url('/assets/images/background/720p-the-lord-of-the-rings-wallpaper-xwwffdumke2kzuqq.jpg') no-repeat left center / cover;
-    filter: grayscale(80%); /* Efekt grayscale */
-    z-index: -1; /* Tło pod elementem */
+      url('/assets/images/background/background-gandalf.jpg') no-repeat center left / cover;
+    filter: grayscale(75%); 
+    z-index: -1; 
   }
  
    

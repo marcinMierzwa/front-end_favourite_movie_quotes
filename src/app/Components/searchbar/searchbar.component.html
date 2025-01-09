@@ -1,1 +1,29 @@
-<p>searchbar works!</p>
+<div 
+[ngClass]="stateService.isScrollMode() ? 'w-100' : 'w-75'"
+>
+<form>
+    <div class="input-group">
+        <select 
+        class="form-select bg-dark-subtle border border-secondary" 
+        id="inputGroupSelect04" 
+        aria-label="Example select with button addon"
+        [ngClass]="{'scroll-mode-font': stateService.isScrollMode()}"
+        >
+            <option selected>All</option>
+            <option value="1">All</option>
+            <option value="2">Movies</option>
+            <option value="3">Characters</option>
+          </select>
+          <input 
+          class="form-control border border-secondary w-50 "
+          [ngClass]="{'scroll-mode-font w-33': stateService.isScrollMode()}"
+          type="search" 
+          placeholder="Search quote.." 
+          aria-label="Search">
+        <button 
+        class="btn btn-danger border border-secondary"
+        [ngClass]="{'scroll-mode-font': stateService.isScrollMode()}"        
+        type="button">Go</button>
+      </div>
+  </form>
+</div>

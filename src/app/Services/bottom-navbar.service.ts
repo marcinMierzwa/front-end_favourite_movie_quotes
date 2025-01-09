@@ -7,14 +7,24 @@ import { IconBox } from '../Components/bottom-navbar/model/icon-box.interface';
 export class BottomNavbarService {
   private readonly iconsBox: IconBox[] = [
     {
+      title: 'Home',
+      className: 'bi bi-house',
+      id: 1,
+    },
+    {
+      title: 'Contact',
+      className: 'bi bi-envelope-fill',
+      id: 2,
+    },
+    {
       title: 'Favourites',
       className: 'bi bi-heart',
-      id: 1,
+      id: 3,
     },
     {
       title: 'Account',
       className: 'bi bi-person-circle',
-      id: 2,
+      id: 4,
     },
   ];
 

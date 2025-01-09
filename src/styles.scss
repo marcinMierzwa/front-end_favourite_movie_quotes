@@ -11,9 +11,9 @@
 // }
 
 
-.dropdown-toggle::after {
-  display: none !important;
-}
+// .dropdown-toggle::after {
+//   display: none !important;
+// }
 
 
 // .dropdown-menu {
@@ -87,5 +87,9 @@
   padding: 2px;
   font-weight: 600;
   text-decoration: none;
+}
+
+.scroll-mode-font {
+  font-size: clamp(13px, 1.7vw, 17px) !important; 
 }
 

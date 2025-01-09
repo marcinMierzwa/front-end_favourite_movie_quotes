@@ -1,1 +1,41 @@
-<p>filter works!</p>
+<div class="bg-dark d-flex justify-content-between"
+
+>
+
+  <section class="filter d-flex justify-content-end justify-content-sm-start gap-2"
+  [ngClass]="stateService.isScrollMode() ? 'w-100' : 'w-75'"
+>
+
+    <p class="scroll-mode-font m-0 text-white fw-semibold d-flex align-items-center">Filter by</p>
+
+    <div class="btn-group px-sm-4" role="group" aria-label="filter select group">
+      <app-dropdown
+        [title]="'Rating'"
+        [showArrow]="true"
+        [enableHover]="false"
+        class="btn btn-sm btn-danger border border-secondary-subtle scroll-mode-font"
+      ></app-dropdown>
+
+      <app-dropdown
+        [title]="'Movies'"
+        [showArrow]="true"
+        [enableHover]="false"
+        class="btn btn-sm btn-danger border border-secondary-subtle scroll-mode-font"
+      ></app-dropdown>
+
+      <app-dropdown
+        [title]="'Characters'"
+        [showArrow]="true"
+        [enableHover]="false"
+        class="btn btn-sm btn-danger border border-secondary-subtle scroll-mode-font"
+      ></app-dropdown>
+    </div>
+  </section>
+
+  @if (!stateService.isScrollMode()) {
+  <button class="btn btn-sm btn-danger border scroll-mode-font" >
+    Skip to my favourite quotes
+  </button>
+  }
+
+</div>

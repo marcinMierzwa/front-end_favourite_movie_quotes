@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { CardComponent } from "../../Shared_Components/card/card.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [],
+  imports: [CardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

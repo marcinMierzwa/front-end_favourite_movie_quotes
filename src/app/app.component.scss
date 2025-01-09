@@ -1,7 +1,24 @@
 .wrapper {
     height: 100vh;
-    background-color: var(--bs-dark);
+    width: 100%;
+    position: relative;
+    z-index: 1;
 }
+.wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        rgba(0, 0, 0, 0.75), 
+        rgba(0, 0, 0, 0.85)
+      ), 
+      url('/assets/images/background/720p-the-lord-of-the-rings-wallpaper-xwwffdumke2kzuqq.jpg') no-repeat left center / cover;
+    filter: grayscale(80%); /* Efekt grayscale */
+    z-index: -1; /* Tło pod elementem */
+  }
  
    
     

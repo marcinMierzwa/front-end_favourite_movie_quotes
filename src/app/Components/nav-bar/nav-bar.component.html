@@ -47,7 +47,7 @@
 
           <!-- Movies -->
           <li class="nav-item dropdown">
-            <a class="nav-link scroll-mode-font ">
+            <a class="nav-link scroll-mode-font">
               <app-dropdown
                 [title]="'Movies'"
                 [showArrow]="false"
@@ -81,7 +81,15 @@
         </ul>
 
         <!-- auth scection -->
-        <ul class="navbar-nav">
+        <ul class="navbar-nav align-items-center">
+          <li class="nav-item">
+            @if (!stateService.isScrollMode()) {
+            <button class="btn btn-sm bg-info-subtle border px-3 ">
+              <i class="bi bi-heart me-2"></i>
+              skip to my favourite quotes
+            </button>
+            }
+          </li>
           <li class="nav-item">
             <a class="nav-link text-white scroll-mode-font" routerLink="sign-up"
               >Sign Up</a

@@ -1,5 +1,13 @@
-<!-- <app-card></app-card> -->
-    <div class="home-page">
-        <h1 class="text-light scroll-mode-font text-center">Step into the world of Middle-earth and discover the best quotes from The Lord of the Rings and The Hobbit.</h1>
+<div class="p-4 d-flex align-items-center bg-secondary">
+    <div class="d-flex flex-wrap gap-3 justify-content-center">
+        @for (card of cards; track card) {
+            <app-card
+            ></app-card>
+    }
+
+      </div>
     </div>
+
+      <!-- <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"> -->
+
  

@@ -10,4 +10,6 @@ import { CardComponent } from "../../Shared_Components/card/card.component";
 })
 export class HomeComponent {
 
+  // cards = ['1','2','3','4','5','6']
+  cards = ['1','2','3','4']
 }

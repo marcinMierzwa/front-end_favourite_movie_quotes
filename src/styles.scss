@@ -76,20 +76,19 @@
 
 .icon-box .bi {
   color: rgb(233, 224, 224);
-  font-size: 24px;
+  font-size: 22px;
 }
 
 .icon-box .icon-box-title {
   color: rgb(233, 224, 224);
-  font-size: 12px;
+  font-size: 11px;
   margin: 0;
   letter-spacing: 0.7px;
-  padding: 2px;
   font-weight: 600;
   text-decoration: none;
 }
 
 .scroll-mode-font {
-  font-size: clamp(13px, 1.7vw, 17px) !important; 
+  font-size: clamp(13px, 1.5vw, 17px) !important; 
 }
 

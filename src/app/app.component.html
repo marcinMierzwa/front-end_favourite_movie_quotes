@@ -4,11 +4,15 @@
     overflow: this.stateService.isScrollMode() ? 'visible' : 'hidden'
   }"
 >
+<div class="top">
   <app-navbar />
   <app-searchbar />
   <app-filter />
-
-  <router-outlet />
+  <app-header />
+</div>
+  <main class="flex-fill">
+    <router-outlet />
+  </main>
 
   @if (this.stateService.isScrollMode()) {
   <app-footer-mobile />

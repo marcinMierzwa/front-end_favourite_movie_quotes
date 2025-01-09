@@ -9,11 +9,12 @@ import { FooterComponent } from "./Components/footer/footer.component";
 import { FooterMobileComponent } from "./Components/footer-mobile/footer-mobile.component";
 import { SearchbarComponent } from "./Components/searchbar/searchbar.component";
 import { FilterComponent } from "./Components/filter/filter.component";
+import { HeaderComponent } from "./Components/header/header.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgStyle, SnackbarComponent, NavBarComponent, FooterComponent, FooterMobileComponent, SearchbarComponent, FilterComponent],
+  imports: [RouterOutlet, NgStyle, SnackbarComponent, NavBarComponent, FooterComponent, FooterMobileComponent, SearchbarComponent, FilterComponent, HeaderComponent],
 
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

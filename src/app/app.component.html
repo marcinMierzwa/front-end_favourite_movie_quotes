@@ -1,27 +1,33 @@
+<!-- WRAPPER -->
 <div
   class="wrapper"
   [ngStyle]="{
     overflow: this.stateService.isScrollMode() ? 'visible' : 'hidden'
   }"
 >
+  <!-- HEADER -->
   <header
-  #headerRef
-  [ngClass]="{
-    'fixed-top': stateService.isScrollMode(),
-    'static-top': !stateService.isScrollMode(),
-    'bg-dark': stateService.isScrollMode(),
-    'bg-transparent': !stateService.isScrollMode()
-  }">    
+    #headerRef
+    [ngClass]="{
+      'fixed-top': stateService.isScrollMode(),
+      'static-top': !stateService.isScrollMode(),
+      'bg-dark': stateService.isScrollMode(),
+      'bg-transparent': !stateService.isScrollMode()
+    }"
+  >
     <app-navbar />
     <app-searchbar />
     <app-filter />
     <app-header />
   </header>
 
-  <main class="mt-2">
-    <router-outlet />
+  <!-- MAIN -->
+  <main
+    [ngStyle]="{ 'margin-top.px': stateService.isScrollMode() ? stateService.headerMobileHeight() : 0 }"
+    ><router-outlet  class="h-100"/>
   </main>
 
+  <!-- FOOTER -->
   <footer class="sticky-bottom container-fluid">
     @if (this.stateService.isScrollMode()) {
     <app-footer-mobile />
@@ -32,3 +38,5 @@
   </footer>
   <app-snackbar />
 </div>
+
+

@@ -44,16 +44,15 @@ export class AppComponent implements OnInit, AfterViewInit {
     CustomBreakpointsService
   );
   public stateService: StateService = inject(StateService);
+  
   @ViewChild('headerRef', { static: true }) headerRef!: ElementRef;
-  headerHeight: number = 0;
 
   ngOnInit() {
     this.customBreakpointsService.getCurrentBreakpoint();
   }
 
   ngAfterViewInit(): void {
-    this.headerHeight = this.headerRef.nativeElement.offsetHeight;
-    console.log(this.headerHeight);
-    
+    const headerHeight = this.headerRef.nativeElement.offsetHeight;
+    this.stateService.headerMobileHeight.set(headerHeight); 
   }
 }

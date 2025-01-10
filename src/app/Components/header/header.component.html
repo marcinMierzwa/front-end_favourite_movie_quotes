@@ -1,6 +1,7 @@
 <h1 
-class="text-light fs-6 m-0 text-center lh-base p-2 px-sm-5 pb-3 "
+class="text-light m-0 text-center text-sm-end lh-base p-2 px-sm-3 mt-sm-2"
 style="word-spacing: 1px;"
+[ngClass]="stateService.isScrollMode() ? 'fs-6' : 'fs-4'"
 >
   Discover the best quotes from The Lord of the Rings and The Hobbit.
 </h1>

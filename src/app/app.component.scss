@@ -6,7 +6,8 @@ div.wrapper {
 }
 div.wrapper::before {
   background: linear-gradient(rgba(0, 0, 0, 0.77), rgba(0, 0, 0, 0.7)),
-    url("/assets/images/background/background-gandalf.jpg")no-repeat center left / cover;
+    url("/assets/images/background/background-gandalf.jpg") center left / cover;
+  background-repeat: no-repeat;
   content: "";
   position: absolute;
   top: 0;
@@ -16,7 +17,13 @@ div.wrapper::before {
   filter: grayscale(75%);
   z-index: -1;
 }
+@media (max-width: 576px) {
+  div.wrapper::before {
+    background-image: none;
+  }
+}
 
+// ------ wrapper---- //
 
 footer.sticky-bottom {
   position: fixed;

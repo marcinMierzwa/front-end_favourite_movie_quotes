@@ -1,4 +1,5 @@
 top=147,81
-main=
-footermobile=
-all=
+main=497,357
+footermobile=58,833
+all=704
+header=320x189

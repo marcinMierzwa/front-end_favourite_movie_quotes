@@ -1,6 +1,5 @@
 <nav
-  class="navbar navbar-expand-sm navbar-dark bg-dark opacity-75 p-0"
-  [ngClass]="{ 'sticky-top': stateService.isScrollMode() }"
+  class="navbar navbar-expand-sm navbar-dark bg-dark p-1 px-2"
 >
   <div class="container-fluid p-0">
     <!-- logo -->
@@ -34,7 +33,7 @@
       <div class="offcanvas-body">
         <!-- nav links -->
         <!-- Home -->
-        <ul class="navbar-nav justify-content-center flex-grow-1 gap-sm-5">
+        <ul class="navbar-nav justify-content-center flex-grow-1 gap-sm-3 gap-lg-5">
           <li class="nav-item">
             <a
               class="nav-link text-white scroll-mode-font"
@@ -44,6 +43,19 @@
               >Home</a
             >
           </li>
+
+                  <!-- About -->
+          <li class="nav-item">
+            <a
+              class="nav-link text-white scroll-mode-font"
+              routerLink="about"
+              routerLinkActive="active-link"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >About</a
+            >
+          </li>
+
+
 
           <!-- Movies -->
           <li class="nav-item dropdown">
@@ -81,7 +93,7 @@
         </ul>
 
         <!-- auth scection -->
-        <ul class="navbar-nav align-items-center">
+        <ul class="navbar-nav align-items-center gap-2">
           <li class="nav-item">
             @if (!stateService.isScrollMode()) {
             <button class="btn btn-sm bg-info-subtle border px-3 ">
@@ -90,12 +102,12 @@
             </button>
             }
           </li>
-          <li class="nav-item">
+          <li class="nav-item me-auto">
             <a class="nav-link text-white scroll-mode-font" routerLink="sign-up"
               >Sign Up</a
             >
           </li>
-          <li class="nav-item">
+          <li class="nav-item me-auto">
             <a class="nav-link text-white scroll-mode-font" routerLink="login"
               >Login</a
             >

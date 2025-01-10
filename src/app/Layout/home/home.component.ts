@@ -4,7 +4,7 @@ import { CardComponent } from "../../Shared_Components/card/card.component";
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CardComponent],
+  imports: [CardComponent ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

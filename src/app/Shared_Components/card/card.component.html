@@ -1,9 +1,11 @@
-<div class="card border-success" style="max-width: 400px;"
->
-
+<div class="card border-secondary-subtle">
+  
   <div class="card-header bg-primary-subtle border-light p-0">Header</div>
   <div class="card-body text-light p-0">
-    <div class="img-bg">
+    <div
+      class="img-bg"
+      [ngStyle]="stateService.isScrollMode() ? { height: '250px' } : {}"
+    >
       <h5 class="card-title">Success card title</h5>
       <p class="card-text">
         Some quick example text to build on the card title and make up the bulk
@@ -12,8 +14,5 @@
     </div>
   </div>
   <div class="card-footer bg-primary-subtle border-light p-0">Footer</div>
-
 </div>
-
-<!-- [ngClass]="stateService.isScrollMode() : 'h-75'" -->
 

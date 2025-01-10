@@ -1,11 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { StateService } from '../../Services/State/state.service';
-import { NgClass } from '@angular/common';
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'app-card',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgStyle, ],
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss'
 })

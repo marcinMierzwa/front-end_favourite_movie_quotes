@@ -1,12 +1,10 @@
-.wrapper {
+div.wrapper {
   height: 100vh;
   width: 100%;
   position: relative;
   z-index: 1;
-  display: flex;
-  flex-direction: column;
 }
-.wrapper::before {
+div.wrapper::before {
   background: linear-gradient(rgba(0, 0, 0, 0.77), rgba(0, 0, 0, 0.7)),
     url("/assets/images/background/background-gandalf.jpg")no-repeat center left / cover;
   content: "";
@@ -17,6 +15,13 @@
   bottom: 0;
   filter: grayscale(75%);
   z-index: -1;
-  mask-image: linear-gradient(to bottom, transparent 0%, black 0%, black 90%, transparent 100%);
 }
 
+
+footer.sticky-bottom {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 0;
+}

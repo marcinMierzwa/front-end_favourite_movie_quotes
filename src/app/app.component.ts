@@ -1,32 +1,59 @@
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  inject,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CustomBreakpointsService } from './Services/Breakpoints/custom-breakpoints.service';
 import { SnackbarComponent } from './Shared_Components/snackbar/snackbar.component';
 import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
-import { NgStyle } from '@angular/common';
+import { NgClass, NgStyle } from '@angular/common';
 import { StateService } from './Services/State/state.service';
-import { FooterComponent } from "./Components/footer/footer.component";
-import { FooterMobileComponent } from "./Components/footer-mobile/footer-mobile.component";
-import { SearchbarComponent } from "./Components/searchbar/searchbar.component";
-import { FilterComponent } from "./Components/filter/filter.component";
-import { HeaderComponent } from "./Components/header/header.component";
+import { FooterComponent } from './Components/footer/footer.component';
+import { FooterMobileComponent } from './Components/footer-mobile/footer-mobile.component';
+import { SearchbarComponent } from './Components/searchbar/searchbar.component';
+import { FilterComponent } from './Components/filter/filter.component';
+import { PaginationBarComponent } from './Components/pagination-bar/pagination-bar.component';
+import { HeaderComponent } from './Components/header/header.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgStyle, SnackbarComponent, NavBarComponent, FooterComponent, FooterMobileComponent, SearchbarComponent, FilterComponent, HeaderComponent],
+  imports: [
+    RouterOutlet,
+    NgStyle,
+    NgClass,
+    SnackbarComponent,
+    NavBarComponent,
+    FooterComponent,
+    FooterMobileComponent,
+    SearchbarComponent,
+    FilterComponent,
+    PaginationBarComponent,
+    HeaderComponent,
+  ],
 
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterViewInit {
   private customBreakpointsService: CustomBreakpointsService = inject(
     CustomBreakpointsService
   );
-   public stateService: StateService = inject(StateService);
-
+  public stateService: StateService = inject(StateService);
+  @ViewChild('headerRef', { static: true }) headerRef!: ElementRef;
+  headerHeight: number = 0;
 
   ngOnInit() {
     this.customBreakpointsService.getCurrentBreakpoint();
+  }
+
+  ngAfterViewInit(): void {
+    this.headerHeight = this.headerRef.nativeElement.offsetHeight;
+    console.log(this.headerHeight);
+    
   }
 }

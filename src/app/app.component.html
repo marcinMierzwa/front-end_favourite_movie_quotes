@@ -4,21 +4,31 @@
     overflow: this.stateService.isScrollMode() ? 'visible' : 'hidden'
   }"
 >
-<div class="top">
-  <app-navbar />
-  <app-searchbar />
-  <app-filter />
-  <app-header />
-</div>
-  <main class="flex-fill">
+  <header
+  #headerRef
+  [ngClass]="{
+    'fixed-top': stateService.isScrollMode(),
+    'static-top': !stateService.isScrollMode(),
+    'bg-dark': stateService.isScrollMode(),
+    'bg-transparent': !stateService.isScrollMode()
+  }">    
+    <app-navbar />
+    <app-searchbar />
+    <app-filter />
+    <app-header />
+  </header>
+
+  <main class="mt-2">
     <router-outlet />
   </main>
 
-  @if (this.stateService.isScrollMode()) {
-  <app-footer-mobile />
-  } @else {
-  <app-footer />
-  }
-
+  <footer class="sticky-bottom container-fluid">
+    @if (this.stateService.isScrollMode()) {
+    <app-footer-mobile />
+    } @else {
+    <app-pagination-bar />
+    <app-footer />
+    }
+  </footer>
   <app-snackbar />
 </div>

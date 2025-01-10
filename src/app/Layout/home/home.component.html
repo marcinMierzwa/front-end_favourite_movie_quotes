@@ -1,13 +1,7 @@
-<div class="p-4 d-flex align-items-center bg-secondary">
-    <div class="d-flex flex-wrap gap-3 justify-content-center">
-        @for (card of cards; track card) {
-            <app-card
-            ></app-card>
-    }
+<div class="h-100 d-flex flex-wrap ms-auto bg-secondary
+">
 
-      </div>
-    </div>
-
-      <!-- <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4"> -->
-
- 
+  @for (card of cards; track card) {
+  <app-card class="px-4 my-5  "></app-card>
+  }
+</div>

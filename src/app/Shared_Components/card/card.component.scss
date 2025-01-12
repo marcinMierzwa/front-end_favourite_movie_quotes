@@ -1,11 +1,12 @@
 .img-bg {
-    position: relative;
-    z-index: 1;
-  }
+  position: relative;
+  z-index: 1;
+  max-width: 200px;
+}
 
 .img-bg::before {
-    background: 
-    url("/assets/images/card/aragorn.jpg")no-repeat center center / cover;
+  background: url("/assets/images/card/aragorn.jpg") no-repeat center center /
+    cover;
   content: "";
   position: absolute;
   top: 0;
@@ -14,8 +15,35 @@
   bottom: 0;
   filter: grayscale(80%);
   z-index: -1;
-  }
+}
 
-  
+@media (min-width: 320px) {
+    .img-bg {
+      max-width: 100%;
+    }
+} 
+
+@media (min-width: 768px) {
+
+  .img-bg {
+    max-width: 200px;
+  }
+}
+@media (min-width: 1024px) {
+  .img-bg {
+    max-width: 270px;
+  }
+}
+@media (min-width: 1200px) {
+  .img-bg {
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .img-bg {
+    max-width: 350px;
+  }
+}
 
 //   linear-gradient(rgba(0, 0, 0, 0.77), rgba(0, 0, 0, 0.7)),

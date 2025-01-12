@@ -2,9 +2,13 @@
   // navbaars
   // --navbar-height: 56px;
   // --navbar-bottom-height: 56px;
-
-
+  --custom-danger: #bc4752  !important;
 }
+.btn-custom-danger {
+  background-color: var(--custom-danger) !important;
+  // filter: grayscale(30%);
+}
+
 
 // .navbar-bottom {
 //   height: 56px;
@@ -93,7 +97,7 @@
 }
 
 .w-33 {
-  width: 40% !important
+  width: 35% !important
 }
 .w-45 {
   width: 40% !important

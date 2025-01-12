@@ -1,9 +1,9 @@
-<div class="h-100 d-flex flex-wrap align-items-center justify-content-center px-sm-2 px-lg-4"
+<div class="h-100 d-flex flex-wrap align-items-center justify-content-center"
 [ngClass]="stateService.isScrollMode() ? 'bg-dark' : 'bg-transparent'"
 >
   @for (card of cards; track $index; let i = $index) {
   <app-card class="p-4 pb-sm-0 my-4 my-sm-0"
-  [ngClass]="stateService.isScrollMode() ? 'w-100' :  'w-33' "
+  [ngClass]="stateService.isScrollMode() ? 'w-100' :  'w-auto' "
   ></app-card>
   }
 </div>

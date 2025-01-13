@@ -1,49 +1,73 @@
-.img-bg {
+.background-card {
   position: relative;
   z-index: 1;
-  max-width: 200px;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
 }
 
-.img-bg::before {
-  background: url("/assets/images/card/aragorn.jpg") no-repeat center center /
-    cover;
+.background-card::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  filter: grayscale(80%);
-  z-index: -1;
+  background-image: inherit; 
+  background-repeat: inherit;
+  background-position: inherit;
+  background-size: inherit;
+  filter: grayscale(70%) brightness(50%);
+  z-index: -1; 
 }
 
 @media (min-width: 320px) {
-    .img-bg {
+  .background-card {
       max-width: 100%;
     }
 } 
 
 @media (min-width: 768px) {
 
-  .img-bg {
-    max-width: 200px;
+  .background-card {
+    max-width: 270px;
   }
 }
 @media (min-width: 1024px) {
-  .img-bg {
+  .background-card {
     max-width: 270px;
   }
 }
 @media (min-width: 1200px) {
-  .img-bg {
+  .background-card {
     max-width: 300px;
   }
 }
 
 @media (min-width: 1400px) {
-  .img-bg {
+  .background-card {
     max-width: 350px;
   }
 }
 
-//   linear-gradient(rgba(0, 0, 0, 0.77), rgba(0, 0, 0, 0.7)),
+.background-card.large-height {
+  height: 250px;
+}
+
+.background-card.small-height {
+  height: 150px;
+}
+
+.card-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+  margin: 0.5rem 0.7rem;
+  padding: 0.5rem 1.5rem;
+  font-weight: 500;
+  color: aliceblue !important;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px; 
+  line-height: 1.7;
+}

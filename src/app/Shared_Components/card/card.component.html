@@ -1,19 +1,33 @@
-<div class="card border-secondary-subtle">
-  
-  <div class="card-header bg-danger border-light p-0">Header</div>
-  <div class="card-body text-light p-0">
-    <div
-      class="img-bg"
-      [ngStyle]="stateService.isScrollMode() ? { height: '250px' } : { height: '150px'}"
-      
-    >
-      <h5 class="card-title">Success card title</h5>
-      <p class="card-text">
-        Some quick example text to build on the card title and make up the bulk
-        of the card's content.
-      </p>
-    </div>
-  </div>
-  <div class="card-footer bg-primary-subtle border-light p-0">Footer</div>
-</div>
+<div class="card border-dark shadow-lg">
 
+  <!-- card-header -->
+  <div class="card-header bg-warning-custom border-bottom border-secondary text-black p-0 d-flex justify-content-evenly align-items-center">Header
+  </div>
+    <!-- card-body -->
+
+    <div class="card-body text-light p-0 ">
+          <!-- card-backgroud -->
+
+      <div
+        class="background-card"
+        [ngStyle]="{
+'background-image': 'url(' + backgroundImageUrl + ')',    }"
+        [ngClass]="{
+          'large-height': stateService.isScrollMode(),
+          'small-height': !stateService.isScrollMode()
+        }"
+      ><div class="w-100 h-100 d-flex flex-column flex grow justify-content-center">
+        <p class="card-text scroll-mode-font">
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </p>
+
+      </div>
+      </div>
+          <!-- card-footer -->
+
+    <div class="card-header bg-warning-custom border-bottom border-secondary text-black p-0 d-flex justify-content-evenly align-items-center">Footer</div>
+  </div>
+
+  <!-- url("/assets/images/card/aragorn.jpg"); -->
+</div>

@@ -5,7 +5,7 @@ div.wrapper {
   z-index: 1;
 }
 div.wrapper::before {
-  background: linear-gradient(rgba(0, 0, 0, 0.77), rgba(0, 0, 0, 0.7)),
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url("/assets/images/background/background-gandalf.jpg") center left / cover;
   background-repeat: no-repeat;
   content: "";
@@ -14,7 +14,7 @@ div.wrapper::before {
   left: 0;
   right: 0;
   bottom: 0;
-  filter: grayscale(75%);
+  filter: grayscale(70%);
   z-index: -1;
 }
 @media (max-width: 576px) {

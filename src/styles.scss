@@ -3,10 +3,22 @@
   // --navbar-height: 56px;
   // --navbar-bottom-height: 56px;
   --custom-danger: #bc4752  !important;
+  --custom-warning: #cec4a5  !important;
+
 }
-.btn-custom-danger {
+.btn-danger-custom {
   background-color: var(--custom-danger) !important;
   // filter: grayscale(30%);
+}
+.btn-danger-custom:hover {
+  background-color: var(--bs-danger) !important;
+}
+.bg-warning-custom {
+  background-color: var(--custom-warning) !important;
+  // filter: grayscale(30%);
+}
+.bg-danger-custom:hover {
+  background-color: var(--bs-warning) !important;
 }
 
 
@@ -94,12 +106,5 @@
 
 .scroll-mode-font {
   font-size: clamp(13px, 1.5vw, 17px) !important; 
-}
-
-.w-33 {
-  width: 35% !important
-}
-.w-45 {
-  width: 40% !important
 }
 

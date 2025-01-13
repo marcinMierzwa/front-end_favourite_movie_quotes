@@ -1,4 +1,16 @@
-<p 
+<div 
 class="bg-success text-white m-0" 
 style="height: 3rem;"
->paginations-bar works!</p>
+>
+<mat-paginator
+[length]="10" 
+[pageSize]="4"
+[showFirstLastButtons]="true"
+[pageSizeOptions]="[2, 4, 6,]"
+[pageIndex]="currentPage"
+(page)="handlePageEvent($event)"
+
+>
+
+</mat-paginator>
+</div>

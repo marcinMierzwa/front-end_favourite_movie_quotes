@@ -1,65 +1,14 @@
 {
-  "posts": [
+  "quotes": [
     {
       "id": "1",
-      "name": "froo"
-    },
-    {
-      "id": "2",
-      "name": "sam"
-    },
-    {
-      "id": "3",
-      "name": "gandalf"
-    },
-    {
-      "id": "4",
-      "name": "aragorn"
-    },
-    {
-      "id": "5",
-      "name": "gimli"
-    },
-    {
-      "id": "6",
-      "name": "legolas"
-    },
-    {
-      "id": "7",
-      "name": "garandiela"
-    },
-    {
-      "id": "8",
-      "name": "fili"
-    },
-    {
-      "id": "9",
-      "name": "kili"
-    },
-    {
-      "id": "10",
-      "name": "pipin"
-    },
-    {
-      "id": "11",
-      "name": "mary"
-    },
-    {
-      "id": "12",
-      "name": "azog"
-    },
-    {
-      "id": "13",
-      "name": "sauron"
-    },
-    {
-      "id": "14",
-      "name": "saruman"
-    },
-    {
-      "id": "15",
-      "name": "balin"
+      "content": "",
+      "movieId": "",
+      "characterId": "",
+      "likes":"10",
+
     }
+    
   ],
   "auth": [
     {
@@ -124,3 +73,5 @@
     }
   ]
 }
+
+

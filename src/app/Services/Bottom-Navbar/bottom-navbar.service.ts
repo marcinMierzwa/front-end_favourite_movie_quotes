@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IconBox } from '../Components/bottom-navbar/model/icon-box.interface';
+import { IconBox } from '../../Components/bottom-navbar/model/icon-box.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ export class BottomNavbarService {
     },
     {
       title: 'Contact',
-      className: 'bi bi-envelope-fill',
+      className: 'bi bi-envelope-at',
       id: 2,
     },
     {

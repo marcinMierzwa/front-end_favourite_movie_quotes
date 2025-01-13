@@ -1,32 +1,113 @@
 <div class="card border-dark shadow-lg">
-
   <!-- card-header -->
-  <div class="card-header bg-warning-custom border-bottom border-secondary text-black p-0 d-flex justify-content-evenly align-items-center">Header
+  <div
+    class="card-header bg-warning-custom border-bottom border-secondary text-black p-1 px-2 d-flex justify-content-end align-items-center"
+  >
+    <!-- share -->
+    <div
+      class="d-flex align-items-center bg-secondary-custom border border-secondary rounded"
+    >
+      <i
+        class="bi bi-share card-icon border-end border-secondary px-2"
+        matTooltip="share"
+        [matTooltipPosition]="stateService.positionOptions[2]"
+        matTooltipClass="tooltip-custom"
+      >
+      </i>
+      <!-- add to favourites -->
+      <i
+        class="bi bi-heart card-icon px-2"
+        matTooltip="add to favourites"
+        [matTooltipPosition]="stateService.positionOptions[2]"
+        matTooltipClass="tooltip-custom"
+      >
+      </i>
+      <!-- 
+        <i class="bi bi-heart-fill"></i>   if user is login and add to favourites  -->
+    </div>
   </div>
-    <!-- card-body -->
+  <!-- card-body -->
 
-    <div class="card-body text-light p-0 ">
-          <!-- card-backgroud -->
+  <div class="card-body text-light p-0">
+    <!-- card-backgroud -->
 
-      <div
-        class="background-card"
-        [ngStyle]="{
+    <div
+      class="background-card"
+      [ngStyle]="{
 'background-image': 'url(' + backgroundImageUrl + ')',    }"
-        [ngClass]="{
-          'large-height': stateService.isScrollMode(),
-          'small-height': !stateService.isScrollMode()
-        }"
-      ><div class="w-100 h-100 d-flex flex-column flex grow justify-content-center">
+      [ngClass]="{
+        'large-height': stateService.isScrollMode(),
+        'small-height': !stateService.isScrollMode()
+      }"
+    >
+      <div
+        class="w-100 h-100 d-flex flex-column flex grow justify-content-center"
+      >
         <p class="card-text scroll-mode-font">
+          <i class="bi bi-quote"></i>
           Some quick example text to build on the card title and make up the
           bulk of the card's content.
+          <i class="bi bi-quote"></i>
         </p>
-
       </div>
-      </div>
-          <!-- card-footer -->
+    </div>
+    <!-- card-footer -->
+    <div
+      class="card-header container-fluid d-flex justify-content-between align-items-center bg-warning-custom border-bottom border-secondary text-black p-1 px-2"
+    >
+      <!-- section likes -->
+      <section
+        class="d-flex align-items-center bg-secondary-custom border border-secondary rounded"
+      >
 
-    <div class="card-header bg-warning-custom border-bottom border-secondary text-black p-0 d-flex justify-content-evenly align-items-center">Footer</div>
+
+
+          <i
+            class="bi bi-hand-thumbs-up px-1 card-icon"
+            matTooltip="I like this"
+            [matTooltipPosition]="stateService.positionOptions[3]"
+            matTooltipClass="tooltip-custom"
+          >
+        
+        </i>
+        <p
+          class="scroll-mode-font-card-footer m-0 border-end border-secondary px-1"
+        >
+          232
+        </p>
+        <!-- if user is login and add to likes -->
+        <!-- <i class="bi bi-hand-thumbs-up-fill"></i> -->
+        <i
+          class="bi bi-hand-thumbs-down px-1 card-icon"
+          matTooltip="I dislike this"
+          [matTooltipPosition]="stateService.positionOptions[3]"
+          matTooltipClass="tooltip-custom"
+        ></i>
+
+
+        
+      </section>
+
+      <!--button comments -->
+      <button
+        class="btn btn-sm btn-outline-dark py-0 fw-semibold scroll-mode-font-card-footer"
+        matTooltip="show comments"
+        [matTooltipPosition]="stateService.positionOptions[3]"
+        matTooltipClass="tooltip-custom"
+      >
+        Comments
+      </button>
+
+      <!--button more info -->
+      <button
+        class="btn btn-sm btn-outline-dark py-0 fw-semibold scroll-mode-font-card-footer"
+        matTooltip="show more info"
+        [matTooltipPosition]="stateService.positionOptions[3]"
+        matTooltipClass="tooltip-custom"
+      >
+        Show more
+      </button>
+    </div>
   </div>
 
   <!-- url("/assets/images/card/aragorn.jpg"); -->

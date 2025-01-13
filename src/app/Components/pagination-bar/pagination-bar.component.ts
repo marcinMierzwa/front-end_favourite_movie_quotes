@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {MatPaginatorModule, PageEvent} from '@angular/material/paginator';
+import {MatPaginatorIntl, MatPaginatorModule, PageEvent} from '@angular/material/paginator';
+import { PaginatorIntl } from '../../Services/Pagination/paginatorIntl.service';
 
 
 @Component({
@@ -7,7 +8,8 @@ import {MatPaginatorModule, PageEvent} from '@angular/material/paginator';
   standalone: true,
   imports: [MatPaginatorModule],
   templateUrl: './pagination-bar.component.html',
-  styleUrl: './pagination-bar.component.scss'
+  styleUrl: './pagination-bar.component.scss',
+  providers: [{provide: MatPaginatorIntl, useClass: PaginatorIntl}]
 })
 export class PaginationBarComponent {
   currentPage = 0;

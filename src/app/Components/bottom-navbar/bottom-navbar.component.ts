@@ -1,6 +1,6 @@
 import { Component, inject, WritableSignal } from '@angular/core';
 import { IconBox } from './model/icon-box.interface';
-import { BottomNavbarService } from '../../Services/bottom-navbar.service';
+import { BottomNavbarService } from '../../Services/Bottom-Navbar/bottom-navbar.service';
 
 @Component({
   selector: 'app-bottom-navbar',
@@ -10,6 +10,7 @@ import { BottomNavbarService } from '../../Services/bottom-navbar.service';
   styleUrl: './bottom-navbar.component.scss'
 })
 export class BottomNavbarComponent {
+[x: string]: any;
 
   private bottomNavbarService: BottomNavbarService = inject(BottomNavbarService);
 

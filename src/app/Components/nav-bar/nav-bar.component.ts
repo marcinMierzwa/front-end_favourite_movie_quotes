@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import { Component, inject} from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { StateService } from '../../Services/State/state.service';
@@ -7,7 +6,7 @@ import { DropdownComponent } from "../../Shared_Components/dropdown/dropdown.com
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, NgClass, DropdownComponent],
+  imports: [RouterLink, RouterLinkActive, DropdownComponent],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss'
 })

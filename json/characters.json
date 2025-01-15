@@ -1,0 +1,175 @@
+[
+    {
+      "_id": "5cd99d4bde30eff6ebccfea0",
+      "name": "Gandalf",
+      "wikiUrl": "http://lotr.wikia.com//wiki/Gandalf",
+      "race": "Maiar",
+      "birth": "Before the the Shaping of Arda",
+      "gender": "Male",
+      "death": "January 253019 ,Battle of the Peak immortal"
+    },
+    {
+      "_id": "5cd99d4bde30eff6ebccfbe6",
+      "name": "Aragorn",
+      "wikiUrl": "http://lotr.wikia.com//wiki/Aragorn_II_Elessar",
+      "race": "Human",
+      "birth": "March 1 ,2931",
+      "gender": "Male",
+      "death": "FO 120"
+    },
+    {
+      "_id": "5cd99d4bde30eff6ebccfc07",
+      "name": "Arwen",
+      "wikiUrl": "http://lotr.wikia.com//wiki/Arwen",
+      "race": "Elf",
+      "birth": "TA 241",
+      "gender": "Female",
+      "death": "FO 121"
+    },
+    {
+      "_id": "5cd99d4bde30eff6ebccfc15",
+      "name": "Frodo Baggins",
+      "wikiUrl": "http://lotr.wikia.com//wiki/Frodo_Baggins",
+      "race": "Hobbit",
+      "birth": "22 September ,TA 2968",
+      "gender": "Male",
+      "death": "Unknown"
+    },
+    {
+      "_id": "5cd99d4bde30eff6ebccfc57",
+      "name": "Boromir",
+      "wikiUrl": "http://lotr.wikia.com//wiki/Boromir",
+      "race": "Human",
+      "birth": "TA 2978",
+      "gender": "Male",
+      "death": "February 26 ,3019"
+    },
+    {
+      "_id": "5cd99d4bde30eff6ebccfc7c",
+      "name": "Meriadoc Brandybuck",
+      "wikiUrl": "http://lotr.wikia.com//wiki/Meriadoc_Brandybuck",
+      "race": "Hobbit",
+      "birth": "TA 2982",
+      "gender": "Male",
+      "death": "FO 65"
+    },
+    {
+      "_id": "5cd99d4bde30eff6ebccfcc8",
+      "name": "Elrond",
+      "wikiUrl": "http://lotr.wikia.com//wiki/Elrond",
+      "race": "Elf",
+      "birth": "FA 532",
+      "gender": "Male",
+      "death": "Still alive; departed to ,Aman, on ,September 29 ,3021"
+    },
+    {
+      "_id": "5cdbdecb6dc0baeae48cfa5a",
+      "name": "Eomer",
+      "wikiUrl": "http://lotr.wikia.com//wiki/%C3%89omer",
+      "race": "Men",
+      "birth": "TA 2990",
+      "gender": "Male",
+      "death": "FO 63"
+    },
+    {
+      "_id": "5cdbdecb6dc0baeae48cfa59",
+      "name": "Eowyn",
+      "wikiUrl": "http://lotr.wikia.com//wiki/%C3%89owyn",
+      "race": "Men",
+      "birth": "TA 2995",
+      "gender": "Female",
+      "death": "FO"
+    },
+    {
+      "_id": "5cd99d4bde30eff6ebccfcef",
+      "name": "Faramir",
+      "wikiUrl": "http://lotr.wikia.com//wiki/Faramir",
+      "race": "Human",
+      "birth": "TA 2983",
+      "gender": "Male",
+      "death": "February 26 ,82"
+    },
+    {
+      "_id": "5cd99d4bde30eff6ebccfd06",
+      "name": "Galadriel",
+      "wikiUrl": "http://lotr.wikia.com//wiki/Galadriel",
+      "race": "Elf",
+      "birth": "YT 1362",
+      "gender": "Female",
+      "death": "Still alive: Departed over the sea on ,September 29 ,3021"
+    },
+    {
+      "_id": "5cd99d4bde30eff6ebccfd0d",
+      "name": "Samwise Gamgee",
+      "wikiUrl": "http://lotr.wikia.com//wiki/Samwise_Gamgee",
+      "race": "Hobbit",
+      "birth": "April 6 ,2980",
+      "gender": "Male",
+      "death": "Still alive, after going to the ,Undying Lands, in ,FO 61"
+    },
+    {
+      "_id": "5cd99d4bde30eff6ebccfd23",
+      "name": "Gimli",
+      "wikiUrl": "http://lotr.wikia.com//wiki/Gimli",
+      "race": "Dwarf",
+      "birth": "TA 2879",
+      "gender": "Male",
+      "death": "Unknown (Departed to ,Aman ,FO 120,)"
+    },
+    {
+      "_id": "5cd99d4bde30eff6ebccfe9e",
+      "name": "Gollum",
+      "wikiUrl": "http://lotr.wikia.com//wiki/Gollum",
+      "race": "Hobbit",
+      "birth": "TA 2430",
+      "gender": "Male",
+      "death": "March 25 ,3019"
+    },
+    {
+      "_id": "5cd99d4bde30eff6ebccfd81",
+      "name": "Legolas",
+      "wikiUrl": "http://lotr.wikia.com//wiki/Legolas",
+      "race": "Elf",
+      "birth": null,
+      "gender": "Male",
+      "death": "Still alive, departed to ,Aman ,FO 120"
+    },
+    {
+      "_id": "5cd99d4bde30eff6ebccfea4",
+      "name": "Saruman",
+      "wikiUrl": "http://lotr.wikia.com//wiki/Saruman",
+      "race": "Maiar",
+      "birth": "Before the creation of ,Arda",
+      "gender": "Male",
+      "death": "3 November ,3019"
+    },
+    {
+      "_id": "5cd99d4bde30eff6ebccfea5",
+      "name": "Sauron",
+      "wikiUrl": "http://lotr.wikia.com//wiki/Sauron",
+      "race": "Maiar",
+      "birth": "Before the creation of ,Arda",
+      "gender": "Male",
+      "death": "March 25 ,3019"
+    },
+    {
+      "_id": "5cd99d4bde30eff6ebccfe19",
+      "name": "Théoden",
+      "wikiUrl": "http://lotr.wikia.com//wiki/Th%C3%A9oden",
+      "race": "Human",
+      "birth": "TA 2948 ,Gondor",
+      "gender": "Male",
+      "death": "March 15 ,3019"
+    },
+    {
+      "_id": "5cd99d4bde30eff6ebccfe2e",
+      "name": "Peregrin Took",
+      "wikiUrl": "http://lotr.wikia.com//wiki/Peregrin_Took",
+      "race": "Hobbit",
+      "birth": "TA 2990",
+      "gender": "Male",
+      "death": "FO 65"
+    }
+  ]
+
+

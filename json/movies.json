@@ -1,5 +1,5 @@
 
-   
+   [
       {
           "_id": "5cd95395de30eff6ebccde5b",
           "name": "The Two Towers",
@@ -30,3 +30,4 @@
         "academyAwardWins": 11,
         "rottenTomatoesScore": 95
       }
+    ]

@@ -16,7 +16,6 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { FooterMobileComponent } from './Components/footer-mobile/footer-mobile.component';
 import { SearchbarComponent } from './Components/searchbar/searchbar.component';
 import { FilterComponent } from './Components/filter/filter.component';
-import { PaginationBarComponent } from './Components/pagination-bar/pagination-bar.component';
 import { HeaderComponent } from './Components/header/header.component';
 
 @Component({
@@ -32,7 +31,6 @@ import { HeaderComponent } from './Components/header/header.component';
     FooterMobileComponent,
     SearchbarComponent,
     FilterComponent,
-    PaginationBarComponent,
     HeaderComponent,
   ],
 

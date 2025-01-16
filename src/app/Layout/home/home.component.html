@@ -8,3 +8,17 @@
   }
 </div>
 
+<div 
+  >
+  <mat-paginator
+  [length]="length()" 
+  [pageIndex]="pageIndex()"
+  [pageSize]="pageSize()"
+  [pageSizeOptions]="pageSizeOptions()"
+  [showFirstLastButtons]="true"
+  (page)="handlePageEvent($event)"
+  
+  >
+  </mat-paginator>
+  </div>
+

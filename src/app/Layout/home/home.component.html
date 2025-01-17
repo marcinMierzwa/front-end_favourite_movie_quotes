@@ -1,19 +1,26 @@
-<div class="h-100 d-flex flex-wrap align-items-center justify-content-center"
-[ngClass]="stateService.isScrollMode() ? 'bg-dark' : 'bg-transparent'"
+<div class="h-100 d-flex flex-column justify-content-between ">
+  
+<div class="d-flex flex-fill align-items-center justify-content-around px-3 gap-3"
+[ngClass]="stateService.isScrollMode() ? 'bg-dark flex-column' : 'bg-info'"
 >
-  @for (card of cards; track $index; let i = $index) {
-  <app-card class="p-4 pb-sm-0 my-4 my-sm-0"
-  [ngClass]="stateService.isScrollMode() ? 'w-100' :  'w-auto' "
+  @for (quote of quotes(); track quote._id) {
+  <app-card
+  [ngClass]="{'w-100': stateService.isScrollMode()}"
+  [dialog]="quote.dialog" 
+  [movie]="quote.movie" 
+  [character]="quote.character" 
+  [likes]="quote.likes" 
   ></app-card>
   }
 </div>
 
+@if (!stateService.isScrollMode()) {
 <div 
-  >
+>
   <mat-paginator
-  [length]="length()" 
-  [pageIndex]="pageIndex()"
-  [pageSize]="pageSize()"
+  [length]="pagination().length" 
+  [pageIndex]="pagination().pageIndex"
+  [pageSize]="pagination().pageSize"  
   [pageSizeOptions]="pageSizeOptions()"
   [showFirstLastButtons]="true"
   (page)="handlePageEvent($event)"
@@ -21,4 +28,5 @@
   >
   </mat-paginator>
   </div>
-
+}
+</div>

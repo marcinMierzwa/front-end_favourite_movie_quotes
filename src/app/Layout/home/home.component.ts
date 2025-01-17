@@ -3,8 +3,8 @@ import {
   effect,
   inject,
   OnInit,
+  Signal,
   signal,
-  WritableSignal,
 } from '@angular/core';
 import { CardComponent } from '../../Shared_Components/card/card.component';
 import { StateService } from '../../Services/State/state.service';
@@ -17,6 +17,8 @@ import {
   PageEvent,
 } from '@angular/material/paginator';
 import { PaginatorIntl } from '../../Services/Pagination/paginatorIntl.service';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { PaginationState } from '../../Models/pagination-state.interface';
 
 @Component({
   selector: 'app-home',
@@ -30,36 +32,54 @@ export class HomeComponent implements OnInit {
   public stateService: StateService = inject(StateService);
   private apiService: ApiService = inject(ApiService);
 
-  readonly quotes: WritableSignal<Quote[]> = signal<Quote[]>([]);
+  // quotes signal
+  readonly quotes: Signal<Quote[]> = toSignal(this.stateService.quotes$, {
+    initialValue: [],
+  });
   readQuoteEff = effect(() => console.log(this.quotes()));
 
   // paginator
-  public length = signal<number>(50);
-  public pageIndex = signal<number>(1);
-  public pageSize = signal<number>(4);
-  public pageSizeOptions = signal<number[]>([2, 3, 4]);
+  readonly pagination: Signal<PaginationState> = toSignal(
+    this.stateService.pagination$,
+    {
+      initialValue: {
+        pageIndex: 0,
+        pageSize: 4,
+        length: 0,
+      },
+    }
+  );
   showPagEff = effect(() => {
-    console.log('total items :', this.length());
-    console.log('page index :', this.pageIndex());
-    console.log('page size :', this.pageSize());
+    console.log('total items :', this.pagination());
   });
 
-  handlePageEvent(pageEvent: PageEvent): void {
+  pageSizeOptions = signal<number[]>([2,3])
+
+  ngOnInit(): void {
+    this.setPageSizeOptions()
     this.loadQuotes();
   }
 
-  cards = ['1', '2', '3', '4'];
-
-  ngOnInit(): void {
+  handlePageEvent(pageEvent: PageEvent): void {
+    this.stateService.paginationSubject.next({
+      ...this.pagination(),
+      pageIndex: pageEvent.pageIndex,
+      pageSize: pageEvent.pageSize,
+    });
     this.loadQuotes();
   }
 
   loadQuotes(): void {
     this.apiService.getQuotes(
-      this.pageIndex(), this.pageSize()
-    );
-    this.stateService.quotes$.subscribe((quotes: Quote[]) =>
-      this.quotes.set(quotes)
+      this.pagination().pageIndex,
+      this.pagination().pageSize
     );
   }
+
+  setPageSizeOptions(): void {
+    
+  }
+    
+    
+  
 }

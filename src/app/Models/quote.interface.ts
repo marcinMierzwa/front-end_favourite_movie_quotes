@@ -1,7 +1,9 @@
 export interface Quote {
-    id: string;
+    _id: string;
     dialog: string;
     movie: string;
     character: string;
+    characterId: string;
+    movieId: string;
     likes: string[]
 }

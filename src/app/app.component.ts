@@ -13,10 +13,10 @@ import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { NgClass, NgStyle } from '@angular/common';
 import { StateService } from './Services/State/state.service';
 import { FooterComponent } from './Components/footer/footer.component';
-import { FooterMobileComponent } from './Components/footer-mobile/footer-mobile.component';
 import { SearchbarComponent } from './Components/searchbar/searchbar.component';
 import { FilterComponent } from './Components/filter/filter.component';
 import { HeaderComponent } from './Components/header/header.component';
+import { BottomNavbarComponent } from "./Components/bottom-navbar/bottom-navbar.component";
 
 @Component({
   selector: 'app-root',
@@ -28,11 +28,11 @@ import { HeaderComponent } from './Components/header/header.component';
     SnackbarComponent,
     NavBarComponent,
     FooterComponent,
-    FooterMobileComponent,
     SearchbarComponent,
     FilterComponent,
     HeaderComponent,
-  ],
+    BottomNavbarComponent
+],
 
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -41,6 +41,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   private customBreakpointsService: CustomBreakpointsService = inject(
     CustomBreakpointsService
   );
+
   public stateService: StateService = inject(StateService);
   
   @ViewChild('headerRef', { static: true }) headerRef!: ElementRef;

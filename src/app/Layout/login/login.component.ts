@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormAuthComponent } from "../../Shared_Components/form-auth/form-auth.component";
 
 @Component({

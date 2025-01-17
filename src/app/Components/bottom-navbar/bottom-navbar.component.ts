@@ -10,7 +10,6 @@ import { BottomNavbarService } from '../../Services/Bottom-Navbar/bottom-navbar.
   styleUrl: './bottom-navbar.component.scss'
 })
 export class BottomNavbarComponent {
-[x: string]: any;
 
   private bottomNavbarService: BottomNavbarService = inject(BottomNavbarService);
 

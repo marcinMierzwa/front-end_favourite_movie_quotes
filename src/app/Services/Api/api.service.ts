@@ -11,10 +11,12 @@ interface QuoteResponseDto {
   totalItems: number;
 }
 interface QuoteDataDto {
-  id: string;
+  _id: string;
   dialog: string;
   movie: string;
   character: string;
+  movieId: string;
+  characterId: string;
   likes: string[];
 }
 
@@ -29,7 +31,7 @@ export class ApiService {
 
   getQuotes(pageIndex: number, pageSize: number): void {
     const params = new HttpParams()
-      .set('skip', pageIndex)
+      .set('skip', (pageIndex))
       .set('limit', pageSize);
     this.httpClient
       .get<QuoteResponseDto>(`${this.basicUrl_Dev}/quotes`, { params })

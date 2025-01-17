@@ -23,16 +23,17 @@
 
   <!-- MAIN -->
   <main
+    class="flex-fill"
     [ngStyle]="{ 'margin-top.px': stateService.isScrollMode() ? stateService.headerMobileHeight() : 0 }"
     ><router-outlet />
   </main>
 
   <!-- FOOTER -->
-  <footer class="sticky-bottom container-fluid">
+  <footer >
     @if (this.stateService.isScrollMode()) {
-    <app-footer-mobile />
+    <app-bottom-navbar />
     } @else {
-    <!-- <app-footer /> -->
+    <app-footer />
     }
   </footer>
 </div>

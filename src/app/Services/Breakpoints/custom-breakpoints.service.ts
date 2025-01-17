@@ -23,7 +23,7 @@ export class CustomBreakpointsService {
                 if (state.breakpoints[query]) {
                   const breakpoint = key as CustomBreakpoints; 
                   this.stateService.screenBreakpoint.set(breakpoint);   
-                  this.setScrollMode()                
+                  this.setScrollMode() 
                 }
               }
               return 'Unknown'; 
@@ -34,7 +34,7 @@ export class CustomBreakpointsService {
       setScrollMode():void {
         const breakpoints = {
           xs: CustomBreakpoints.XS,
-          sm: CustomBreakpoints.SM
+          sm: CustomBreakpoints.SM,
         };
         this.breakpointObserver
         .observe([breakpoints.xs, breakpoints.sm])
@@ -45,5 +45,6 @@ export class CustomBreakpointsService {
         ).subscribe(isActive => {
           this.stateService.isScrollMode.set(isActive);
         });
-    }      
+    }  
+
 }

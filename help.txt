@@ -52,3 +52,120 @@ header=320x189
       "_id": "5cd99d4bde30eff6ebccfe2e",
       "name": "Peregrin Took"
 }
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UtilService {
+  private dataUrl = 'assets/quotes.json'; // Ścieżka do pliku JSON
+
+  transformedData: any = [];
+
+  constructor(private http: HttpClient) {}
+
+  // Pobierz dane, przetwórz je i zapisz w `transformedData`
+  getProcessedData() {
+    this.http.get<any[]>(this.dataUrl).pipe(
+      map((data) =>
+        data.map((item) => {
+          // Mapowanie tytułu filmu na podstawie movieId
+          let movieTitle = '';
+          switch (item.movieId) {
+            case '6787f7378b04776a081806ad':
+              movieTitle = 'The Return of the King';
+              break;
+            case '6787f6e28b04776a081806ab':
+              movieTitle = 'The Fellowship of the Ring';
+              break;
+            case '6787f5db7b03ccde07d68663':
+              movieTitle = 'The Two Towers';
+              break;
+            default:
+              movieTitle = 'Unknown Movie';
+              break;
+          }
+  
+          // Mapowanie postaci na podstawie characterId
+          let characterName = '';
+          switch (item.characterId) {
+            case '678814e493bb87b239d24cf8':
+              characterName = 'Gandalf';
+              break;
+            case '678814e493bb87b239d24cf9':
+              characterName = 'Aragorn';
+              break;
+            case '678814e493bb87b239d24cfa':
+              characterName = 'Arwen';
+              break;
+            case '678814e493bb87b239d24cfb':
+              characterName = 'Frodo Baggins';
+              break;
+            case '678814e493bb87b239d24cfc':
+              characterName = 'Boromir';
+              break;
+            case '678814e493bb87b239d24cfd':
+              characterName = 'Meriadoc Brandybuck';
+              break;
+            case '678814e493bb87b239d24cfe':
+              characterName = 'Elrond';
+              break;
+            case '678814e493bb87b239d24cff':
+              characterName = 'Eomer';
+              break;
+            case '678814e493bb87b239d24d00':
+              characterName = 'Eowyn';
+              break;
+            case '678814e493bb87b239d24d01':
+              characterName = 'Faramir';
+              break;
+            case '678814e493bb87b239d24d02':
+              characterName = 'Galadriel';
+              break;
+            case '678814e493bb87b239d24d03':
+              characterName = 'Samwise Gamgee';
+              break;
+            case '678814e493bb87b239d24d04':
+              characterName = 'Gimli';
+              break;
+            case '678814e493bb87b239d24d05':
+              characterName = 'Gollum';
+              break;
+            case '678814e493bb87b239d24d06':
+              characterName = 'Legolas';
+              break;
+            case '678814e493bb87b239d24d07':
+              characterName = 'Saruman';
+              break;
+            case '678814e493bb87b239d24d09':
+              characterName = 'Theoden';
+              break;
+            case '678814e493bb87b239d24d0a':
+              characterName = 'Peregrin Took';
+              break;
+            default:
+              characterName = 'Unknown Character';
+              break;
+          }
+  
+          // Zwracamy zaktualizowany obiekt z polami movie i character
+          return {
+            ...item,
+            movie: movieTitle,
+            character: characterName, // Dodajemy nazwę postaci
+          };
+        })
+      ),
+      tap((processedData) => {
+        this.transformedData = processedData; // Zapisz przetworzone dane
+      })
+    ).subscribe(
+      (data) => console.log(data), // Wyświetl przetworzone dane
+      (error) => console.error('Błąd podczas pobierania danych:', error) // Obsługa błędów
+    );
+  }
+      
+}

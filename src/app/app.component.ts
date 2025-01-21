@@ -48,6 +48,8 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.customBreakpointsService.getCurrentBreakpoint();
+    this.customBreakpointsService.setModes();
+
   }
 
   ngAfterViewInit(): void {

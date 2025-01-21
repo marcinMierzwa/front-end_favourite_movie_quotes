@@ -37,6 +37,7 @@ export class ApiService {
       .get<QuoteResponseDto>(`${this.basicUrl_Dev}/quotes`, { params })
       .subscribe({
         next: (response: QuoteResponseDto) => {
+          console.log('totalItems', response.totalItems, 'pageIndex', )
           this.stateService.quotesSubject.next(response.data);
           this.stateService.paginationSubject.next({
             pageIndex: response.pageIndex,

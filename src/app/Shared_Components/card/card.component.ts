@@ -18,5 +18,5 @@ export class CardComponent {
   movie = input.required<string>();
   character = input.required<string>();
   likes = input.required<string[]>();
-  backgroundImageUrl = '/assets/images/card/aragorn.jpg';
+  cardBackgroundImageUrl = input.required<string>();
 }

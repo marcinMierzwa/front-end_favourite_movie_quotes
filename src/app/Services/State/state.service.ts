@@ -27,64 +27,53 @@ export class StateService {
   public readonly isXlMode: WritableSignal<boolean> = signal<boolean>(false);
   public readonly isXxlMode: WritableSignal<boolean> = signal<boolean>(false);
 
-  eff=effect(() => {
-    console.log('pageSizeOption', this.pageSizeOptions())
-  })
+  eff = effect(() => {
+    console.log('pagination', this.pagination());
 
+  });
 
   public readonly headerMobileHeight: WritableSignal<number> =
     signal<number>(0);
 
   //quotes
-  public quotesSubject = new BehaviorSubject<Quote[]>([]);
-  public readonly quotes$ = this.quotesSubject.asObservable();
+  readonly quotes = signal<Quote[]>([]);
+  readQuoteEff = effect(() => console.log(this.quotes()));
+
 
   // pagination
-  public pageSizeOptionsMobile = signal([4]);
-  public pageSizeOptionsMedium = signal([1, 2]);
-  public pageSizeOptionsLarge = signal([2, 3]);
-  public pageSizeOptionsXl = signal([2, 3, 4]);
+  public pageSizeMobileOptions = signal([4]);
+  public pageSizeMediumOptions = signal([2,3,4]);
+  public pageSizeLargeOptions = signal([2,3,4]);
+  public pageSizeXlOptions = signal([2,3,4]);
 
   public pageSizeOptions = computed(() => {
     if (this.isScrollMode()) {
-      return this.pageSizeOptionsMobile();
+      return this.pageSizeMobileOptions();
     }
     if (this.isMediumMode()) {
-      return this.pageSizeOptionsMedium();
+      return this.pageSizeMediumOptions();
     }
     if (this.isLargeMode()) {
-      return this.pageSizeOptionsLarge();
+      return this.pageSizeLargeOptions();
     }
     if (this.isXlMode() || this.isXxlMode()) {
-      return this.pageSizeOptionsXl();
+      return this.pageSizeXlOptions();
     }
-    return []
+    return [];
   });
 
-  readonly pageSizeInit = computed(() => {
-    if (this.isScrollMode()) {
-      return 4;
-    }
-    if (this.isMediumMode()) {
-      return 2;
-    }
-    if (this.isLargeMode()) {
-      return 3;
-    }
-    if (this.isXlMode() || this.isXxlMode()) {
-      return 3;
-    }
-    return 0
-  });
-
-
-
-  public paginationSubject = new BehaviorSubject<PaginationState>({
+  public pagination: WritableSignal<PaginationState> = signal<PaginationState>({
     pageIndex: 0,
-    pageSize: 2,
+    pageSize: 3,
     length: 0,
   });
-  pagination$ = this.paginationSubject.asObservable();
+
+  // public paginationSubject = new BehaviorSubject<PaginationState>({
+  //   pageIndex: 0,
+  //   pageSize: 2,
+  //   length: 0,
+  // });
+  // pagination$ = this.paginationSubject.asObservable();
 
   // tooltip
   public readonly positionOptions: TooltipPosition[] = [
@@ -95,6 +84,4 @@ export class StateService {
     'left',
     'right',
   ];
-
-
 }

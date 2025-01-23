@@ -1,52 +1,41 @@
-<div class="card border-dark-subtle shadow-lg rounded-3">
+<div class="card border border-4 border-info shadow-lg rounded-3">
   <!-- card-body -->
-
-  <div class="card-body text-light p-0 rounded-top-3">
-    <!-- card-backgroud -->
-
-    <div
-      class="background-card rounded-top-3 "
-      [ngStyle]="{
-        'background-image': 'url(' + cardBackgroundImageUrl() + ')',
-        height: '350px'
-      }"
-    >
+  <div
+    class="card-body background-card text-light p-0 rounded-top-3"
+    [ngStyle]="{
+      'background-image': 'url(' + cardBackgroundImageUrl() + ')'
+    }"
+  >
+    <!-- quote section -->
+    <div class="h-100 d-flex flex-column justify-content-between gap-1 p-3">
       <div
-        class="h-100 d-flex flex-column justify-content-between gap-1 p-4 "
+        class="card-text-container d-flex flex-fill align-items-center justify-content-center px-3 px-sm-2 py-1 overflow-auto"
       >
-      <div class="card-text-container d-flex flex-fill align-items-center justify-content-center px-3 overflow-auto">
-        <p class="card-text m-0 ">
-          <i class="bi bi-quote"></i>
-          {{ dialog() }}
-          <i class="bi bi-quote"></i>
+        <p class="card-text m-0 px-2 d-flex justify-content-center">
+          &quot; {{ dialog() }} &quot;
         </p>
       </div>
 
-        <div class="d-flex align-items-center justify-content-end card-body-link-container p-1 pe-2 rounded-1">
-        <a class="card-text-link cursor-pointer"
-        routerLink="character"
-        >
+      <!-- info-quote section -->
+      <div
+        class="d-flex align-items-center justify-content-end card-body-link-container p-1 pe-2 rounded-1"
+      >
+        <a class="card-text-link cursor-pointer" routerLink="character">
           {{ character() }}
         </a>
-        <span class="card-text-link px-2">in</span>        
-        <a class="card-text-link"
-        routerLink="movie"
-        >
+        <span class="card-text-link px-2">in</span>
+        <a class="card-text-link" routerLink="movie">
           {{ movie() }}
         </a>
-
-    </div>
-
-
-
-
       </div>
     </div>
-    <!-- card-footer -->
-    <div
-      class="container-fluid d-flex justify-content-around align-items-center bg-warning-custom text-black p-2 px-3 sm-px-4 rounded-bottom-3"
-    >
-          <!-- section icons -->
+  </div>
+
+  <!-- card-footer -->
+  <div
+    class="container-fluid d-flex justify-content-around align-items-center bg-warning-custom text-black p-2 px-3 sm-px-4 rounded-bottom-3"
+  >
+    <!-- section icons -->
     <section class="d-flex align-items-center gap-2">
       <!-- section likes -->
       <section
@@ -86,19 +75,17 @@
         <!-- 
         <i class="bi bi-heart-fill"></i>   if user is login and add to favourites  -->
       </section>
-
     </section>
 
-      <!--button comments -->
-      <a href="" class="nav-link scroll-mode-font"
-        matTooltip="show comments"
-        [matTooltipPosition]="stateService.positionOptions[3]"
-        matTooltipClass="tooltip-custom"
-      >
-        Comments
-      </a>
-        </div>
+    <!--button comments -->
+    <a
+      href=""
+      class="nav-link scroll-mode-font"
+      matTooltip="show comments"
+      [matTooltipPosition]="stateService.positionOptions[3]"
+      matTooltipClass="tooltip-custom"
+    >
+      Comments
+    </a>
   </div>
-
-  <!-- url("/assets/images/card/aragorn.jpg"); -->
 </div>

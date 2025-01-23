@@ -1,14 +1,16 @@
-<div class="h-100 d-flex flex-column justify-content-between "
+<div class="h-100 d-flex flex-column justify-content-between border border-4 border-danger"
 [ngClass]="stateService.isScrollMode() ? 'bg-dark' : 'bg-transparent'"
 
 >
   
-<div class="d-flex flex-fill align-items-center justify-content-evenly px-4 "
-[ngClass]="stateService.isScrollMode() ? 'bg-dark flex-column ' : 'bg-transparent gap-4'"
+<div class="d-flex flex-fill align-items-center justify-content-evenly"
+[ngClass]="{
+  'flex-column': stateService.isScrollMode(),
+  'flex-wrap': stateService.isMediumMode()
+}"
 >
-  @for (quote of quotes(); track quote._id) {
-  <app-card
-  [ngClass]="stateService.isScrollMode() ? 'w-100 my-4 pb-5' : 'my-0 pb-0'"
+  @for (quote of stateService.quotes(); track quote._id) {
+  <app-card 
   [dialog]="quote.dialog" 
   [movie]="quote.movie" 
   [character]="quote.character" 
@@ -20,11 +22,14 @@
 
 @if (!stateService.isScrollMode()) {
 <div 
+class="d-flex justify-content-center"
 >
   <mat-paginator
-  [length]="pagination().length" 
-  [pageIndex]="pagination().pageIndex"
-  [pageSize]="pagination().pageSize"  
+  style="height: 50px;"
+  class=""
+  [length]="stateService.pagination().length" 
+  [pageIndex]="stateService.pagination().pageIndex"
+  [pageSize]="stateService.pagination().pageSize"  
   [pageSizeOptions]="stateService.pageSizeOptions()"
   [showFirstLastButtons]="true"
   (page)="handlePageEvent($event)"

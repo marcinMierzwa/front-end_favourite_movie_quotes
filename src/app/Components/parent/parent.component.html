@@ -1,0 +1,13 @@
+<div
+  class="w-100 d-flex gap-4 justify-content-center align-items-center bg-danger-subtle mx-auto p-3"
+  style="width: 1000px; height: 500px"
+>
+@for (text of texts; track text.id) {
+    <app-overlflow-test
+    [text]="text.text"
+    [textId]="text.id"
+    >
+    </app-overlflow-test>
+}
+</div>
+

@@ -37,13 +37,22 @@ export class ApiService {
       .get<QuoteResponseDto>(`${this.basicUrl_Dev}/quotes`, { params })
       .subscribe({
         next: (response: QuoteResponseDto) => {
-          console.log('totalItems', response.totalItems, 'pageIndex', )
-          this.stateService.quotesSubject.next(response.data);
-          this.stateService.paginationSubject.next({
+          this.stateService.quotes.set(response.data);
+          this.stateService.pagination.set({
             pageIndex: response.pageIndex,
             pageSize: response.pageSize,
-            length: response.totalItems,
-          });
+            length: response.totalItems
+          })
+
+          // console.log('totalItems', response.totalItems, 'pageIndex', )
+          // this.stateService.quotesSubject.next(response.data);
+          // this.stateService.paginationSubject.next({
+          //   pageIndex: response.pageIndex,
+          //   pageSize: response.pageSize,
+          //   length: response.totalItems,
+
+            
+          // });
         },
         error: (err) => {
           console.error('Error response:', err);

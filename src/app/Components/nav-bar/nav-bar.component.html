@@ -1,5 +1,5 @@
 <nav
-  class="navbar navbar-expand-sm navbar-dark bg-dark p-1 px-2"
+  class="navbar navbar-expand-sm navbar-dark bg-dark p-2  rounded-3 border border-secondary border-opacity-50 shadow-lg"
 >
   <div class="container-fluid p-0">
     <!-- logo -->
@@ -90,17 +90,6 @@
               >Contact</a
             >
           </li>
-
-                    <!-- overflowtest -->
-                    <li class="nav-item">
-                      <a
-                        class="nav-link text-white scroll-mode-font"
-                        routerLink="parent"
-                        routerLinkActive="active-link"
-                        [routerLinkActiveOptions]="{ exact: true }"
-                        >Parent</a
-                      >
-                    </li>
           
         </ul>
 
@@ -108,12 +97,13 @@
         <ul class="navbar-nav align-items-center gap-2">
           <li class="nav-item">
             @if (!stateService.isScrollMode()) {
-            <button class="btn btn-sm bg-warning-custom border px-3 ">
+            <button class="btn btn-sm bg-warning-custom border border-secondary-subtle px-3 scroll-mode-font">
               <i class="bi bi-heart me-2"></i>
               skip to my favourite quotes
             </button>
             }
           </li>
+
           <li class="nav-item me-auto">
             <a class="nav-link text-white scroll-mode-font" routerLink="sign-up"
               >Sign Up</a

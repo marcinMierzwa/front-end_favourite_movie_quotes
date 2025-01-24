@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { CustomBreakpoints } from '../../Models/custom-breakpoint.enum';
 import { TooltipPosition } from '@angular/material/tooltip';
-import { BehaviorSubject } from 'rxjs';
 import { Quote } from '../../Models/quote.interface';
 import { PaginationState } from '../../Models/pagination-state.interface';
 
@@ -29,7 +28,6 @@ export class StateService {
 
   eff = effect(() => {
     console.log('pagination', this.pagination());
-
   });
 
   public readonly headerMobileHeight: WritableSignal<number> =
@@ -37,14 +35,13 @@ export class StateService {
 
   //quotes
   readonly quotes = signal<Quote[]>([]);
-  readQuoteEff = effect(() => console.log(this.quotes()));
 
 
   // pagination
   public pageSizeMobileOptions = signal([4]);
   public pageSizeMediumOptions = signal([2,3,4]);
   public pageSizeLargeOptions = signal([2,3,4]);
-  public pageSizeXlOptions = signal([2,3,4]);
+  public pageSizeXlOptions = signal([2,3,4,5,6]);
 
   public pageSizeOptions = computed(() => {
     if (this.isScrollMode()) {
@@ -68,13 +65,6 @@ export class StateService {
     length: 0,
   });
 
-  // public paginationSubject = new BehaviorSubject<PaginationState>({
-  //   pageIndex: 0,
-  //   pageSize: 2,
-  //   length: 0,
-  // });
-  // pagination$ = this.paginationSubject.asObservable();
-
   // tooltip
   public readonly positionOptions: TooltipPosition[] = [
     'after',
@@ -84,4 +74,5 @@ export class StateService {
     'left',
     'right',
   ];
+
 }

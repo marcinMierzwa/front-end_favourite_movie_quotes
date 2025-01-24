@@ -1,4 +1,6 @@
-<div class="card border border-4 border-info shadow-lg rounded-3">
+<div
+  class="card d-flex flex-column border border-secondary shadow-lg rounded-3 p-1 bg-dark bg-opacity-50  my-3 my-sm-0"
+>
   <!-- card-body -->
   <div
     class="card-body background-card text-light p-0 rounded-top-3"
@@ -7,12 +9,14 @@
     }"
   >
     <!-- quote section -->
-    <div class="h-100 d-flex flex-column justify-content-between gap-1 p-3">
+    <div class="h-100 d-flex flex-column justify-content-between gap-1 p-2">
       <div
-        class="card-text-container d-flex flex-fill align-items-center justify-content-center px-3 px-sm-2 py-1 overflow-auto"
+        class="card-text-container d-flex column flex-fill align-items-center justify-content-sm-center px-3  py-2"
       >
-        <p class="card-text m-0 px-2 d-flex justify-content-center">
-          &quot; {{ dialog() }} &quot;
+        <p
+          class="card-text m-0 px-2 mt-1 d-flex flex-column justify-content-center align-items-center"
+        >
+          ... {{ dialog() | truncateText : 15 }}
         </p>
       </div>
 
@@ -28,18 +32,19 @@
           {{ movie() }}
         </a>
       </div>
+
+
     </div>
   </div>
-
   <!-- card-footer -->
   <div
-    class="container-fluid d-flex justify-content-around align-items-center bg-warning-custom text-black p-2 px-3 sm-px-4 rounded-bottom-3"
+    class="container-fluid d-flex justify-content-around align-items-center bg-warning-custom text-black p-1 px-3 sm-px-4 rounded-bottom-3"
   >
     <!-- section icons -->
     <section class="d-flex align-items-center gap-2">
       <!-- section likes -->
       <section
-        class="d-flex align-items-center bg-secondary-custom border border-secondary rounded ms-auto"
+        class="d-flex align-items-center bg-secondary-custom border border-secondary rounded "
       >
         <i
           class="bi bi-hand-thumbs-up card-icon border-end border-secondary px-2"
@@ -48,7 +53,7 @@
           matTooltipClass="tooltip-custom"
         >
         </i>
-        <p class="scroll-mode-font m-0 px-2">232</p>
+        <p class="m-0 px-2" style="font-size: small;">232</p>
         <!-- if user is login and add to likes -->
         <!-- <i class="bi bi-hand-thumbs-up-fill"></i> -->
       </section>
@@ -77,8 +82,8 @@
       </section>
     </section>
 
-    <!--button comments -->
-    <a
+    <!-- comments -->
+    <!-- <a
       href=""
       class="nav-link scroll-mode-font"
       matTooltip="show comments"
@@ -86,6 +91,16 @@
       matTooltipClass="tooltip-custom"
     >
       Comments
-    </a>
+    </a> -->
+
+          <!-- show more section -->
+            <a 
+            class="card-show-more-link text-dark border border-secondary p-1 rounded"
+            routerLink="quote"
+            matTooltip="Show more"
+          [matTooltipPosition]="stateService.positionOptions[3]"
+          matTooltipClass="tooltip-custom"
+            >Show more</a>
+    
   </div>
 </div>

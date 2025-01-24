@@ -1,13 +1,9 @@
-<div class="h-100 d-flex flex-column justify-content-between border border-4 border-danger"
-[ngClass]="stateService.isScrollMode() ? 'bg-dark' : 'bg-transparent'"
+<div class="h-100 d-flex flex-column justify-content-between"
+[ngClass]="stateService.isScrollMode() ? 'bg-dark' : 'bg-transparent '"
 
 >
   
-<div class="d-flex flex-fill align-items-center justify-content-evenly"
-[ngClass]="{
-  'flex-column': stateService.isScrollMode(),
-  'flex-wrap': stateService.isMediumMode()
-}"
+<div class="d-flex flex-column flex-sm-row flex-fill flex-wrap align-items-center justify-content-evenly position-relative"
 >
   @for (quote of stateService.quotes(); track quote._id) {
   <app-card 
@@ -26,7 +22,6 @@ class="d-flex justify-content-center"
 >
   <mat-paginator
   style="height: 50px;"
-  class=""
   [length]="stateService.pagination().length" 
   [pageIndex]="stateService.pagination().pageIndex"
   [pageSize]="stateService.pagination().pageSize"  

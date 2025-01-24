@@ -3,25 +3,13 @@
 >
 <form>
     <div class="input-group">
-        <select 
-        class="form-select bg-dark-subtle border border-secondary" 
-        [ngClass]="{'scroll-mode-font': stateService.isScrollMode()}"
-        id="inputGroupSelect04" 
-        >
-            <option selected>All</option>
-            <option value="1">All</option>
-            <option value="2">Movies</option>
-            <option value="3">Characters</option>
-          </select>
           <input 
-          class="form-control border border-secondary w-50 "
-          [ngClass]="{'scroll-mode-font w-33': stateService.isScrollMode()}"
+          class="form-control border border-secondary w-50 scroll-mode-font bg-secondary-subtle"
           type="search" 
           placeholder="Search quote.." 
           aria-label="Search">
         <button 
-        class="btn btn-danger-custom text-white border border-secondary"
-        [ngClass]="{'scroll-mode-font': stateService.isScrollMode()}"        
+        class="btn btn-danger-custom text-white border border-secondary scroll-mode-font"
         type="button">Go</button>
       </div>
   </form>

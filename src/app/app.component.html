@@ -1,6 +1,6 @@
 <!-- WRAPPER -->
 <div
-  class="wrapper"
+  class="wrapper p-sm-2"
   [ngStyle]="{
     overflow: this.stateService.isScrollMode() ? 'visible' : 'hidden'
   }"
@@ -31,6 +31,10 @@
     }"
   >
     <router-outlet/>
+
+    @if (this.stateService.isScrollMode()) {
+      <div class=" bg-dark " style="height: 58px;"></div>
+    }
   </main>
 
   @if (!this.stateService.isScrollMode()) {

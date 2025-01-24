@@ -1,27 +1,19 @@
 import {
   Component,
-  computed,
-  effect,
   inject,
   OnInit,
-  Signal,
   signal,
 } from '@angular/core';
 import { CardComponent } from '../../Shared_Components/card/card.component';
 import { StateService } from '../../Services/State/state.service';
 import { NgClass, NgStyle } from '@angular/common';
 import { ApiService } from '../../Services/Api/api.service';
-import { Quote } from '../../Models/quote.interface';
 import {
   MatPaginatorIntl,
   MatPaginatorModule,
   PageEvent,
 } from '@angular/material/paginator';
 import { PaginatorIntl } from '../../Services/Pagination/paginatorIntl.service';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { PaginationState } from '../../Models/pagination-state.interface';
-import { Breakpoints } from '@angular/cdk/layout';
-import { CustomBreakpoints } from '../../Models/custom-breakpoint.enum';
 
 @Component({
   selector: 'app-home',
@@ -30,6 +22,7 @@ import { CustomBreakpoints } from '../../Models/custom-breakpoint.enum';
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   providers: [{ provide: MatPaginatorIntl, useClass: PaginatorIntl }],
+
 })
 export class HomeComponent implements OnInit {
   public stateService: StateService = inject(StateService);
@@ -62,7 +55,4 @@ export class HomeComponent implements OnInit {
       pageSize,
     );
   }  
-
-    
-  
 }

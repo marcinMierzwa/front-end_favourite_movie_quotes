@@ -43,16 +43,6 @@ export class ApiService {
             pageSize: response.pageSize,
             length: response.totalItems
           })
-
-          // console.log('totalItems', response.totalItems, 'pageIndex', )
-          // this.stateService.quotesSubject.next(response.data);
-          // this.stateService.paginationSubject.next({
-          //   pageIndex: response.pageIndex,
-          //   pageSize: response.pageSize,
-          //   length: response.totalItems,
-
-            
-          // });
         },
         error: (err) => {
           console.error('Error response:', err);

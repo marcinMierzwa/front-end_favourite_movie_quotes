@@ -1,30 +1,72 @@
 @import url("https://fonts.googleapis.com/css2?family=Cardo:ital,wght@0,400;0,700;1,400&display=swap");
 
+
 :root {
-  // navbaars
-  // --navbar-height: 56px;
-  // --navbar-bottom-height: 56px;
-  --custom-header: #a0982e  !important;
-  --custom-warning: #b3ab93  !important;
-  --custom-secondary: #a9ac99  !important;
+  // custom-colors
+  --custom-header: #a0982e !important;
+  --custom-warning: #b3ab93 !important;
+  --custom-secondary: #a9ac99 !important;
 
   // paginator
-  --mat-paginator-container-text-color: red;
-  --mat-paginator-container-text-font: system-ui, -apple-system, sans-serif;  
+
+  .mat-mdc-paginator {
+    background-color: rgba($color: #212529, $alpha: 0.9);
+  }
+
+  --mat-paginator-container-text-color: #d9dcdf;
+  --mat-paginator-container-text-font: system-ui, -apple-system, sans-serif;
   --mat-paginator-container-background-color: var(--custom-warning);
   --mat-paginator-container-text-size: clamp(11px, 1.5vw, 13px);
+  --mat-paginator-enabled-icon-color: #d9dcdf;
+  --mat-paginator-disabled-icon-color: #6c757d;
 
+  .mat-mdc-paginator-page-size-select {
+    margin: 0 4px;
+    width: 65px;
 
+    --mat-select-enabled-trigger-text-color: #d9dcdf;
+    --mat-select-enabled-arrow-color: #d9dcdf;
+  }
 
+  --mat-option-selected-state-label-text-color: #d9dcdf;
+  --mat-option-label-text-color: #6c757d;
+  .mat-mdc-select-panel {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #212529;
+  }
+  --mat-select-focused-arrow-color: #6c757d;
+  --mat-select-enabled-trigger-text-color: #6c757d;
 
+  .mat-mdc-text-field-wrapper {
+    border: 1px solid #3d4042;
+  }
 
+  .mdc-text-field--outlined:not(
+      .mdc-text-field--disabled
+    ).mdc-text-field--focused
+    .mdc-notched-outline__leading,
+  .mdc-text-field--outlined:not(
+      .mdc-text-field--disabled
+    ).mdc-text-field--focused
+    .mdc-notched-outline__notch,
+  .mdc-text-field--outlined:not(
+      .mdc-text-field--disabled
+    ).mdc-text-field--focused
+    .mdc-notched-outline__trailing {
+    border-color: #6c757d;
+  }
 
-
-
-
+  // tooltip
   --tooltip-color: #222 !important;
-
+  .tooltip-custom .mdc-tooltip__surface {
+    color: rgb(36, 40, 44) !important;
+    background-color: var(--custom-secondary) !important;
+    border: 1px solid black;
+  }
 }
+
+// custom-buttons
 .btn-danger-custom {
   background-color: var(--custom-header) !important;
 }
@@ -38,16 +80,10 @@
   background-color: var(--custom-secondary) !important;
 }
 
-// cec4a5
-// .navbar-bottom {
-//   height: 56px;
-// }
-
 
 // .dropdown-toggle::after {
 //   display: none !important;
 // }
-
 
 // .dropdown-menu {
 //   background-color: #FF0000 !important;
@@ -121,17 +157,9 @@
   text-decoration: none;
 }
 
-
 // tooltip
-.tooltip-custom .mdc-tooltip__surface {
-  color: var(--tooltip-color) !important;
-  background-color: var(--custom-warning) !important;
-  border: 1px solid black;
-}
 
 // fonts- clamp
 .scroll-mode-font {
-  font-size: clamp(13px, 1.5vw, 17px) !important; 
+  font-size: clamp(13px, 1.5vw, 17px) !important;
 }
-
-

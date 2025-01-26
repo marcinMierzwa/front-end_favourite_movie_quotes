@@ -1,11 +1,10 @@
-  // XS = '(max-width: 575.98px)',
-  // SM = '(min-width: 576px) and (max-width: 767.98px)',
-  // MD = '(min-width: 768px) and (max-width: 991.98px)',
-  // LG = '(min-width: 992px) and (max-width: 1199.98px)',
-  // XL = '(min-width: 1200px) and (max-width: 1399.98px)',
-  // XXL = '(min-width: 1400px)'
+// XS = '(max-width: 575.98px)',
+// SM = '(min-width: 576px) and (max-width: 767.98px)',
+// MD = '(min-width: 768px) and (max-width: 991.98px)',
+// LG = '(min-width: 992px) and (max-width: 1199.98px)',
+// XL = '(min-width: 1200px) and (max-width: 1399.98px)',
+// XXL = '(min-width: 1400px)'
 
-  
 .background-card {
   position: relative;
   z-index: 1;
@@ -31,40 +30,39 @@
   border-top-left-radius: 9px;
 }
 
-
 .card-text-container {
   background: rgba(0, 0, 0, 0.5);
   border-radius: 8px;
   width: 300px;
   height: 300px;
 
-  @media((min-width: 576px) and (max-width: 767.98px)) {
+  @media ((min-width: 576px) and (max-width: 767.98px)) {
     width: 450px;
     height: 300px;
   }
-  @media((min-width: 768px) and (max-width: 991.98px)) {
+  @media ((min-width: 768px) and (max-width: 991.98px)) {
     width: 250px;
-    height: 100px ;
+    height: 100px;
   }
 
-  @media((min-width: 992px) and (max-width: 1199.98px)) {
+  @media ((min-width: 992px) and (max-width: 1199.98px)) {
     width: 350px;
-    height: 100px ;
+    height: 100px;
   }
 
-  @media((min-width: 1200px) and (max-width: 1399.98px)) {
+  @media ((min-width: 1200px) and (max-width: 1399.98px)) {
     width: 350px;
-    height: 100px ;
+    height: 100px;
   }
 
-  @media((min-width: 1400px) and (max-width: 2560px)) {
+  @media ((min-width: 1400px) and (max-width: 1919.98px)) {
     width: 350px;
-    height: 100px ;
+    height: 100px;
   }
 
-  @media((min-width: 2560px)) {
-    width: 500px;
-    height: 300px ;
+  @media ((min-width: 1920px) and (max-width: 2560px)) {
+    width: 400px;
+    height: 120px;
   }
 }
 
@@ -75,7 +73,6 @@
   color: rgb(217, 220, 223) !important;
   line-height: 1.7;
   font-size: clamp(14px, 2vw, 16px) !important;
-
 }
 
 .card-icon {
@@ -86,7 +83,6 @@
 .card-icon:hover {
   background-color: rgb(151, 153, 142);
   transition: all ease-in-out 0.3s;
-
 }
 
 .card-body-link-container {
@@ -115,12 +111,9 @@
   text-decoration: none;
   cursor: pointer;
   background-color: var(--custom-secondary) !important;
-
 }
 .card-show-more-link:hover {
-  background-color : rgb(151, 153, 142) !important;
+  background-color: rgb(151, 153, 142) !important;
   color: black;
   transition: all ease-in-out 0.3s;
 }
-
-

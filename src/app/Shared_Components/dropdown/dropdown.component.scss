@@ -2,21 +2,3 @@
   display: none !important;
 }
 
-@media (min-width: 576px) {
-  .dropdown-menu {
-    display: block;
-    opacity: 0;
-    transition: ease-in-out 0.3s;
-  }
-  .hover-enabled:hover .dropdown-menu {
-    display: block;
-    opacity: 1;
-  }
-
-  .dropdown-menu.show {
-    display: block;
-    opacity: 1;
-  }
-
-}
-

@@ -15,6 +15,6 @@ export class DropdownComponent {
 
   readonly title: InputSignal<string> = input.required();
   readonly showArrow: InputSignal<boolean> = input.required();
-  readonly enableHover: InputSignal<boolean> = input.required();
+  // readonly enableHover: InputSignal<boolean> = input.required();
 
 }

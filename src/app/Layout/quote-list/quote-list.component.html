@@ -1,0 +1,34 @@
+<div
+  class="d-flex flex-column flex-sm-row flex-fill flex-wrap align-items-center justify-content-evenly"
+  [ngClass]="stateService.isScrollMode() ? 'bg-dark px-2' : 'bg-transparent'"
+>
+  @for (quote of stateService.quotes(); track quote._id) {
+  <app-card
+    [likes]="quote.likes"
+    [cardBackgroundImageUrl]="cardsBackgroundImageUrl[quote.movie]"
+    [routerLink]="['/quote-detail', quote._id]"
+  >
+    <p
+      class="card-text m-0 px-2 mt-1 d-flex flex-column justify-content-center align-items-center"
+    >
+      ... {{ quote.dialog | truncateText : 15 }}
+    </p>
+  </app-card>
+  }
+</div>
+
+<!-- pagination -->
+@if (!stateService.isScrollMode()) {
+<div class="d-flex justify-content-center">
+  <mat-paginator
+    class="rounded-4 border border-secondary border-opacity-50"
+    [length]="stateService.pagination().length"
+    [pageIndex]="stateService.pagination().pageIndex"
+    [pageSize]="stateService.pagination().pageSize"
+    [pageSizeOptions]="stateService.pageSizeOptions()"
+    [showFirstLastButtons]="true"
+    (page)="handlePageEvent($event)"
+  >
+  </mat-paginator>
+</div>
+}

@@ -33,12 +33,19 @@
 .card-text-container {
   background: rgba(0, 0, 0, 0.5);
   border-radius: 8px;
-  width: 300px;
-  height: 300px;
+
+  @media (max-width: 374.98px) {
+    width: 250px;
+    height: 100px;
+  }
+  @media (min-width: 375px) and (max-width: 575.98px) {
+    width: 300px;
+    height: 100px;
+  }
 
   @media ((min-width: 576px) and (max-width: 767.98px)) {
     width: 450px;
-    height: 300px;
+    height: 100px;
   }
   @media ((min-width: 768px) and (max-width: 991.98px)) {
     width: 250px;
@@ -66,14 +73,6 @@
   }
 }
 
-.card-text {
-  overflow: hidden;
-  font-family: "Cardo", serif;
-  font-weight: 500;
-  color: rgb(217, 220, 223) !important;
-  line-height: 1.7;
-  font-size: clamp(14px, 2vw, 16px) !important;
-}
 
 .card-icon {
   font-size: 14px;
@@ -104,7 +103,7 @@
 
 .card-show-more-link {
   font-family: "Cardo", serif;
-  font-size: clamp(11px, 1.5vw, 13px) !important;
+  font-size: clamp(11px, 1.5vw, 12px) !important;
   letter-spacing: 0.5px;
   font-weight: bold;
   word-spacing: 1px;

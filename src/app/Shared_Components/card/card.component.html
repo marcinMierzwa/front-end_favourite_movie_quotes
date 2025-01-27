@@ -1,5 +1,5 @@
 <div
-  class="card d-flex flex-column border border-secondary shadow-lg rounded-3 p-1 bg-dark bg-opacity-50  my-3 my-sm-0"
+  class="card d-flex flex-column border border-secondary shadow-lg rounded-3 p-1 bg-dark bg-opacity-50 my-3 my-sm-0"
 >
   <!-- card-body -->
   <div
@@ -11,96 +11,67 @@
     <!-- quote section -->
     <div class="h-100 d-flex flex-column justify-content-between gap-1 p-2">
       <div
-        class="card-text-container d-flex column flex-fill align-items-center justify-content-sm-center px-3  py-2"
+        class="card-text-container d-flex column flex-fill align-items-center justify-content-sm-center px-3 py-2"
       >
-        <p
-          class="card-text m-0 px-2 mt-1 d-flex flex-column justify-content-center align-items-center"
-        >
-          ... {{ dialog() | truncateText : 15 }}
-        </p>
+        <ng-content></ng-content>
       </div>
 
-      <!-- info-quote section -->
+      <!-- card-footer -->
       <div
-        class="d-flex align-items-center justify-content-end card-body-link-container p-1 pe-2 rounded-1"
+        class="container-fluid d-flex justify-content-around align-items-center bg-dark text-black border border-secondary border-opacity-25 p-1 px-3 sm-px-4 rounded-3"
       >
-        <a class="card-text-link cursor-pointer" routerLink="character">
-          {{ character() }}
-        </a>
-        <span class="card-text-link px-2">in</span>
-        <a class="card-text-link" routerLink="movie">
-          {{ movie() }}
-        </a>
-      </div>
+        <!-- section icons -->
+        <section class="d-flex align-items-center gap-2">
+          <!-- section likes -->
+          <section
+            class="d-flex align-items-center bg-secondary-custom border border-black rounded"
+          >
+            <i
+              class="bi bi-hand-thumbs-up card-icon border-end border-black px-2"
+              matTooltip="I like this"
+              [matTooltipPosition]="stateService.positionOptions[3]"
+              matTooltipClass="tooltip-custom"
+            >
+            </i>
+            <p class="m-0 px-2" style="font-size: small">232</p>
+            <!-- if user is login and add to likes -->
+            <!-- <i class="bi bi-hand-thumbs-up-fill"></i> -->
+          </section>
 
-
-    </div>
-  </div>
-  <!-- card-footer -->
-  <div
-    class="container-fluid d-flex justify-content-around align-items-center bg-warning-custom text-black p-1 px-3 sm-px-4 rounded-bottom-3"
-  >
-    <!-- section icons -->
-    <section class="d-flex align-items-center gap-2">
-      <!-- section likes -->
-      <section
-        class="d-flex align-items-center bg-secondary-custom border border-secondary rounded "
-      >
-        <i
-          class="bi bi-hand-thumbs-up card-icon border-end border-secondary px-2"
-          matTooltip="I like this"
-          [matTooltipPosition]="stateService.positionOptions[3]"
-          matTooltipClass="tooltip-custom"
-        >
-        </i>
-        <p class="m-0 px-2" style="font-size: small;">232</p>
-        <!-- if user is login and add to likes -->
-        <!-- <i class="bi bi-hand-thumbs-up-fill"></i> -->
-      </section>
-
-      <!-- section share/fav -->
-      <section
-        class="d-flex align-items-center bg-secondary-custom border border-secondary rounded"
-      >
-        <i
-          class="bi bi-share card-icon border-end border-secondary px-2"
-          matTooltip="share"
-          [matTooltipPosition]="stateService.positionOptions[3]"
-          matTooltipClass="tooltip-custom"
-        >
-        </i>
-        <!-- add to favourites -->
-        <i
-          class="bi bi-heart card-icon px-2"
-          matTooltip="add to favourites"
-          [matTooltipPosition]="stateService.positionOptions[3]"
-          matTooltipClass="tooltip-custom"
-        >
-        </i>
-        <!-- 
+          <!-- section share/fav -->
+          <section
+            class="d-flex align-items-center bg-secondary-custom border border-black rounded"
+          >
+            <i
+              class="bi bi-share card-icon border-end border-black px-2"
+              matTooltip="share"
+              [matTooltipPosition]="stateService.positionOptions[3]"
+              matTooltipClass="tooltip-custom"
+            >
+            </i>
+            <!-- add to favourites -->
+            <i
+              class="bi bi-heart card-icon px-2"
+              matTooltip="add to favourites"
+              [matTooltipPosition]="stateService.positionOptions[3]"
+              matTooltipClass="tooltip-custom"
+            >
+            </i>
+            <!-- 
         <i class="bi bi-heart-fill"></i>   if user is login and add to favourites  -->
-      </section>
-    </section>
+          </section>
+        </section>
 
-    <!-- comments -->
-    <!-- <a
-      href=""
-      class="nav-link scroll-mode-font"
-      matTooltip="show comments"
-      [matTooltipPosition]="stateService.positionOptions[3]"
-      matTooltipClass="tooltip-custom"
-    >
-      Comments
-    </a> -->
-
-          <!-- show more section -->
-            <a 
-            class="card-show-more-link text-dark border border-secondary p-1 rounded"
-            routerLink="/quote-detail"
-            matTooltip="Show more"
+        <!-- show more section -->
+        <a
+          class="card-show-more-link text-dark border border-black p-1 rounded"
+          routerLink="/quote-detail"
+          matTooltip="Show more"
           [matTooltipPosition]="stateService.positionOptions[3]"
           matTooltipClass="tooltip-custom"
-            >Show more</a>
-    
+          >Show more</a
+        >
+      </div>
+    </div>
   </div>
 </div>

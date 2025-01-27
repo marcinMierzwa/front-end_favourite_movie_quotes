@@ -13,8 +13,6 @@ import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { NgClass, NgStyle } from '@angular/common';
 import { StateService } from './Services/State/state.service';
 import { FooterComponent } from './Components/footer/footer.component';
-import { SearchbarComponent } from './Components/searchbar/searchbar.component';
-import { FilterComponent } from './Components/filter/filter.component';
 import { HeaderComponent } from './Components/header/header.component';
 import { BottomNavbarComponent } from "./Components/bottom-navbar/bottom-navbar.component";
 
@@ -28,8 +26,6 @@ import { BottomNavbarComponent } from "./Components/bottom-navbar/bottom-navbar.
     SnackbarComponent,
     NavBarComponent,
     FooterComponent,
-    SearchbarComponent,
-    FilterComponent,
     HeaderComponent,
     BottomNavbarComponent
 ],

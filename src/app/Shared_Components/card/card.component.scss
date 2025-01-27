@@ -105,14 +105,12 @@
   font-family: "Cardo", serif;
   font-size: clamp(11px, 1.5vw, 12px) !important;
   letter-spacing: 0.5px;
-  font-weight: bold;
   word-spacing: 1px;
   text-decoration: none;
+  color: rgb(217, 220, 223) !important;
   cursor: pointer;
-  background-color: var(--custom-secondary) !important;
 }
 .card-show-more-link:hover {
-  background-color: rgb(151, 153, 142) !important;
-  color: black;
-  transition: all ease-in-out 0.3s;
+  transition: ease-in-out 0.2s;
+  transform: scale(1.03);
 }

@@ -6,7 +6,7 @@
   }"
 >
   <!-- HEADER -->
-  <header
+  <!-- <header
     #headerRef
     [ngClass]="{
       'fixed-top': stateService.isScrollMode(),
@@ -14,19 +14,13 @@
       'bg-dark': stateService.isScrollMode(),
       'bg-transparent': !stateService.isScrollMode()
     }"
-  >
-    <app-navbar />
-    <app-header />
-  </header>
+  > -->
+    <app-navbar [ngClass]="stateService.isScrollMode() ? 'sticky-top' : 'static-top'"></app-navbar>
+  <!-- </header> -->
 
   <!-- MAIN -->
   <main
     class="flex-fill"
-    [ngStyle]="{
-      'margin-top.px': stateService.isScrollMode()
-        ? stateService.headerMobileHeight()
-        : 0
-    }"
   >
     <router-outlet/>
 
@@ -48,3 +42,7 @@
   <app-bottom-navbar />
   }
 </footer>
+
+
+
+

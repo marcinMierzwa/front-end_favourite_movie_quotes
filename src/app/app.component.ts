@@ -13,7 +13,6 @@ import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { NgClass, NgStyle } from '@angular/common';
 import { StateService } from './Services/State/state.service';
 import { FooterComponent } from './Components/footer/footer.component';
-import { HeaderComponent } from './Components/header/header.component';
 import { BottomNavbarComponent } from "./Components/bottom-navbar/bottom-navbar.component";
 
 @Component({
@@ -26,7 +25,6 @@ import { BottomNavbarComponent } from "./Components/bottom-navbar/bottom-navbar.
     SnackbarComponent,
     NavBarComponent,
     FooterComponent,
-    HeaderComponent,
     BottomNavbarComponent
 ],
 
@@ -40,7 +38,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   public stateService: StateService = inject(StateService);
   
-  @ViewChild('headerRef', { static: true }) headerRef!: ElementRef;
+  // @ViewChild('navbarRef', { static: true }) navbarRef!: ElementRef;
 
   ngOnInit() {
     this.customBreakpointsService.getCurrentBreakpoint();
@@ -49,7 +47,9 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    const headerHeight = this.headerRef.nativeElement.offsetHeight;
-    this.stateService.headerMobileHeight.set(headerHeight); 
+  //   const navbarHeight = this.navbarRef.nativeElement.offsetHeight;
+  //   console.log(navbarHeight);
+    
+  //   this.stateService.navbarHeight.set(navbarHeight); 
   }
 }

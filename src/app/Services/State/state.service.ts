@@ -30,8 +30,8 @@ export class StateService {
     console.log('pagination', this.pagination());
   });
 
-  public readonly headerMobileHeight: WritableSignal<number> =
-    signal<number>(0);
+  // public readonly navbarHeight: WritableSignal<number> =
+  //   signal<number>(0);
 
   //quotes
   readonly quotes = signal<Quote[]>([]);

@@ -6,12 +6,11 @@ import { PaginatorIntl } from '../../Services/Pagination/paginatorIntl.service';
 import { ApiService } from '../../Services/Api/api.service';
 import { StateService } from '../../Services/State/state.service';
 import { TruncateTextPipe } from '../../CustomPipes/truncate-text.pipe';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-quote-list',
   standalone: true,
-  imports: [CardComponent, NgClass, MatPaginatorModule, TruncateTextPipe, RouterLink],
+  imports: [CardComponent, NgClass, MatPaginatorModule, TruncateTextPipe],
   templateUrl: './quote-list.component.html',
   styleUrl: './quote-list.component.scss',
   providers: [{ provide: MatPaginatorIntl, useClass: PaginatorIntl }],

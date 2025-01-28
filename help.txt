@@ -219,3 +219,8 @@ export class UtilService {
 
 }
 
+https://raw.githubusercontent.com/marcinMierzwa/images-hosting/main/The_Fellowship_Of_The_Ring.jpg
+
+https:///raw.githubusercontent.com/marcinMierzwa/images-hosting/main/The_Return_Of_The_King.jpg
+
+https://raw.githubusercontent.com/marcinMierzwa/images-hosting/main/The_Two_Towers.jpg

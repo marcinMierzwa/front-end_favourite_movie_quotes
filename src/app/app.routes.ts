@@ -26,7 +26,7 @@ export const routes: Routes = [
         title: 'Sing-Up'
     },
     {
-        path: 'quote-detail',
+        path: 'quote-detail/:id',
         component: QuoteDetailComponent,
         title: 'Quote-Detail'
     },

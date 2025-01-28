@@ -28,10 +28,9 @@ export class StateService {
 
   eff = effect(() => {
     console.log('pagination', this.pagination());
+    console.log('quotes', this.quotes());
   });
 
-  // public readonly navbarHeight: WritableSignal<number> =
-  //   signal<number>(0);
 
   //quotes
   readonly quotes = signal<Quote[]>([]);
@@ -74,5 +73,7 @@ export class StateService {
     'left',
     'right',
   ];
+
+
 
 }

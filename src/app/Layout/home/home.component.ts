@@ -1,7 +1,6 @@
 import {
   Component,
   inject,
-  signal,
 } from '@angular/core';
 import { FilterComponent } from "../../Components/filter/filter.component";
 import { SearchbarComponent } from "../../Components/searchbar/searchbar.component";

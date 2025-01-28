@@ -5,5 +5,6 @@ export interface Quote {
     character: string;
     characterId: string;
     movieId: string;
-    likes: string[]
+    likes: string[];
+    backgroundUrl: string;
 }

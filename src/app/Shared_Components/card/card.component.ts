@@ -14,9 +14,8 @@ import { RouterLink } from '@angular/router';
 })
 export class CardComponent {
   stateService: StateService = inject(StateService);
-
-  likes = input.required<string[]>();
-  cardBackgroundImageUrl = input.required<string>();
+  likes = input<string[]>();
+  backgroundUrl = input<string>();
   public triggerApiCall = signal(false);
 
 

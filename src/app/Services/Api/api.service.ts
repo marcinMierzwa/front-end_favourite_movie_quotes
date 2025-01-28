@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { StateService } from '../State/state.service';
+import { Observable } from 'rxjs';
 
 interface QuoteResponseDto {
   data: QuoteDataDto[];
@@ -18,6 +19,7 @@ interface QuoteDataDto {
   movieId: string;
   characterId: string;
   likes: string[];
+  backgroundUrl: string;
 }
 
 @Injectable({
@@ -35,6 +37,7 @@ export class ApiService {
       .set('limit', pageSize);
     this.httpClient
       .get<QuoteResponseDto>(`${this.basicUrl_Dev}/quotes`, { params })
+      .pipe()
       .subscribe({
         next: (response: QuoteResponseDto) => {
           this.stateService.quotes.set(response.data);
@@ -48,5 +51,13 @@ export class ApiService {
           console.error('Error response:', err);
         },
       });
+  }
+
+  getOne(id: string): Observable<QuoteDataDto> {
+     const params = new HttpParams()
+      .set('id', (id))
+    return this.httpClient
+    .get<QuoteDataDto>(`${this.basicUrl_Dev}/quotes`, { params })
+
   }
 }

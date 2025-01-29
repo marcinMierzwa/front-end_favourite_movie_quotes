@@ -28,7 +28,7 @@ export class StateService {
 
   eff = effect(() => {
     console.log('pagination', this.pagination());
-    console.log('quotes', this.quotes());
+    console.log('isScroll', this.isScrollMode());
   });
 
 

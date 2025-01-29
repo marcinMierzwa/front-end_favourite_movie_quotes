@@ -54,10 +54,7 @@ export class ApiService {
   }
 
   getOne(id: string): Observable<QuoteDataDto> {
-     const params = new HttpParams()
-      .set('id', (id))
     return this.httpClient
-    .get<QuoteDataDto>(`${this.basicUrl_Dev}/quotes`, { params })
-
+    .get<QuoteDataDto>(`${this.basicUrl_Dev}/quotes/${id}`)
   }
 }

@@ -1,9 +1,9 @@
 <div
-  class="card d-flex flex-column border border-secondary shadow-lg rounded-3 p-1 bg-dark bg-opacity-50 my-3 my-sm-0"
+  class="card flex-fill gap-1 border border-secondary shadow-lg rounded-3 bg-dark bg-opacity-50 p-1"
 >
   <!-- card-body -->
   <div
-    class="card-body background-card text-light p-0 rounded-top-3"
+    class="d-flex flex-column flex-fill background-card text-light p-1 rounded-3"
     [ngStyle]="{
       'background-image': 'url(' + backgroundUrl() + ')',
     }"
@@ -11,53 +11,12 @@
     <!-- quote section -->
     <ng-content select="[card-content]"></ng-content>
 
-    <!-- card-footer -->
-    <div
-      class="container-fluid d-flex justify-content-around align-items-center bg-dark text-black border border-secondary border-opacity-25 p-1 px-3 sm-px-4 rounded-3"
-    >
-      <!-- section icons -->
-      <section class="d-flex align-items-center gap-2">
-        <!-- section likes -->
-        <section
-          class="d-flex align-items-center bg-secondary-custom border border-black rounded"
-        >
-          <i
-            class="bi bi-hand-thumbs-up card-icon border-end border-black px-2"
-            matTooltip="I like this"
-            [matTooltipPosition]="stateService.positionOptions[3]"
-            matTooltipClass="tooltip-custom"
-          >
-          </i>
-          <p class="m-0 px-2" style="font-size: small">232</p>
-          <!-- if user is login and add to likes -->
-          <!-- <i class="bi bi-hand-thumbs-up-fill"></i> -->
-        </section>
-
-        <!-- section share/fav -->
-        <section
-          class="d-flex align-items-center bg-secondary-custom border border-black rounded"
-        >
-          <i
-            class="bi bi-share card-icon border-end border-black px-2"
-            matTooltip="share"
-            [matTooltipPosition]="stateService.positionOptions[3]"
-            matTooltipClass="tooltip-custom"
-          >
-          </i>
-          <!-- add to favourites -->
-          <i
-            class="bi bi-heart card-icon px-2"
-            matTooltip="add to favourites"
-            [matTooltipPosition]="stateService.positionOptions[3]"
-            matTooltipClass="tooltip-custom"
-          >
-          </i>
-          <!-- 
-        <i class="bi bi-heart-fill"></i>   if user is login and add to favourites  -->
-        </section>
-      </section>
-
-      <ng-content select="[card-footer]"></ng-content>
-    </div>
   </div>
+
+  <!-- card-footer -->
+  <section class="card-footer p-0 d-flex flex-column">
+    <ng-content select="[card-footer]">
+    </ng-content>
+
+</section>
 </div>

@@ -26,75 +26,54 @@
   background-size: inherit;
   filter: grayscale(70%) brightness(50%);
   z-index: -1;
-  border-top-right-radius: 9px;
-  border-top-left-radius: 9px;
+  border-radius: 9px;
 }
 
 .card-text-container {
   background: rgba(0, 0, 0, 0.5);
   border-radius: 8px;
-
-  @media (max-width: 374.98px) {
-    width: 250px;
-    height: 100px;
-  }
-  @media (min-width: 375px) and (max-width: 575.98px) {
-    width: 300px;
-    height: 100px;
-  }
-
-  @media ((min-width: 576px) and (max-width: 767.98px)) {
-    width: 450px;
-    height: 100px;
-  }
-  @media ((min-width: 768px) and (max-width: 991.98px)) {
-    width: 250px;
-    height: 100px;
-  }
-
-  @media ((min-width: 992px) and (max-width: 1199.98px)) {
-    width: 350px;
-    height: 100px;
-  }
-
-  @media ((min-width: 1200px) and (max-width: 1399.98px)) {
-    width: 350px;
-    height: 100px;
-  }
-
-  @media ((min-width: 1400px) and (max-width: 1919.98px)) {
-    width: 350px;
-    height: 100px;
-  }
-
-  @media ((min-width: 1920px) and (max-width: 2560px)) {
-    width: 400px;
-    height: 120px;
-  }
 }
+
+.card-text {
+  overflow: hidden;
+  font-family: "Cardo", serif;
+  font-weight: 500;
+  color: #d9dcdf;
+  line-height: 1.7;
+  font-size: clamp(14px, 2vw, 17px) !important;
+  text-align: center;
+}
+
 
 
 .card-icon {
-  font-size: 14px;
-  cursor: pointer;
+  font-size: clamp(11px, 1.5vw, 13px);
+  transition:all ease-in-out 0.2s;
 }
 
-.card-icon:hover {
-  background-color: rgb(151, 153, 142);
-  transition: all ease-in-out 0.3s;
+i.card-icon:hover {
+  background-color: #7a7a6b !important;
 }
 
 .card-body-link-container {
-  background: rgba(0, 0, 0, 0.5);
   word-spacing: 1px;
 }
-.card-text-link {
-  font-family: "Cardo", serif;
-  font-size: clamp(11px, 1.5vw, 13px) !important;
-  font-style: italic;
-  letter-spacing: 0.5px;
-  color: rgb(243, 245, 219);
+p.card-text-link {
+  font-size: clamp(12px, 1.5vw, 14px);
+  color: #d9dcdf;
+  text-decoration: none;
+  font-style: italic; 
+
+  
 }
+a.card-text-link {
+  font-family: "Cardo", serif;
+  font-size: clamp(12px, 1.5vw, 14px);
+  color: #d9dcdf;
+  font-style: italic; 
+  text-decoration: underline;  
+}
+
 
 .bi-quote::before {
   text-indent: 0;
@@ -103,14 +82,16 @@
 
 .card-show-more-link {
   font-family: "Cardo", serif;
-  font-size: clamp(11px, 1.5vw, 12px) !important;
-  letter-spacing: 0.5px;
+  font-size: clamp(11px, 1.5vw, 12px) ;
+  letter-spacing: 1px;
   word-spacing: 1px;
   text-decoration: none;
-  color: rgb(217, 220, 223) !important;
+  color: rgb(217, 220, 223) ;
   cursor: pointer;
+  transition:all ease-in-out 0.2s;
+
 }
 .card-show-more-link:hover {
-  transition: ease-in-out 0.2s;
-  transform: scale(1.03);
+  transform: translateX(1px); 
+  color: #ffffff;
 }

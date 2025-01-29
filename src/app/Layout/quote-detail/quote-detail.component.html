@@ -1,26 +1,77 @@
-<!-- <div class="page-wrapper">
+<div class="page-wrapper justify-content-start">
   @if(quote()) {
-  <app-card [likes]="quote()!.likes" [backgroundUrl]="quote()?.backgroundUrl">
 
+  <app-card
+    class="card-detail-dimensions d-flex flex-column"
+    [likes]="quote()!.likes"
+    [backgroundUrl]="quote()?.backgroundUrl"
+  >
+    <!--card header-ngContent -->
     <section
-      class="h-100 d-flex flex-column justify-content-between gap-1 p-2"
+      class="d-flex flex-column flex-fill justify-content-between gap-1 p-2"
       card-content
     >
+      <app-card-footer-bar>
+        <app-card-icons-bar card-icons class="ms-auto me-1"/>
+      </app-card-footer-bar>
       <div
-        class="card-detail-text-container d-flex column flex-fill align-items-center justify-content-sm-center px-3 py-2"
+        class="card-text-container d-flex flex-column flex-fill align-items-center justify-content-center px-3 py-2"
       >
         <p
           class="card-text m-0 px-2 mt-1 d-flex flex-column justify-content-center align-items-center"
         >
-          ... {{ quote()?.dialog }}
+          ... {{ quote()?.dialog + ".." }}
         </p>
       </div>
     </section>
-    
+
+    <!-- card-footer-bar-ngContent-->
+    <div class="d-flex flex-column gap-1" card-footer>
+      <app-card-footer-bar>
+        <div
+          class="container-fluid d-flex align-items-center gap-1 gap-sm-3 card-body-link-container"
+        >
+          <p class="m-0 card-text-link">Which Character Said?
+
+          </p>
+          <a
+            class="card-text-link"
+            style="font-style: italic; text-decoration: underline;"
+            routerLink="character"
+          >
+            {{ quote()?.character }}
+          </a>
+        </div>
+      </app-card-footer-bar>
+
+      <app-card-footer-bar>
+        <div
+          class="container-fluid d-flex flex-wrap align-items-center gap-1 gap-sm-3 card-body-link-container"
+        >
+          <p class="m-0 card-text-link">Which Movie?
+
+          </p>
+          <a
+            class="card-text-link"
+            style="font-style: italic; text-decoration: underline;"
+            routerLink="character"
+          >
+            {{ quote()?.movie }}
+          </a>
+        </div>
+      </app-card-footer-bar>
+
+      <app-card-footer-bar>
+
+        <app-accordion class="w-100 h-100"></app-accordion>
+      </app-card-footer-bar>
+    </div>
   </app-card>
+  } @else {
+  <p>Sorry. Quote Not Found.</p>
   }
 </div>
- -->
+
 <!-- info-quote section -->
 <!-- <div
         class="d-flex align-items-center justify-content-end card-body-link-container p-1 pe-2 rounded-1"

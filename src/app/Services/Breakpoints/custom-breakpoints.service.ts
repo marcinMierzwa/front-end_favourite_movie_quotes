@@ -28,35 +28,6 @@ export class CustomBreakpointsService {
       .subscribe();
   }
 
-  //     setScrollMode():void {
-  //       const breakpoints = {
-  //         xs: '(max-width: 575.98px)',
-  //         sm: '(min-width: 576px) and (max-width: 767.98px)',
-  //       };
-  //       this.breakpointObserver
-  //       .observe([breakpoints.xs, breakpoints.sm])
-  //       .pipe(
-  //         map((state: BreakpointState) => {
-  //           return state.matches;
-  //         })
-  //       ).subscribe(isActive => {
-  //         this.stateService.isScrollMode.set(isActive);
-  //       });
-  //   }
-  //   setLargeMode():void {
-  //     const breakpoints = {
-  //       xxl: '(min-width: 1400px)'
-  //     };
-  //     this.breakpointObserver
-  //     .observe([breakpoints.xxl])
-  //     .pipe(
-  //       map((state: BreakpointState) => {
-  //         return state.matches;
-  //       })
-  //     ).subscribe(isActive => {
-  //       this.stateService.isLargeMode.set(isActive);
-  //     });
-  // }
   setModes(): void {
     const breakpoints = {
       xs: '(max-width: 575.98px)',
@@ -73,8 +44,7 @@ export class CustomBreakpointsService {
         map((state: BreakpointState) => {
           return {
             isScrollMode:
-              state.breakpoints[breakpoints.xs] ||
-              state.breakpoints[breakpoints.sm],
+              state.breakpoints[breakpoints.xs],
             isMediumMode: state.breakpoints[breakpoints.md],
             isLargeMode: state.breakpoints[breakpoints.lg],
             isXlMode: state.breakpoints[breakpoints.xl],

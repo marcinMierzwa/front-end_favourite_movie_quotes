@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 interface QuoteResponseDto {
   data: QuoteDataDto[];
   message: string;
-  status: number;
   pageIndex: number;
   pageSize: number;
   totalItems: number;
@@ -22,6 +21,14 @@ interface QuoteDataDto {
   backgroundUrl: string;
 }
 
+interface GetQuotesParams {
+  pageIndex?: number;
+  pageSize?: number;
+  search?: string;
+  movie?: string;
+  character?: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -31,30 +38,46 @@ export class ApiService {
 
   private readonly basicUrl_Dev = 'http://localhost:3001';
 
-  getQuotes(pageIndex: number, pageSize: number): void {
-    const params = new HttpParams()
-      .set('skip', (pageIndex))
-      .set('limit', pageSize);
-    this.httpClient
-      .get<QuoteResponseDto>(`${this.basicUrl_Dev}/quotes`, { params })
-      .pipe()
-      .subscribe({
-        next: (response: QuoteResponseDto) => {
-          this.stateService.quotes.set(response.data);
-          this.stateService.pagination.set({
-            pageIndex: response.pageIndex,
-            pageSize: response.pageSize,
-            length: response.totalItems
-          })
-        },
-        error: (err) => {
-          console.error('Error response:', err);
-        },
+  getQuotes(): void {
+    
+    const { skip, limit, search } = this.stateService.queryParams();
+    console.log(skip, limit, search);
+
+      let httpParams = new HttpParams();
+  
+      httpParams = httpParams.set('skip', skip.toString());
+      httpParams = httpParams.set('limit', limit.toString());
+  
+      if (search) {
+          httpParams = httpParams.set('search', search);
+      }
+      // if (params.movie) {
+      //     httpParams = httpParams.set('movie', params.movie);
+      // }
+      // if (params.character) {
+      //     httpParams = httpParams.set('character', params.character);
+      // }
+      this.httpClient
+        .get<QuoteResponseDto>(`${this.basicUrl_Dev}/quotes`, { params: httpParams })
+        .subscribe({
+          next: (response: QuoteResponseDto) => {
+            this.stateService.quotes.set(response.data);
+            this.stateService.pagination.set({
+                pageIndex: response.pageIndex,
+                pageSize: response.pageSize,
+                length: response.totalItems,
+            });
+          },
+          error: (err) => {
+            console.error('Error response:', err);
+          },
       });
   }
+  
 
   getOne(id: string): Observable<QuoteDataDto> {
-    return this.httpClient
-    .get<QuoteDataDto>(`${this.basicUrl_Dev}/quotes/${id}`)
+    return this.httpClient.get<QuoteDataDto>(
+      `${this.basicUrl_Dev}/quotes/${id}`
+    );
   }
 }

@@ -26,10 +26,13 @@ export class QuoteListComponent {
     
   
     ngOnInit(): void {
-      this.loadQuotes(
-        this.stateService.pagination().pageIndex,
-        this.stateService.pagination().pageSize,
-      );
+      this.apiService.getQuotes()
+
+
+      // this.loadQuotes(
+      //   this.stateService.pagination().pageIndex,
+      //   this.stateService.pagination().pageSize,
+      // );
     }
   
     handlePageEvent(pageEvent: PageEvent): void {
@@ -39,10 +42,12 @@ export class QuoteListComponent {
     }
   
     loadQuotes(pageIndex: number, pageSize: number): void {
-      this.apiService.getQuotes(
-        pageIndex,
-        pageSize,
-      );
+      this.stateService.pagination.set({
+        pageIndex: pageIndex,
+        pageSize: pageSize,
+        length
+      })
+      this.apiService.getQuotes();
     }  
   
 }

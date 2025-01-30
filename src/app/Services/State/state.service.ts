@@ -9,6 +9,8 @@ import { CustomBreakpoints } from '../../Models/custom-breakpoint.enum';
 import { TooltipPosition } from '@angular/material/tooltip';
 import { Quote } from '../../Models/quote.interface';
 import { PaginationState } from '../../Models/pagination-state.interface';
+import { FilterState } from '../../Models/filter-state.interface';
+import { QueryParams } from '../../Models/query-params.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -27,8 +29,7 @@ export class StateService {
   public readonly isXxlMode: WritableSignal<boolean> = signal<boolean>(false);
 
   eff = effect(() => {
-    console.log('pagination', this.pagination());
-    console.log('isScroll', this.isScrollMode());
+    // console.log('pagination', this.pagination());
   });
 
 
@@ -37,7 +38,7 @@ export class StateService {
 
 
   // pagination
-  public pageSizeMobileOptions = signal([4]);
+  public pageSizeMobileOptions = signal([3]);
   public pageSizeMediumOptions = signal([2,3,4]);
   public pageSizeLargeOptions = signal([2,3,4]);
   public pageSizeXlOptions = signal([2,3,4,5,6]);
@@ -63,6 +64,36 @@ export class StateService {
     pageSize: 3,
     length: 0,
   });
+
+  //filter/search 
+  public filter: WritableSignal<FilterState> = signal<FilterState>({});
+
+  public queryParams = computed<QueryParams>(() => {
+    const { pageIndex, pageSize } = this.pagination();
+    const filter = this.filter();
+
+    const params: QueryParams = {
+        skip: pageIndex.toString(),
+        limit: pageSize.toString(),
+    };
+
+    if (filter.search) {
+        params.search = filter.search;
+    }
+    if (filter.movie) {
+        params.movie = filter.movie;
+    }
+    if (filter.character) {
+        params.character = filter.character;
+    }
+    return params;
+    });
+
+  effFilter=effect(()=> { 
+    console.log(this.filter())
+    console.log(this.queryParams())
+
+})
 
   // tooltip
   public readonly positionOptions: TooltipPosition[] = [

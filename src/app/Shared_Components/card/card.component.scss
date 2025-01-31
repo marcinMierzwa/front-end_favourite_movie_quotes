@@ -1,0 +1,97 @@
+// XS = '(max-width: 575.98px)',
+// SM = '(min-width: 576px) and (max-width: 767.98px)',
+// MD = '(min-width: 768px) and (max-width: 991.98px)',
+// LG = '(min-width: 992px) and (max-width: 1199.98px)',
+// XL = '(min-width: 1200px) and (max-width: 1399.98px)',
+// XXL = '(min-width: 1400px)'
+
+.background-card {
+  position: relative;
+  z-index: 1;
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+}
+
+.background-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: inherit;
+  background-repeat: inherit;
+  background-position: inherit;
+  background-size: inherit;
+  filter: grayscale(70%) brightness(50%);
+  z-index: -1;
+  border-radius: 9px;
+}
+
+.card-text-container {
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+}
+
+.card-text {
+  overflow: hidden;
+  font-family: "Cardo", serif;
+  font-weight: 500;
+  color: #d9dcdf;
+  line-height: 1.7;
+  font-size: clamp(14px, 2vw, 17px) !important;
+  text-align: center;
+}
+
+
+
+.card-icon {
+  font-size: clamp(11px, 1.5vw, 13px);
+  transition:all ease-in-out 0.2s;
+}
+
+i.card-icon:hover {
+  background-color: #7a7a6b !important;
+}
+
+.card-body-link-container {
+  word-spacing: 1px;
+}
+p.card-text-link {
+  font-size: clamp(12px, 1.5vw, 14px);
+  color: #d9dcdf;
+  text-decoration: none;
+  font-style: italic; 
+
+  
+}
+a.card-text-link {
+  font-family: "Cardo", serif;
+  font-size: clamp(12px, 1.5vw, 14px);
+  color: #d9dcdf;
+  font-style: italic; 
+  text-decoration: underline;  
+}
+
+
+.bi-quote::before {
+  text-indent: 0;
+  font-size: 14px;
+}
+
+.card-show-more-link {
+  font-family: "Cardo", serif;
+  font-size: clamp(11px, 1.5vw, 12px) ;
+  letter-spacing: 1px;
+  word-spacing: 1px;
+  text-decoration: none;
+  color: rgb(217, 220, 223) ;
+  cursor: pointer;
+  transition:all ease-in-out 0.2s;
+
+}
+.card-show-more-link:hover {
+  transform: translateX(1px); 
+  color: #ffffff;
+}

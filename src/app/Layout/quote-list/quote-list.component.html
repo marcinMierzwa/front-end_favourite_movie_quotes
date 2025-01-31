@@ -1,0 +1,59 @@
+<div
+  class="d-flex flex-column flex-sm-row flex-fill flex-wrap align-items-center justify-content-evenly"
+  [ngClass]="stateService.isScrollMode() ? 'bg-dark px-2' : 'bg-transparent'"
+>
+  @for (quote of stateService.quotes(); track quote._id) {
+  <app-card
+    class="card-list-dimensions d-flex flex-column"
+    [likes]="quote.likes"
+    [backgroundUrl]="quote.backgroundUrl"
+  >
+    <!--card header-ngContent -->
+    <section
+      class="d-flex flex-column flex-fill justify-content-between gap-1 p-2"
+      card-content
+    >
+      <div
+        class="card-text-container d-flex flex-column flex-fill align-items-center justify-content-center px-3 py-2"
+      >
+        <p
+          class="card-text m-0 px-2 mt-1 d-flex flex-column justify-content-center align-items-center"
+        >
+          ... {{ quote.dialog | truncateText : 15 }}
+        </p>
+      </div>
+    </section>
+
+    <!-- card-footer-bar-ngContent-->
+    <app-card-footer-bar card-footer>
+      <app-card-icons-bar card-icons />
+      <a
+        class="card-show-more-link border-bottom ms-auto me-4"
+        [routerLink]="['/quote-detail', quote._id]"
+        card-footer-bar
+        >Show more</a>
+    </app-card-footer-bar>
+
+  </app-card>
+  }
+</div>
+
+<!-- pagination -->
+@if (!stateService.isScrollMode()) {
+<div class="d-flex justify-content-center">
+  <mat-paginator
+    class="rounded-4 border border-secondary border-opacity-50"
+    [length]="stateService.pagination().length"
+    [pageIndex]="stateService.pagination().pageIndex"
+    [pageSize]="stateService.pagination().pageSize"
+    [pageSizeOptions]="stateService.pageSizeOptions()"
+    [showFirstLastButtons]="true"
+    (page)="handlePageEvent($event)"
+  >
+  </mat-paginator>
+</div>
+}
+
+<!-- matTooltip="Show more"
+[matTooltipPosition]="stateService.positionOptions[3]"
+matTooltipClass="tooltip-custom" -->

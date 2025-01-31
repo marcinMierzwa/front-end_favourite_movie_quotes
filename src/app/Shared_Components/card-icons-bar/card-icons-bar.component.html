@@ -1,0 +1,46 @@
+      <!-- section icons -->
+      <section class="d-flex align-items-center gap-2">
+        <!-- section likes -->
+        <section
+          class="d-flex align-items-center"
+        >
+          <i
+            class="card-icon bi bi-hand-thumbs-up bg-secondary-custom border border-black px-2 rounded-start pointer"
+
+            matTooltip="I like this quote"
+            [matTooltipPosition]="stateService.positionOptions[3]"
+            matTooltipClass="tooltip-custom"
+          >
+          </i>
+          <p class="card-icon bg-secondary-custom  m-0 px-2 rounded-end">232</p>
+          <!-- if user is login and add to likes -->
+          <!-- <i class="bi bi-hand-thumbs-up-fill"></i> -->
+        </section>
+
+        <!-- section share/fav -->
+        <section
+        class="d-flex align-items-center"
+        >
+          <i
+            class="bi bi-share card-icon bg-secondary-custom border border-black px-2 rounded-start pointer"
+            matTooltip="
+            Share this quote"
+            [matTooltipPosition]="stateService.positionOptions[3]"
+            matTooltipClass="tooltip-custom"
+          >
+          </i>
+          <!-- add to favourites -->
+          <i
+            class="bi bi-heart card-icon bg-secondary-custom border border-black border-start-0 px-2 rounded-end pointer"
+            matTooltip="Add to favourites quotes"
+            [matTooltipPosition]="stateService.positionOptions[3]"
+            matTooltipClass="tooltip-custom"
+          >
+          </i>
+          <!-- 
+        <i class="bi bi-heart-fill"></i>   if user is login and add to favourites  -->
+        </section>
+          <!-- show more section -->
+
+      </section>
+

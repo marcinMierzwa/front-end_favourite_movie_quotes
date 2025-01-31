@@ -1,0 +1,15 @@
+.navbar-toggler:focus {
+    outline: none;
+    box-shadow: none;
+  }
+
+
+
+ @media (max-width: 576px) {
+  .offcanvas .navbar-nav .nav-link {
+    font-size: 1.5rem !important; 
+  }
+}
+
+
+  

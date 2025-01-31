@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './snackbar.component.html',
-  styleUrl: './snackbar.component.css'
+  styleUrl: './snackbar.component.scss'
 })
 export class SnackbarComponent {
 

@@ -1,0 +1,264 @@
+top=147,81
+main=497,357
+footermobile=58,833
+all=704
+header=320x189
+
+{
+  "_comment": "To jest komentarz. Pole to nie będzie używane przez program.",
+  "movie": "The Two Towers",
+  "_id": "5cd95395de30eff6ebccde5b",
+  "movie": "The Fellowship of the Ring",
+  "_id": "5cd95395de30eff6ebccde5c",
+  "movie": "The Return of the King",
+  "_id": "5cd95395de30eff6ebccde5d",
+
+     "_id": "5cd99d4bde30eff6ebccfea0",
+      "name": "Gandalf",
+      "_id": "5cd99d4bde30eff6ebccfbe6",
+      "name": "Aragorn",
+      "_id": "5cd99d4bde30eff6ebccfc07",
+      "name": "Arwen",
+      "_id": "5cd99d4bde30eff6ebccfc15",
+      "name": "Frodo Baggins",
+      "_id": "5cd99d4bde30eff6ebccfc57",
+      "name": "Boromir",
+      "_id": "5cd99d4bde30eff6ebccfc7c",
+      "name": "Meriadoc Brandybuck",
+      "_id": "5cd99d4bde30eff6ebccfcc8",
+      "name": "Elrond",
+      "_id": "5cdbdecb6dc0baeae48cfa5a",
+      "name": "Eomer",
+      "_id": "5cdbdecb6dc0baeae48cfa59",
+      "name": "Eowyn",
+      "_id": "5cd99d4bde30eff6ebccfcef",
+      "name": "Faramir",
+      "_id": "5cd99d4bde30eff6ebccfd06",
+      "name": "Galadriel",
+      "_id": "5cd99d4bde30eff6ebccfd0d",
+      "name": "Samwise Gamgee",
+      "_id": "5cd99d4bde30eff6ebccfd23",
+      "name": "Gimli",
+      "_id": "5cd99d4bde30eff6ebccfe9e",
+      "name": "Gollum",
+      "_id": "5cd99d4bde30eff6ebccfd81",
+      "name": "Legolas",
+      "_id": "5cd99d4bde30eff6ebccfea4",
+      "name": "Saruman",
+      "_id": "5cd99d4bde30eff6ebccfea5",
+      "name": "Sauron",
+      "_id": "5cd99d4bde30eff6ebccfe19",
+      "name": "Théoden",
+      "_id": "5cd99d4bde30eff6ebccfe2e",
+      "name": "Peregrin Took"
+}
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class UtilService {
+  private dataUrl = 'assets/quotes.json'; // Ścieżka do pliku JSON
+
+  transformedData: any = [];
+
+  constructor(private http: HttpClient) {}
+
+  // Pobierz dane, przetwórz je i zapisz w `transformedData`
+  getProcessedData() {
+    this.http.get<any[]>(this.dataUrl).pipe(
+      map((data) =>
+        data.map((item) => {
+          // Mapowanie tytułu filmu na podstawie movieId
+          let movieTitle = '';
+          switch (item.movieId) {
+            case '6787f7378b04776a081806ad':
+              movieTitle = 'The Return of the King';
+              break;
+            case '6787f6e28b04776a081806ab':
+              movieTitle = 'The Fellowship of the Ring';
+              break;
+            case '6787f5db7b03ccde07d68663':
+              movieTitle = 'The Two Towers';
+              break;
+            default:
+              movieTitle = 'Unknown Movie';
+              break;
+          }
+  
+          // Mapowanie postaci na podstawie characterId
+          let characterName = '';
+          switch (item.characterId) {
+            case '678814e493bb87b239d24cf8':
+              characterName = 'Gandalf';
+              break;
+            case '678814e493bb87b239d24cf9':
+              characterName = 'Aragorn';
+              break;
+            case '678814e493bb87b239d24cfa':
+              characterName = 'Arwen';
+              break;
+            case '678814e493bb87b239d24cfb':
+              characterName = 'Frodo Baggins';
+              break;
+            case '678814e493bb87b239d24cfc':
+              characterName = 'Boromir';
+              break;
+            case '678814e493bb87b239d24cfd':
+              characterName = 'Meriadoc Brandybuck';
+              break;
+            case '678814e493bb87b239d24cfe':
+              characterName = 'Elrond';
+              break;
+            case '678814e493bb87b239d24cff':
+              characterName = 'Eomer';
+              break;
+            case '678814e493bb87b239d24d00':
+              characterName = 'Eowyn';
+              break;
+            case '678814e493bb87b239d24d01':
+              characterName = 'Faramir';
+              break;
+            case '678814e493bb87b239d24d02':
+              characterName = 'Galadriel';
+              break;
+            case '678814e493bb87b239d24d03':
+              characterName = 'Samwise Gamgee';
+              break;
+            case '678814e493bb87b239d24d04':
+              characterName = 'Gimli';
+              break;
+            case '678814e493bb87b239d24d05':
+              characterName = 'Gollum';
+              break;
+            case '678814e493bb87b239d24d06':
+              characterName = 'Legolas';
+              break;
+            case '678814e493bb87b239d24d07':
+              characterName = 'Saruman';
+              break;
+            case '678814e493bb87b239d24d09':
+              characterName = 'Theoden';
+              break;
+            case '678814e493bb87b239d24d0a':
+              characterName = 'Peregrin Took';
+              break;
+            default:
+              characterName = 'Unknown Character';
+              break;
+          }
+  
+          // Zwracamy zaktualizowany obiekt z polami movie i character
+          return {
+            ...item,
+            movie: movieTitle,
+            character: characterName, // Dodajemy nazwę postaci
+          };
+        })
+      ),
+      tap((processedData) => {
+        this.transformedData = processedData; // Zapisz przetworzone dane
+      })
+    ).subscribe(
+      (data) => console.log(data), // Wyświetl przetworzone dane
+      (error) => console.error('Błąd podczas pobierania danych:', error) // Obsługa błędów
+    );
+  }
+      
+}
+.text-container {
+  width: 350px;
+  height: 164px; 
+  padding: 10px;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: height 0.3s ease-in-out, width 0.3s ease-in-out;
+}
+.text-container-expand {
+  width: 380px;
+  height: 300px; 
+}
+
+
+.text-link {
+  color: red !important;
+  text-decoration: underline;
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px; 
+  right: 10px;
+}
+
+
+
+.text-overflow-hidden {
+  overflow: hidden !important;
+}
+.text-oveflow-visible {
+  overflow: visible !important;
+}
+
+.card{
+  width: 100%;
+  height: 350px;
+
+  @media((min-width: 768px) and (max-width: 991.98px)) {
+    width: 300px;
+    height: 50% ;
+  }
+
+  @media((min-width: 992px) and (max-width: 1199.98px)) {
+    width: 350px;
+    height: 50% ;
+  }
+
+}
+
+https://raw.githubusercontent.com/marcinMierzwa/images-hosting/main/The_Fellowship_Of_The_Ring.jpg
+
+https:///raw.githubusercontent.com/marcinMierzwa/images-hosting/main/The_Return_Of_The_King.jpg
+
+https://raw.githubusercontent.com/marcinMierzwa/images-hosting/main/The_Two_Towers.jpg
+
+  @media (max-width: 374.98px) {
+    width: 250px;
+    height: 100px;
+  }
+  @media (min-width: 375px) and (max-width: 575.98px) {
+    width: 300px;
+    height: 100px;
+  }
+
+  @media ((min-width: 576px) and (max-width: 767.98px)) {
+    width: 450px;
+    height: 100px;
+  }
+  @media ((min-width: 768px) and (max-width: 991.98px)) {
+    width: 250px;
+    height: 100px;
+  }
+
+  @media ((min-width: 992px) and (max-width: 1199.98px)) {
+    width: 350px;
+    height: 100px;
+  }
+
+  @media ((min-width: 1200px) and (max-width: 1399.98px)) {
+    width: 350px;
+    height: 100px;
+  }
+
+  @media ((min-width: 1400px) and (max-width: 1919.98px)) {
+    width: 350px;
+    height: 100px;
+  }
+
+  @media ((min-width: 1920px) and (max-width: 2560px)) {
+    width: 400px;
+    height: 120px;
+  }

@@ -1,12 +1,48 @@
-<app-navbar></app-navbar>
+<!-- WRAPPER -->
+<div
+  class="wrapper p-sm-2"
+  [ngStyle]="{
+    overflow: this.stateService.isScrollMode() ? 'visible' : 'hidden'
+  }"
+>
+  <!-- HEADER -->
+  <!-- <header
+    #headerRef
+    [ngClass]="{
+      'fixed-top': stateService.isScrollMode(),
+      'static-top': !stateService.isScrollMode(),
+      'bg-dark': stateService.isScrollMode(),
+      'bg-transparent': !stateService.isScrollMode()
+    }"
+  > -->
+    <app-navbar [ngClass]="stateService.isScrollMode() ? 'sticky-top' : 'static-top'"></app-navbar>
+  <!-- </header> -->
+
+  <!-- MAIN -->
+  <main
+    class="flex-fill"
+  >
+    <router-outlet/>
+
+    @if (this.stateService.isScrollMode()) {
+      <div class=" bg-dark " style="height: 58px;"></div>
+    }
+  </main>
+
+  @if (!this.stateService.isScrollMode()) {
+  <footer>
+    <app-footer />
+  </footer>
+  }
+</div>
+
+<!-- FOOTER MOBILE-->
+<footer>
+  @if (this.stateService.isScrollMode()) {
+  <app-bottom-navbar />
+  }
+</footer>
 
 
 
-    <app-snackbar></app-snackbar>
-   
-  
-
-<main style="padding-top: var(--navbar-height)">
-<router-outlet/>
-</main>
 

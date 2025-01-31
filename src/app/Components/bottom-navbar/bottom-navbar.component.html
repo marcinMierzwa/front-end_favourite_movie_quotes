@@ -1,0 +1,13 @@
+
+
+<nav class="navbar bg-dark  position-fixed bottom-0 start-0 z-2 w-100 ">
+  <ul class="w-100 d-flex justify-content-evenly align-items-center m-0 p-0">
+    @for (iconBox of iconsBox; track iconBox.id) {
+    <li class="icon-box p-1 rounded-0 btn btn-dark
+    border-secondary border-opacity-25">
+      <i [class]="iconBox.className"></i>
+      <p class="icon-box-title">{{ iconBox.title }}</p>
+    </li>
+    }
+  </ul>
+</nav>

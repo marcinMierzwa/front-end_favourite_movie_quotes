@@ -1,0 +1,29 @@
+<div
+  class="ms-auto px-1 px-sm-2 my-sm-1 mt-sm-2"
+  [ngClass]="stateService.isScrollMode() ? 'w-100' : 'w-50'"
+>
+  <form (Submit)="onSubmit()">
+    <div class="input-group "
+    >
+      <input
+        class="form-control border border-secondary w-50 scroll-mode-font bg-secondary-subtle"
+        name="searchInput"
+        spellcheck="false"
+        type="search"
+        placeholder="Search quote.."
+        aria-label="Search"
+        [formControl]="searchInput"
+
+      />
+      <button
+        class="btn btn-danger-custom text-white border border-secondary scroll-mode-font z-0"
+        type="submit"
+      >
+        Go
+      </button>
+    </div>
+    @if (searchInput.invalid) {
+    <small class="text-danger bg-secondary-subtle rounded-1 py-1 px-2" style="font-size: 12px;">Please enter at least the first 3 letters of the quote.</small>
+    }
+  </form>
+</div>

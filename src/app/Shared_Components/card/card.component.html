@@ -1,0 +1,22 @@
+<div
+  class="card flex-fill gap-1 border border-secondary shadow-lg rounded-3 bg-dark bg-opacity-50 p-1"
+>
+  <!-- card-body -->
+  <div
+    class="d-flex flex-column flex-fill background-card text-light p-1 rounded-3"
+    [ngStyle]="{
+      'background-image': 'url(' + backgroundUrl() + ')',
+    }"
+  >
+    <!-- quote section -->
+    <ng-content select="[card-content]"></ng-content>
+
+  </div>
+
+  <!-- card-footer -->
+  <section class="card-footer p-0 d-flex flex-column">
+    <ng-content select="[card-footer]">
+    </ng-content>
+
+</section>
+</div>

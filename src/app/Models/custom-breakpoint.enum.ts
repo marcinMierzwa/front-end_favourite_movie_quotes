@@ -6,3 +6,4 @@ export enum CustomBreakpoints {
     XL = '(min-width: 1200px) and (max-width: 1399.98px)',
     XXL = '(min-width: 1400px)'
 }
+

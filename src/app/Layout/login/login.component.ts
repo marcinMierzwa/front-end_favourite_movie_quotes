@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormAuthComponent } from "../../Shared_Components/form-auth/form-auth.component";
 
 @Component({
@@ -6,7 +6,7 @@ import { FormAuthComponent } from "../../Shared_Components/form-auth/form-auth.c
   standalone: true,
   imports: [FormAuthComponent],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.scss'
 })
 export class LoginComponent {
 

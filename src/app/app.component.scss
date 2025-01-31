@@ -1,0 +1,37 @@
+div.wrapper {
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  background: #212529;
+}
+div.wrapper::before {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("https://raw.githubusercontent.com/marcinMierzwa/images-hosting/main/background-gandalf.jpg") center left / cover;
+  background-repeat: no-repeat;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  filter: grayscale(70%);
+  z-index: -1;
+}
+@media (max-width: 576px) {
+  div.wrapper::before {
+    background-image: none;
+  }
+}
+
+// ------ wrapper---- //
+
+footer.sticky-bottom {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: 0;
+}

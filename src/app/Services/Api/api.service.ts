@@ -36,7 +36,7 @@ export class ApiService {
   private httpClient: HttpClient = inject(HttpClient);
   private stateService: StateService = inject(StateService);
 
-  private readonly basicUrl_Dev = 'http://localhost:3001';
+  private readonly basicUrl_Dev = 'http://localhost:3000';
 
   getQuotes(): void {
     

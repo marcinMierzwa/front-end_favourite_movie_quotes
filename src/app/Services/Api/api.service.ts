@@ -37,6 +37,7 @@ export class ApiService {
   private stateService: StateService = inject(StateService);
 
   private readonly basicUrl_Dev = 'http://localhost:3000';
+  private readonly basicUrl_Prod = 'https://quotes-backend-nine.vercel.app/'
 
   getQuotes(): void {
     
@@ -58,7 +59,7 @@ export class ApiService {
       //     httpParams = httpParams.set('character', params.character);
       // }
       this.httpClient
-        .get<QuoteResponseDto>(`${this.basicUrl_Dev}/quotes`, { params: httpParams })
+        .get<QuoteResponseDto>(`${this.basicUrl_Prod}/quotes`, { params: httpParams })
         .subscribe({
           next: (response: QuoteResponseDto) => {
             this.stateService.quotes.set(response.data);

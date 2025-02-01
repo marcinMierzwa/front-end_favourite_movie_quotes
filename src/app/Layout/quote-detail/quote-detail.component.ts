@@ -1,12 +1,9 @@
 import {
   Component,
-  computed,
-  effect,
   inject,
   input,
-  signal,
   Signal,
-  WritableSignal,
+  
 } from '@angular/core';
 import { CardComponent } from '../../Shared_Components/card/card.component';
 import { Quote } from '../../Models/quote.interface';

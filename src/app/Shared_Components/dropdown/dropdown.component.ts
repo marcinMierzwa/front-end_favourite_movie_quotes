@@ -5,7 +5,7 @@ import { NgClass } from '@angular/common';
 @Component({
   selector: 'app-dropdown',
   standalone: true,
-  imports: [NgClass],
+  imports: [],
   templateUrl: './dropdown.component.html',
   styleUrl: './dropdown.component.scss'
 })
@@ -15,6 +15,5 @@ export class DropdownComponent {
 
   readonly title: InputSignal<string> = input.required();
   readonly showArrow: InputSignal<boolean> = input.required();
-  // readonly enableHover: InputSignal<boolean> = input.required();
 
 }

@@ -5,16 +5,6 @@
     overflow: this.stateService.isScrollMode() ? 'visible' : 'hidden'
   }"
 >
-  <!-- HEADER -->
-  <!-- <header
-    #headerRef
-    [ngClass]="{
-      'fixed-top': stateService.isScrollMode(),
-      'static-top': !stateService.isScrollMode(),
-      'bg-dark': stateService.isScrollMode(),
-      'bg-transparent': !stateService.isScrollMode()
-    }"
-  > -->
     <app-navbar [ngClass]="stateService.isScrollMode() ? 'sticky-top' : 'static-top'"></app-navbar>
   <!-- </header> -->
 

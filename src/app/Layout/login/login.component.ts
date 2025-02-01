@@ -1,10 +1,9 @@
-import { Component, inject } from '@angular/core';
-import { FormAuthComponent } from "../../Shared_Components/form-auth/form-auth.component";
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormAuthComponent],
+  imports: [],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })

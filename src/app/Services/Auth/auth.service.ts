@@ -1,16 +1,7 @@
-import { HttpClient } from "@angular/common/http";
-import { inject, Injectable } from "@angular/core";
-import { LoginRequestInterface } from "../../Models/login-request.interface";
-import { Observable } from "rxjs";
-import { LoginResponseInterface } from "../../Models/login-response.interface";
+import { Injectable } from "@angular/core";
 
 @Injectable({
     providedIn: 'root'
 })
-export class AuthService {
-    private httpClient: HttpClient = inject(HttpClient);
+export class AuthService {}
 
-    login (payload: LoginRequestInterface): Observable<LoginResponseInterface> {
-        return this.httpClient.post<LoginResponseInterface>('http://localhost:3001/user', payload)
-    }
-}

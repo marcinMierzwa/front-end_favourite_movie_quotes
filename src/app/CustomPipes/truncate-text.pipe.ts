@@ -10,9 +10,6 @@ export class TruncateTextPipe implements PipeTransform {
 
   transform(text: string, limit: number): string {
 
-    // if(this.stateService.isScrollMode()) {
-    //   return text;
-    // }
     if (!text) return '';
     const words = text.split(' ');
     if (words.length <= limit) {

@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
-import { FormAuthComponent } from "../../Shared_Components/form-auth/form-auth.component";
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [FormAuthComponent],
+  imports: [],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss'
 })

@@ -37,7 +37,7 @@ export class ApiService {
   private stateService: StateService = inject(StateService);
 
   private readonly basicUrl_Dev = 'http://localhost:3000';
-  private readonly basicUrl_Prod = 'https://quotes-backend-nine.quotes-backend-git-master-marcin-mierzwas-projects.vercel.app.app'
+  private readonly basicUrl_Prod = 'https://quotesfrontend.vercel.app'
 
   getQuotes(): void {
     

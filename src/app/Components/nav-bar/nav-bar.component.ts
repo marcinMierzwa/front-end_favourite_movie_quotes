@@ -12,7 +12,16 @@ import { DropdownComponent } from "../../Shared_Components/dropdown/dropdown.com
 })
 export class NavBarComponent {
 
-  public stateService: StateService = inject(StateService);
+  private stateService: StateService = inject(StateService);
   
-
+  isScrollMode = this.stateService.isScrollMode;
+  logoUrl = 'https:///raw.githubusercontent.com/marcinMierzwa/images-hosting/main/logo.png';
+  
+  getClassList(): string {
+    if (this.isScrollMode()) {
+      return 'nav-link text-white scroll-mode-font';
+    } else {
+      return 'btn btn-sm btn-secondary scroll-mode-font rounded-2 fw-medium';
+    }
+  }
 }

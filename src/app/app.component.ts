@@ -6,7 +6,6 @@ import {
 import { RouterOutlet } from '@angular/router';
 import { CustomBreakpointsService } from './Services/Breakpoints/custom-breakpoints.service';
 import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
-import { NgClass, NgStyle } from '@angular/common';
 import { StateService } from './Services/State/state.service';
 import { FooterComponent } from './Components/footer/footer.component';
 import { BottomNavbarComponent } from "./Components/bottom-navbar/bottom-navbar.component";
@@ -16,8 +15,6 @@ import { BottomNavbarComponent } from "./Components/bottom-navbar/bottom-navbar.
   standalone: true,
   imports: [
     RouterOutlet,
-    NgStyle,
-    NgClass,
     NavBarComponent,
     FooterComponent,
     BottomNavbarComponent
@@ -31,12 +28,14 @@ export class AppComponent implements OnInit {
     CustomBreakpointsService
   );
 
-  public stateService: StateService = inject(StateService);
+  private stateService: StateService = inject(StateService);
+  isScrollMode = this.stateService.isScrollMode;
+
   
 
   ngOnInit() {
-    this.customBreakpointsService.getCurrentBreakpoint();
-    this.customBreakpointsService.setModes();
+    // this.customBreakpointsService.getCurrentBreakpoint();
+    this.customBreakpointsService.setScrollMode();
   }
 
 }

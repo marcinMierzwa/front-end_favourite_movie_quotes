@@ -1,9 +1,11 @@
 <nav
-  class="navbar navbar-expand-sm navbar-dark bg-dark p-2 rounded-3 border border-secondary border-opacity-50 shadow-lg"
+  class="navbar navbar-expand-sm navbar-dark bg-dark p-2 rounded-3 border border-secondary border-opacity-50 shadow-lg position-relative"
 >
   <div class="container-fluid p-0">
     <!-- logo -->
-    <a class="navbar-brand m-0 scroll-mode-font" href="#">logo</a>
+    <a class="navbar-brand m-0 scroll-mode-font" href="#">
+      <img [src]="logoUrl" alt="logo" class="logo" />
+    </a>
 
     <button
       class="navbar-toggler"
@@ -22,7 +24,9 @@
       aria-labelledby="offcanvasDarkNavbarLabel"
     >
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">logo</h5>
+        <a class="navbar-brand m-0 scroll-mode-font" href="#">
+          <img [src]="logoUrl" alt="logo" class="logo" />
+        </a>
         <button
           type="button"
           class="btn-close btn-close-white"
@@ -33,7 +37,9 @@
       <div class="offcanvas-body">
         <!-- nav links -->
         <!-- Home -->
-        <ul class="navbar-nav justify-content-center flex-grow-1 gap-sm-3 gap-lg-5">
+        <ul
+          class="navbar-nav justify-content-center flex-grow-1 gap-sm-3 gap-lg-5"
+        >
           <li class="nav-item">
             <a
               class="nav-link text-white scroll-mode-font"
@@ -43,8 +49,6 @@
               >Home</a
             >
           </li>
-
-
 
           <!-- Movies -->
           <li class="nav-item dropdown">
@@ -66,15 +70,15 @@
               ></app-dropdown>
             </a>
           </li>
-
-          
         </ul>
 
         <!-- auth scection -->
         <ul class="navbar-nav align-items-center gap-2">
           <li class="nav-item">
-            @if (!stateService.isScrollMode()) {
-            <button class="btn btn-sm bg-warning-custom border border-secondary-subtle px-3 scroll-mode-font">
+            @if (!isScrollMode()) {
+            <button
+              class="btn btn-sm bg-warning-custom border border-secondary-subtle px-3 scroll-mode-font"
+            >
               <i class="bi bi-heart me-2"></i>
               skip to my favourite quotes
             </button>
@@ -83,16 +87,14 @@
 
           <li class="nav-item me-auto">
             <a class="nav-link text-white scroll-mode-font" routerLink="sign-up"
-              >Sign Up</a>
+              >Sign Up</a
+            >
           </li>
-          <li class="nav-item me-auto ">
-            <a class="btn btn-sm btn-secondary scroll-mode-font rounded-2 fw-medium" routerLink="login"
-              >Login</a>
-
+          <li class="nav-item me-auto">
+            <a [class]="getClassList()" routerLink="login">Login</a>
           </li>
         </ul>
       </div>
     </div>
   </div>
 </nav>
- 

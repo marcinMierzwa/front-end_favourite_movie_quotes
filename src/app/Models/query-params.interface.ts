@@ -1,6 +1,6 @@
 export interface QueryParams {
-    skip: string;
-    limit: string;
+    skip: number;
+    limit: number;
     search?: string;
     movie?: string;
     character?: string;

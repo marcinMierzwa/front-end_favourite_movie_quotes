@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { StateService } from '../State/state.service';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 
 interface QuoteResponseDto {
   data: QuoteDataDto[];
@@ -36,18 +36,20 @@ export class ApiService {
   private httpClient: HttpClient = inject(HttpClient);
   private stateService: StateService = inject(StateService);
 
+  // private apiUrl = environment.apiUrl
+
   private readonly basicUrl_Dev = 'http://localhost:3000';
   private readonly basicUrl_Prod = 'https://quotes-backend-nine.vercel.app';
 
-  getQuotes(): void {
+  getQuotes() {
     
     const { skip, limit, search } = this.stateService.queryParams();
     console.log(skip, limit, search);
 
       let httpParams = new HttpParams();
   
-      httpParams = httpParams.set('skip', skip.toString());
-      httpParams = httpParams.set('limit', limit.toString());
+      httpParams = httpParams.set('skip', skip);
+      httpParams = httpParams.set('limit', limit);
   
       if (search) {
           httpParams = httpParams.set('search', search);
@@ -58,27 +60,29 @@ export class ApiService {
       // if (params.character) {
       //     httpParams = httpParams.set('character', params.character);
       // }
-      this.httpClient
+      return this.httpClient
         .get<QuoteResponseDto>(`${this.basicUrl_Prod}/quotes`, { params: httpParams })
-        .subscribe({
-          next: (response: QuoteResponseDto) => {
-            this.stateService.quotes.set(response.data);
-            this.stateService.pagination.set({
-                pageIndex: response.pageIndex,
-                pageSize: response.pageSize,
-                length: response.totalItems,
-            });
-          },
-          error: (err) => {
-            console.error('Error response:', err);
-          },
-      });
+        .pipe(
+          tap((response: QuoteResponseDto) => {
+        //quotes    
+            this.stateService.quotes.update(() => response.data);
+
+        //paginacja
+        this.stateService.pagination.update(state => ({
+          ...state,
+          length: response.totalItems,
+          pageIndex: response.pageIndex,
+          pageSize: response.pageSize
+        }));
+      })
+    );
   }
+  
   
 
   getOne(id: string): Observable<QuoteDataDto> {
     return this.httpClient.get<QuoteDataDto>(
-      `${this.basicUrl_Dev}/quotes/${id}`
+      `${this.basicUrl_Prod}/quotes/${id}`
     );
   }
 }

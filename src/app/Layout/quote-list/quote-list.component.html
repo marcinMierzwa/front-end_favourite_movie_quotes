@@ -1,8 +1,13 @@
 <div
-  class="d-flex flex-column flex-sm-row flex-fill flex-wrap align-items-center justify-content-evenly"
-  [ngClass]="stateService.isScrollMode() ? 'bg-dark px-2' : 'bg-transparent'"
+  class="h-100 d-flex flex-column justify-content-between align-items-center p-2"
 >
-  @for (quote of stateService.quotes(); track quote._id) {
+
+<div 
+[class]="getQuoteList()"
+[style.height]="isScrollMode() ? '320px' : 'auto'"
+>
+
+  @if(length() > 0) { @for (quote of quotes(); track quote._id) {
   <app-card
     class="card-list-dimensions d-flex flex-column"
     [likes]="quote.likes"
@@ -19,7 +24,7 @@
         <p
           class="card-text m-0 px-2 mt-1 d-flex flex-column justify-content-center align-items-center"
         >
-          ... {{ quote.dialog | truncateText : 15 }}
+          ... {{ quote.dialog | truncateText : 10 }}
         </p>
       </div>
     </section>
@@ -31,26 +36,33 @@
         class="card-show-more-link border-bottom ms-auto me-4"
         [routerLink]="['/quote-detail', quote._id]"
         card-footer-bar
-        >Show more</a>
+        >Show more</a
+      >
     </app-card-footer-bar>
-
   </app-card>
+  } } @else {
+
+  <h5 class="text-light text-center">Sorry! No quotes found.</h5>
   }
 </div>
 
 <!-- pagination -->
-@if (!stateService.isScrollMode()) {
-<div class="d-flex justify-content-center">
+<!-- @if (!isScrollMode()) { -->
+<div class="d-flex justify-content-center mt-2">
   <mat-paginator
     class="rounded-4 border border-secondary border-opacity-50"
-    [length]="stateService.pagination().length"
-    [pageIndex]="stateService.pagination().pageIndex"
-    [pageSize]="stateService.pagination().pageSize"
-    [pageSizeOptions]="stateService.pageSizeOptions()"
+    [length]="length()"
+    [pageIndex]="pageIndex()"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
     [showFirstLastButtons]="true"
     (page)="handlePageEvent($event)"
+    [hidePageSize]="isScrollMode()"
   >
   </mat-paginator>
 </div>
-}
+<!-- } -->
+  
+</div>
+
 

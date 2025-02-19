@@ -1,5 +1,6 @@
 <div
-  class="ms-autopx-sm-2 my-sm-1 mt-sm-2"
+  class="ms-auto px-sm-2 my-sm-1 mt-sm-2"
+  [class]="isMobileMode() ? 'w-100' : 'w-50'"
 >
   <form (submit)="onSubmit($event)">
     <div class="input-group "

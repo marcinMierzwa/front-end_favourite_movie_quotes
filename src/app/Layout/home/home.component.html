@@ -1,9 +1,28 @@
-<div class="h-100 d-flex flex-column justify-content-between ">
+<div class="h-100 d-flex flex-column justify-content-between mt-1">
 
-  <div class="ms-auto">
+  <div class="w-100 d-flex flex-column gap-1">
+   @if (!isMobileMode()) { 
   <app-header />
-  <app-searchbar />
-  <app-filter />
+   }
+  <app-searchbar 
+  />
+
+  <div class="w-100 d-flex flex-column flex-sm-row gap-1">
+
+  <app-filter 
+  [style]="isMobileMode() ? 'width: 100%' : 'width: 60%'"
+  />
+
+  <app-sort 
+  [style]="isMobileMode() ? 'width: 100%' : 'width: 40% '">
+  </app-sort>
+
+</div>
+
+
+
+
+
 </div>
   <app-quote-list class="flex-fill"/>
 </div>

@@ -29,9 +29,9 @@ export class QuoteDetailComponent {
   quote: Signal<Quote | undefined> = toSignal(
     toObservable(this.id).pipe(
       switchMap((id) => {
-        return this.apiService.getOne(id).pipe(
+        return this.apiService.getOneQuote(id).pipe(
           catchError((error) => {
-            console.error('Błąd podczas pobierania cytatu:', error);
+            console.error('error when downloading a quote', error);
             return of(undefined); 
           })
         );

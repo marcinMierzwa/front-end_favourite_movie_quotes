@@ -1,0 +1,17 @@
+<mat-form-field class=""
+>
+    <mat-label class="select-font text-light fw-semibold p-0">{{ selectHeading() }}</mat-label>
+
+    <mat-select
+    class="text-light"
+    (selectionChange)="onSelectionChange($event)"
+    >
+      <mat-option [value]="" class="select-font">All</mat-option>
+      @for (option of selectOptions(); track option._id) {
+        <mat-option 
+        class="select-font"
+        [value]="option.name">{{option.name}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+

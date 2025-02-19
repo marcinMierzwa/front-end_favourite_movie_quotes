@@ -4,9 +4,7 @@
   <!-- card-body -->
   <div
     class="d-flex flex-column flex-fill background-card text-light p-1 rounded-3"
-    [ngStyle]="{
-      'background-image': 'url(' + backgroundUrl() + ')',
-    }"
+    [style.background-image]="'url(' + backgroundUrl() + ')'"
   >
     <!-- quote section -->
     <ng-content select="[card-content]"></ng-content>

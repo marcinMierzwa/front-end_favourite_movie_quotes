@@ -7,16 +7,18 @@ import { SearchbarComponent } from "../../Components/searchbar/searchbar.compone
 import { QuoteListComponent } from "../quote-list/quote-list.component";
 import { HeaderComponent } from "../../Components/header/header.component";
 import { StateService } from '../../Services/State/state.service';
+import { SortComponent } from "../../Components/sort/sort.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ FilterComponent, SearchbarComponent, QuoteListComponent, HeaderComponent],
+  imports: [FilterComponent, SearchbarComponent, QuoteListComponent, HeaderComponent, SortComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent {
-stateService: StateService = inject(StateService);
+private stateService: StateService = inject(StateService);
+isMobileMode = this.stateService.isScrollMode;
 
 
 }

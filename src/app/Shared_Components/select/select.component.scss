@@ -1,0 +1,13 @@
+.select-font {
+  font-size: clamp(13px, 1.5vw, 14px) !important;
+  font-family: system-ui, -apple-system;
+}
+.mat-mdc-select {
+  font-size: clamp(12px, 1.5vw, 13px) !important;
+  font-family: system-ui, -apple-system;
+}
+
+.mat-mdc-option {
+  min-height: 20px;
+  margin-block: 10px;
+}

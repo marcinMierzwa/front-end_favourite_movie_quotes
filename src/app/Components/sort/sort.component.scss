@@ -1,0 +1,15 @@
+.sort-font {
+    font-size: clamp(12px, 2vw, 13px);
+}
+.btn-outline-primary {
+    color: var(--bs-light) ;
+    border:1px solid var(--bs-light);
+    font-size: clamp(10px, 2vw, 12px);
+  }
+  
+  .btn-check:checked + .btn-outline-primary {
+    background-color: var(--custom-header); 
+    border:1px solid var(--bs-light);
+    color: var(--bs-light) ; 
+    font-size: clamp(10px, 2vw, 12px);
+  }

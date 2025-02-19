@@ -1,33 +1,26 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { StateService } from '../State/state.service';
-import { Observable, tap } from 'rxjs';
+import { catchError, map, Observable, tap, throwError } from 'rxjs';
+import { QuoteResponseDto } from './dto/quote-response.dto';
+import { QuoteResponseDataDto } from './dto/quote-response-data.dto';
+import { MovieNamesDto } from './dto/movies-names.dto';
+import { MovieName } from '../../Models/movie-name.interface';
 
-interface QuoteResponseDto {
-  data: QuoteDataDto[];
-  message: string;
-  pageIndex: number;
-  pageSize: number;
-  totalItems: number;
-}
-interface QuoteDataDto {
-  _id: string;
-  dialog: string;
-  movie: string;
-  character: string;
-  movieId: string;
-  characterId: string;
-  likes: string[];
-  backgroundUrl: string;
-}
+import { CharacterName } from '../../Models/character-name.interface';
+import { CharacterNamesDto } from './dto/character-names.dto';
+import { Quote } from '../../Models/quote.interface';
 
-interface GetQuotesParams {
-  pageIndex?: number;
-  pageSize?: number;
-  search?: string;
-  movie?: string;
-  character?: string;
-}
+
+
+
+// interface GetQuotesParams {
+//   pageIndex?: number;
+//   pageSize?: number;
+//   search?: string;
+//   movie?: string;
+//   character?: string;
+// }
 
 @Injectable({
   providedIn: 'root',
@@ -41,7 +34,7 @@ export class ApiService {
   private readonly basicUrl_Dev = 'http://localhost:3000';
   private readonly basicUrl_Prod = 'https://quotes-backend-nine.vercel.app';
 
-  getQuotes() {
+  getQuotes(): Observable<QuoteResponseDto> {
     
     const { skip, limit, search } = this.stateService.queryParams();
     console.log(skip, limit, search);
@@ -63,26 +56,47 @@ export class ApiService {
       return this.httpClient
         .get<QuoteResponseDto>(`${this.basicUrl_Prod}/quotes`, { params: httpParams })
         .pipe(
-          tap((response: QuoteResponseDto) => {
-        //quotes    
-            this.stateService.quotes.update(() => response.data);
-
-        //paginacja
-        this.stateService.pagination.update(state => ({
-          ...state,
-          length: response.totalItems,
-          pageIndex: response.pageIndex,
-          pageSize: response.pageSize
-        }));
-      })
-    );
+          catchError((error) => {
+            console.error('API Error:', error);
+            return throwError(() => new Error('Error occurred during fetching quotes'));
+          })
+        );
   }
   
   
 
-  getOne(id: string): Observable<QuoteDataDto> {
-    return this.httpClient.get<QuoteDataDto>(
-      `${this.basicUrl_Prod}/quotes/${id}`
-    );
+  getOneQuote(id: string): Observable<QuoteResponseDataDto> {
+    return this.httpClient.get<QuoteResponseDataDto>(
+      `${this.basicUrl_Prod}/quotes/${id}`)
+      .pipe(
+        catchError((error) => {
+          console.error('API Error:', error);
+          return throwError(() => new Error('Error occurred during fetching quote'));
+        })
+      )
+  }
+
+  // filter
+  getMovieNames(): Observable<MovieName[]> {
+    return this.httpClient.get<MovieNamesDto>(`${this.basicUrl_Prod}/movies`)
+      .pipe(
+        map((response: MovieNamesDto) => response.data),
+        catchError((error) => {
+          console.error('API Error:', error);
+          return throwError(() => new Error('Error occurred during fetching movie names'));
+        })
+      );
+      
+  }
+
+    getCharacterNames(): Observable<CharacterName[]> {
+    return this.httpClient.get<CharacterNamesDto>(`${this.basicUrl_Prod}/characters`)
+      .pipe(
+        map((response: CharacterNamesDto) => response.data),
+        catchError((error) => {
+          console.error('API Error:', error);
+          return throwError(() => new Error('Error occurred during fetching character names'));
+        })
+      )
   }
 }

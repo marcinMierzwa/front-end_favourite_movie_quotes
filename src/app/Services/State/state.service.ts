@@ -5,9 +5,6 @@ import {
   signal,
   WritableSignal,
 } from '@angular/core';
-import { CustomBreakpoints } from '../../Models/custom-breakpoint.enum';
-import { TooltipPosition } from '@angular/material/tooltip';
-import { Quote } from '../../Models/quote.interface';
 import { PaginationState } from '../../Models/pagination-state.interface';
 import { FilterState } from '../../Models/filter-state.interface';
 import { QueryParams } from '../../Models/query-params.interface';
@@ -16,29 +13,38 @@ import { QueryParams } from '../../Models/query-params.interface';
   providedIn: 'root',
 })
 export class StateService {
-  // breakpoints modes
-  // public readonly screenBreakpoint: WritableSignal<CustomBreakpoints> =
-  //   signal<CustomBreakpoints>(CustomBreakpoints.XXL);
+
 
   public readonly isScrollMode: WritableSignal<boolean> =
-    signal<boolean>(false);
+  signal<boolean>(false);
 
   //quotes
-  public readonly quotes = signal<Quote[]>([]);
+  // public readonly quotes = signal<Quote[]>([]);
+
+  //movieNames & characterNames
+
+  // public readonly movieNames = signal<MovieName[]>([]);
+  // public readonly characterNames = signal<CharacterName[]>([]);
+  
 
   // pagination
 
-  pagination: WritableSignal<PaginationState> = signal<PaginationState>({
+  // pagination: WritableSignal<PaginationState> = signal<PaginationState>({
+  //   pageIndex: 0,
+  //   pageSize: 2,
+  //   length:0,
+  // });
+  readonly paginationState : WritableSignal<PaginationState> = signal<PaginationState>({
     pageIndex: 0,
     pageSize: 2,
-    length:0,
   });
+
 
   //filter/search 
   public readonly filter: WritableSignal<FilterState> = signal<FilterState>({});
 
   public readonly queryParams = computed<QueryParams>(() => {
-    const { pageIndex, pageSize } = this.pagination();
+    const { pageIndex, pageSize } = this.paginationState();
     const filter = this.filter();
 
     const params: QueryParams = {
@@ -61,18 +67,10 @@ export class StateService {
   effFilter=effect(()=> { 
     // console.log(this.filter())
     // console.log(this.queryParams())
-    console.log(this.pagination())
+    console.log(this.paginationState())
   })
 
-  // tooltip
-  public readonly positionOptions: TooltipPosition[] = [
-    'after',
-    'before',
-    'above',
-    'below',
-    'left',
-    'right',
-  ];
+
 
 
 

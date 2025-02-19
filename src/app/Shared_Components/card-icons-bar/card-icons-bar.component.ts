@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { StateService } from '../../Services/State/state.service';
+import { ToolTipPosition } from '../../Models/tooltip-position.enum';
 
 @Component({
   selector: 'app-card-icons-bar',
@@ -10,7 +10,8 @@ import { StateService } from '../../Services/State/state.service';
   styleUrl: './card-icons-bar.component.scss'
 })
 export class CardIconsBarComponent {
-  stateService: StateService = inject(StateService);
   public triggerApiCall = signal(false);
+  tooltipPositionBelow = ToolTipPosition.BELOW;
+
 
 }

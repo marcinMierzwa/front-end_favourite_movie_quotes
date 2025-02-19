@@ -1,0 +1,11 @@
+.card-icon {
+    font-size: clamp(11px, 1.5vw, 12px);
+    transition:all ease-in-out 0.2s;
+  }
+  
+  i.card-icon:hover {
+    background-color: #7a7a6b !important;
+    transition:all ease-in-out 0.2s;
+
+  }
+  

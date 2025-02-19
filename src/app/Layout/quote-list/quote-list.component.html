@@ -7,7 +7,7 @@
 [style.height]="isScrollMode() ? '320px' : 'auto'"
 >
 
-  @if(length() > 0) { @for (quote of quotes(); track quote._id) {
+  @if(pagination().length > 0) { @for (quote of quotes(); track quote._id) {
   <app-card
     class="card-list-dimensions d-flex flex-column"
     [likes]="quote.likes"
@@ -51,9 +51,9 @@
 <div class="d-flex justify-content-center mt-2">
   <mat-paginator
     class="rounded-4 border border-secondary border-opacity-50"
-    [length]="length()"
-    [pageIndex]="pageIndex()"
-    [pageSize]="pageSize"
+    [length]="pagination().length"
+    [pageIndex]="pagination().pageIndex"
+    [pageSize]="pagination().pageSize"
     [pageSizeOptions]="pageSizeOptions"
     [showFirstLastButtons]="true"
     (page)="handlePageEvent($event)"

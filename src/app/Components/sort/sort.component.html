@@ -1,0 +1,30 @@
+<div
+  class="h-100 d-flex align-items-center gap-1 p-1"
+>
+  <p
+    class="sort-font m-0 text-white fw-semibold bg-black px-2 py-1  border border-secondary rounded-1"
+  >
+    Sort
+  </p>
+
+  <form [formGroup]="buttonsForm" (ngSubmit)="onSubmit()" class="d-flex gap-2 align-items-center">
+    <!-- Section likes -->
+    <div class="btn-group-sm d-flex align-items-center gap-1" role="group" aria-label="Likes button group">
+      <input type="radio" class="btn-check" id="most" value="most" formControlName="likes" (change)="onSubmit()">
+      <label class="btn btn-outline-primary" for="most">Most Likes</label>
+  
+      <input type="radio" class="btn-check" id="lowestLikes" value="lowest" formControlName="likes" (change)="onSubmit()">
+      <label class="btn btn-outline-primary" for="lowestLikes">Lowest Likes</label>
+    </div>
+  
+    <!-- Section direction -->
+    <div class="btn-group-sm d-flex align-items-center gap-1" role="group" aria-label="Direction button group">
+      <input type="radio" class="btn-check" id="asc" value="asc" formControlName="sort" (change)="onSubmit()">
+      <label class="btn btn-outline-primary" for="asc">Asc</label>
+  
+      <input type="radio" class="btn-check" id="desc" value="desc" formControlName="sort" (change)="onSubmit()">
+      <label class="btn btn-outline-primary" for="desc">Desc</label>
+    </div>
+  </form>
+
+</div>

@@ -229,3 +229,18 @@
 .scroll-mode-font {
   font-size: clamp(13px, 1.5vw, 17px) !important;
 }
+
+//animations
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.4s ease-in forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

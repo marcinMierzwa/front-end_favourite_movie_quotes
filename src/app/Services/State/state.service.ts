@@ -42,10 +42,13 @@ export class StateService {
 
   //filter/search 
   public readonly filter: WritableSignal<FilterState> = signal<FilterState>({});
+  public readonly sort: WritableSignal<string> = signal<string>('');
+
 
   public readonly queryParams = computed<QueryParams>(() => {
     const { pageIndex, pageSize } = this.paginationState();
     const filter = this.filter();
+    const sort = this.sort();
 
     const params: QueryParams = {
         skip: pageIndex,
@@ -61,6 +64,10 @@ export class StateService {
     if (filter.character) {
         params.character = filter.character;
     }
+    if (sort) {
+      params.sort = sort;
+    }
+
     return params;
     });
 

@@ -73,12 +73,16 @@ export class QuoteListComponent {
           pageIndex: response.pageIndex,
           pageSize: response.pageSize,
         }));
+        console.log(this.pagination())
+        console.log(this.quotes())
+
       },
       error: (error) => {
         console.error('Error occured during fetching quotes', error);
       },
     });
    }   
+   
    )
   
 
@@ -105,7 +109,7 @@ export class QuoteListComponent {
     if (this.isScrollMode()) {
       return 'w-100 overflow-auto d-flex flex-column flex-fill justify-content-evenly gap-3 p-2 border border-light border-opacity-50 rounded';
     } else {
-      return 'd-flex flex-fill flex-wrap align-items-center justify-content-evenly gap-3 py-2';
+      return 'w-100 d-flex flex-fill flex-wrap align-items-center justify-content-evenly gap-3 py-2';
     }
   }
 }

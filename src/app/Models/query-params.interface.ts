@@ -4,4 +4,5 @@ export interface QueryParams {
     search?: string;
     movie?: string;
     character?: string;
+    sort?: string;
 }

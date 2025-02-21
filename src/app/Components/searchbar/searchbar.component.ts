@@ -8,7 +8,6 @@ import {
 } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, Subject, takeUntil } from 'rxjs';
 import { ApiService } from '../../Services/Api/api.service';
-import { QuoteResponseDto } from '../../Services/Api/dto/quote-response.dto';
 
 @Component({
   selector: 'app-searchbar',
@@ -39,9 +38,10 @@ export class SearchbarComponent implements OnInit, OnDestroy {
             ...state,
             pageIndex: 0,
           }));
-          this.stateService.filter.set({
+          this.stateService.filter.update((state) => ({
+            ...state,
             search: searchPhrase,
-          });
+          }));
           this.apiService.getQuotes();
         }
       });
@@ -49,16 +49,17 @@ export class SearchbarComponent implements OnInit, OnDestroy {
 
   onSubmit(event: Event): void {
     event.preventDefault();
-    const searchValue = this.searchInput.getRawValue();
+    const searchPhrase = this.searchInput.getRawValue();
     if (this.searchInput.valid) {
       this.stateService.paginationState.update((state) => ({
         ...state,
         pageIndex: 0,
       }));
-      this.stateService.filter.set({
-        search: searchValue,
-      });
-      this.apiService.getQuotes();
+      this.stateService.filter.update((state) => ({
+        ...state,
+        search: searchPhrase,
+      }));
+  this.apiService.getQuotes();
     }
   }
 

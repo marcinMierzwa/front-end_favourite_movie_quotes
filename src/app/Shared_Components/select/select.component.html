@@ -4,7 +4,7 @@
 
     <mat-select
     class="text-light"
-    (selectionChange)="onSelectionChange($event)"
+    (selectionChange)="onSelectionChange($event, selectHeading())"
     >
       <mat-option [value]="" class="select-font">All</mat-option>
       @for (option of selectOptions(); track option._id) {

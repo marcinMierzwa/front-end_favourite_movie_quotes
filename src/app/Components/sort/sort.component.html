@@ -6,25 +6,34 @@
   >
     Sort
   </p>
-
+  
   <form [formGroup]="buttonsForm" (ngSubmit)="onSubmit()" class="d-flex gap-2 align-items-center">
-    <!-- Section likes -->
-    <div class="btn-group-sm d-flex align-items-center gap-1" role="group" aria-label="Likes button group">
-      <input type="radio" class="btn-check" id="most" value="most" formControlName="likes" (change)="onSubmit()">
-      <label class="btn btn-outline-primary" for="most">Most Likes</label>
-  
-      <input type="radio" class="btn-check" id="lowestLikes" value="lowest" formControlName="likes" (change)="onSubmit()">
-      <label class="btn btn-outline-primary" for="lowestLikes">Lowest Likes</label>
-    </div>
-  
-    <!-- Section direction -->
-    <div class="btn-group-sm d-flex align-items-center gap-1" role="group" aria-label="Direction button group">
-      <input type="radio" class="btn-check" id="asc" value="asc" formControlName="sort" (change)="onSubmit()">
-      <label class="btn btn-outline-primary" for="asc">Asc</label>
-  
-      <input type="radio" class="btn-check" id="desc" value="desc" formControlName="sort" (change)="onSubmit()">
-      <label class="btn btn-outline-primary" for="desc">Desc</label>
-    </div>
-  </form>
+  <div class="btn-group-sm" role="group" aria-label="Sort radio toggle button group">
 
+    @for (option of radioButtonsOptions; track option.id) {
+    <input type="radio" class="btn-check" [id]="option.id" [value]="option.value"  autocomplete="off" (change)="onSubmit()" formControlName="sortBy">
+    <label class="btn btn-outline-primary" [for]="option.id">{{ option.label }}</label>
+    }
+  </div>
+</form>
 </div>
+
+
+
+<!-- <form [formGroup]="buttonsForm" (ngSubmit)="onSubmit()" class="d-flex gap-2 align-items-center">
+  <div class="btn-group-sm d-flex align-items-center gap-1" role="group" aria-label="Likes button group">
+    <input type="radio" class="btn-check" id="most" value="mostLikes" formControlName="likes" (change)="onSubmit()">
+    <label class="btn btn-outline-primary" for="most">Most Likes</label>
+
+    <input type="radio" class="btn-check" id="leastLikes" value="leastLikes" formControlName="likes" (change)="onSubmit()">
+    <label class="btn btn-outline-primary" for="leastLikes">Least Likes</label>
+  </div>
+
+  <div class="btn-group-sm d-flex align-items-center gap-1" role="group" aria-label="Direction button group">
+    <input type="radio" class="btn-check" id="asc" value="asc" formControlName="sort" (change)="onSubmit()">
+    <label class="btn btn-outline-primary" for="asc">Asc</label>
+
+    <input type="radio" class="btn-check" id="desc" value="desc" formControlName="sort" (change)="onSubmit()">
+    <label class="btn btn-outline-primary" for="desc">Desc</label>
+  </div>
+</form> -->

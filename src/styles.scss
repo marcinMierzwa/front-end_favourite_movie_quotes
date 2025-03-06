@@ -20,6 +20,7 @@
   --custom-header: #a0982e !important;
   --custom-warning: #b3ab93 !important;
   --custom-secondary: #a9ac99 !important;
+  --custom-header-hov: #928a12 !important;
 
   // paginator
 
@@ -129,9 +130,11 @@
 // custom-buttons
 .btn-danger-custom {
   background-color: var(--custom-header) !important;
-}
+  color: var(--bs-light) !important;
+  font-weight: 600;
+  transition: background-color 0.25s ease-in-out;}
 .btn-danger-custom:hover {
-  background-color: var(--bs-dark) !important;
+  background-color: var(--custom-header-hov) !important;
 }
 
 

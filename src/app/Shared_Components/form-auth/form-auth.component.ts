@@ -1,9 +1,11 @@
-import { Component, inject, input } from '@angular/core';
-import { FormGroup, NonNullableFormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../../Services/Auth/auth.service';
-import { LoginRequestInterface } from '../../Models/login-request.interface';
-import { SnackBarService } from '../../Services/Snackbar/snackbar.service';
-import { SnackBarSuccessConfig } from '../../Utills/snackbar-config';
+import { Component, inject, input, InputSignal, output } from '@angular/core';
+import { StateService } from '../../Services/State/state.service';
+import { InputConfig } from '../../Models/form-config.interface';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormService } from '../../Services/Form/form.service';
+import { SignUpFormInterface } from '../../Layout/sign-up/Models/sign-up-form.interface';
+import { SubmitedForm } from './Models/submited-form.type';
+
 
 @Component({
   selector: 'app-form-auth',
@@ -13,26 +15,38 @@ import { SnackBarSuccessConfig } from '../../Utills/snackbar-config';
   styleUrl: './form-auth.component.scss'
 })
 export class FormAuthComponent {
-  private snackbarService: SnackBarService = inject(SnackBarService); 
-  private authService: AuthService = inject(AuthService);
-  private formBuilder: NonNullableFormBuilder = inject(NonNullableFormBuilder);
-  form: FormGroup = this.formBuilder.group({
-    email: [''],
-    password: ['']
-  })
+  private stateService: StateService = inject(StateService);
+  private formService: FormService = inject(FormService);
+  readonly isMobileMode = this.stateService.isScrollMode;
+  readonly heading: InputSignal<string> = input.required();
+  readonly submitLabel: InputSignal<string> = input.required();
+  inputsData: InputSignal<InputConfig[]> = input<InputConfig[]>([]);
+  isPasswordVisible = false;
+  form!: FormGroup;
+  sendForm = output<SignUpFormInterface>();
 
-  onSubmit() {
-    const formValue: LoginRequestInterface = this.form.getRawValue();
-    this.authService.login(formValue).subscribe({
-      next: (response) => {
-        console.log(response);
-         this.snackbarService.openSnackBar(response.email, 'close', SnackBarSuccessConfig )
-      },
-      error: (err) => {
-        console.error(err);
-        this.snackbarService.openSnackBar('error', 'close', SnackBarSuccessConfig)
-            }
-    });
+  ngOnInit() {
+    this.form = this.formService.createForm(this.inputsData());
+  }
+
+  getError(field: string): string | null {
+    return this.formService.getFieldErrors(this.form, field, this.inputsData());
+  }
+
+  togglePasswordVisibility(inputName: string): void {
+    this.isPasswordVisible = !this.isPasswordVisible;
+    this.inputsData().filter((input: InputConfig) => {
+      if(input.name === inputName) {
+        input.isContentIncrypted = !input.isContentIncrypted;
+      }
+    })
+  } 
+
+  onSubmit(event: Event) {
+    event.preventDefault()
+    const submitedForm: SubmitedForm = this.form.getRawValue();
+    this.sendForm.emit(submitedForm);
+    }
     
     
     // const config = new MatSnackBarConfig();
@@ -41,7 +55,7 @@ export class FormAuthComponent {
     // config.verticalPosition = 'bottom';      // Pozycja pionowa
     // config.panelClass = ["my-snackbar"];  // Klasa CSS
     // this.snackBar.open('message', 'Close', config);
-  }
+  
 
 
 }

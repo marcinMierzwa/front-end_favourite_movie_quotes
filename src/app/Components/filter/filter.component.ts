@@ -37,31 +37,4 @@ export class FilterComponent {
 
     readonly selectesHeading: string[] = ['Characters', 'Movies'];
 
-  // ngOnInit(): void {
-  //   this.loadMovieNames();
-  //   this.loadCharacterNames();
-  // }
-
-  // loadMovieNames(): void {
-  //   this.apiService.getMovieNames()
-  //   .subscribe({
-  //     next: (movieNames: MovieName[]) => {
-  //       this.stateService.movieNames.set(movieNames);
-  //     },
-  //     error: (error) => {
-  //       console.error('Error occurred during fetching movie names', error);
-  //     },
-  //   });
-  // }
-
-  // loadCharacterNames(): void {
-  //   this.apiService.getCharacterNames().subscribe({
-  //     next: (characterNames: CharacterName[]) => {
-  //       this.stateService.characterNames.set(characterNames);
-  //     },
-  //     error: (error) => {
-  //       console.error('Error ocured during fetching character names', error);
-  //     },
-  //   });
-  // }
 }

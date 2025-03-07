@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  computed,
   effect,
   inject,
   signal,
@@ -24,6 +23,7 @@ import { CardFooterBarComponent } from '../../Shared_Components/card-footer-bar/
 import { QuoteResponseDto } from '../../Services/Api/dto/quote-response.dto';
 import { Quote } from '../../Models/quote.interface';
 import { Pagination } from '../../Models/pagination.interface';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-quote-list',
@@ -36,6 +36,7 @@ import { Pagination } from '../../Models/pagination.interface';
     MatTooltipModule,
     CardIconsBarComponent,
     CardFooterBarComponent,
+    MatProgressSpinnerModule
   ],
   templateUrl: './quote-list.component.html',
   styleUrl: './quote-list.component.scss',
@@ -48,9 +49,7 @@ export class QuoteListComponent {
 
   public triggerApiCall = signal(false);
   readonly isScrollMode = this.stateService.isScrollMode;
-
-  // readonly quotes = this.stateService.quotes;
-//do tego momentu
+  readonly isLoading = this.stateService.isLoading;
 
  readonly quotes: WritableSignal<Quote[]> = signal<Quote[]>([]);
  readonly pagination : WritableSignal<Pagination> = signal<Pagination>({
@@ -59,37 +58,35 @@ export class QuoteListComponent {
      length:0,
    });
   
-
-  
   readonly pageSizeOptions = [2, 3, 4];
 
-   loadQuotes = effect(() => {
-    this.apiService.getQuotes().subscribe({
-      next: (response: QuoteResponseDto) => {
-        this.quotes.set(response.data);
-        this.pagination.update((state) => ({
-          ...state,
-          length: response.totalItems,
-          pageIndex: response.pageIndex,
-          pageSize: response.pageSize,
-        }));
-        console.log(this.pagination())
-        console.log(this.quotes())
-
-      },
-      error: (error) => {
-        console.error('Error occured during fetching quotes', error);
-      },
-    });
-   }   
-   
-   )
+  loadQuotes = effect(
+    () => {
+      this.stateService.isLoading.set(true);
   
-
-  // readonly length = computed(() => this.stateService.pagination().length);
-  // readonly pageIndex = computed(() => this.stateService.pagination().pageIndex);
-  // readonly pageSize = computed(() => this.stateService.pagination().pageSize);
-
+      this.apiService.getQuotes().subscribe({
+        next: (response: QuoteResponseDto) => {
+  
+          this.quotes.set(response.data);
+          this.pagination.update((state) => ({
+            ...state,
+            length: response.totalItems,
+            pageIndex: response.pageIndex,
+            pageSize: response.pageSize,
+          }));
+  
+        },
+        error: (error) => {
+          console.error("Error occurred during fetching quotes", error);
+        },
+        complete: () => {
+          this.stateService.isLoading.set(false);
+        },
+      });
+    },
+    { allowSignalWrites: true }
+  );   
+  
   ngOnInit(): void {
     this.apiService.getQuotes()
     }

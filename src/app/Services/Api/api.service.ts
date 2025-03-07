@@ -35,7 +35,6 @@ export class ApiService {
 
   getQuotes(): Observable<QuoteResponseDto> {
     const { skip, limit, search, movie, character, sort} = this.stateService.queryParams();
-    console.log(skip, limit, search, movie, character, sort);
       let httpParams = new HttpParams();
       httpParams = httpParams.set('skip', skip);
       httpParams = httpParams.set('limit', limit);

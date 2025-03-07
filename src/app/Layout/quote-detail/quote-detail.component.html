@@ -1,11 +1,26 @@
-<div class="page-wrapper justify-content-start">
-  @if(quote()) {
+<div class="page-wrapper justify-content-start align-items-center">
+ 
+  @if (isLoading()) {
+    <div class="h-100 d-flex justify-content-center align-items-center"
+    >
+      <mat-spinner
+      [strokeWidth]="5"
+      ></mat-spinner>
+    </div>
+  }
+  @else if (!quote()) {
+    <h5 class="text-light text-center">Sorry! No quotes found.</h5>
+  }
+  @else {
 
   <app-card
     class="card-detail-dimensions d-flex flex-column"
     [likes]="quote()!.likes"
     [backgroundUrl]="quote()?.backgroundUrl"
   >
+
+
+  
     <!--card header-ngContent -->
     <section
       class="d-flex flex-column flex-fill justify-content-between gap-1 p-2"
@@ -67,8 +82,6 @@
       </app-card-footer-bar>
     </div>
   </app-card>
-  } @else {
-  <p>Sorry. Quote Not Found.</p>
   }
 </div>
 

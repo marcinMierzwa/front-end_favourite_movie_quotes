@@ -18,23 +18,9 @@ export class StateService {
   public readonly isScrollMode: WritableSignal<boolean> =
   signal<boolean>(false);
 
-  //quotes
-  // public readonly quotes = signal<Quote[]>([]);
+  public isLoading: WritableSignal<boolean> = signal(false);
 
-  //movieNames & characterNames
-
-  // public readonly movieNames = signal<MovieName[]>([]);
-  // public readonly characterNames = signal<CharacterName[]>([]);
-  
-
-  // pagination
-
-  // pagination: WritableSignal<PaginationState> = signal<PaginationState>({
-  //   pageIndex: 0,
-  //   pageSize: 2,
-  //   length:0,
-  // });
-  readonly paginationState : WritableSignal<PaginationState> = signal<PaginationState>({
+  public readonly paginationState : WritableSignal<PaginationState> = signal<PaginationState>({
     pageIndex: 0,
     pageSize: 2,
   });
@@ -74,7 +60,7 @@ export class StateService {
   effFilter=effect(()=> { 
     // console.log(this.filter())
     // console.log(this.queryParams())
-    console.log(this.paginationState())
+    // console.log(this.paginationState())
   })
 
 

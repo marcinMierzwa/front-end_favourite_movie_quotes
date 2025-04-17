@@ -1,9 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { FormAuthComponent } from "../../Shared_Components/form-auth/form-auth.component";
+import { FormAuthComponent } from '../../Shared_Components/form-auth/form-auth.component';
 import { StateService } from '../../Services/State/state.service';
 import { RouterLink } from '@angular/router';
 import { FormConfig } from '../../Models/form-config.interface';
 import { SignUpFormInterface } from './Models/sign-up-form.interface';
+import { AuthService } from '../../Services/Auth/auth.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,6 +15,8 @@ import { SignUpFormInterface } from './Models/sign-up-form.interface';
 })
 export class SignUpComponent {
   private stateService: StateService = inject(StateService);
+  private authService: AuthService = inject(AuthService);
+
   isMobileMode = this.stateService.isScrollMode;
   formData: FormConfig = {
     heading: 'Create an Account',
@@ -30,8 +33,12 @@ export class SignUpComponent {
         validation: [
           { validator: 'required', errorMsg: 'This field is required' },
           { validator: 'email', errorMsg: 'Email must be a valid email' },
-          { validator: 'maxLength', value: 50, errorMsg: 'Email should contain a maximum of 50 characters' }
-        ]
+          {
+            validator: 'maxLength',
+            value: 50,
+            errorMsg: 'Email should contain a maximum of 50 characters',
+          },
+        ],
       },
       {
         id: 'password',
@@ -43,20 +50,37 @@ export class SignUpComponent {
         isContentIncrypted: false,
         validation: [
           { validator: 'required', errorMsg: 'This field is required' },
-          { validator: 'minLength', value: 8, errorMsg: 'Password must be at least 8 characters long' },
-          { validator: 'maxLength', value: 50, errorMsg: 'Password should contain a maximum of 50 characters' },
-          { 
-            validator: 'pattern', 
-            value: '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$',
-            errorMsg: 'Password must contain minimum 8 charactes, at least one uppercase letter, one lowercase letter, one number, and one special character'
-          }
-        ]
-      }
-    ]
+          {
+            validator: 'minLength',
+            value: 8,
+            errorMsg: 'Password must be at least 8 characters long',
+          },
+          {
+            validator: 'maxLength',
+            value: 50,
+            errorMsg: 'Password should contain a maximum of 50 characters',
+          },
+          {
+            validator: 'pattern',
+            value:
+              '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$',
+            errorMsg:
+              'Password must contain minimum 8 charactes, at least one uppercase letter, one lowercase letter, one number, and one special character',
+          },
+        ],
+      },
+    ],
   };
 
   reciveForm(submitedForm: SignUpFormInterface): void {
-    console.log(submitedForm);
-  
-}
+    this.authService.createUser(submitedForm);
+  }
+
+  signUpGoogle() {
+    console.log('sign up with google');
+  }
+
+  signUpFacebook() {
+    console.log('sign up with fb');
+  }
 }

@@ -16,7 +16,7 @@
          </div>
          <button
          class="w-100 btn btn-light rounded-3 border border-secondary-subtle py-1 shadow-lg"
-         [style]="isMobileMode() ? 'font-size:12px;' : 'font-size:14px'"
+         [style]="isMobileMode() ? 'font-size:12px;' : 'font-size:14px'" type="button" (click)="signUpGoogle()"
          >
             <svg
             style="width: 15px; height: 15px;"
@@ -25,7 +25,7 @@
             Sign up with Google</button>
          <button
          class="w-100 btn btn-primary rounded-3 border border-secondary-subtle py-1"
-         [style]="isMobileMode() ? 'font-size:12px;' : 'font-size:14px'">
+         [style]="isMobileMode() ? 'font-size:12px;' : 'font-size:14px'" type="button" (click)="signUpFacebook()">
             <svg 
             style="width: 15px; height: 15px;"
             class="me-1 bg-primary shadow-lg"

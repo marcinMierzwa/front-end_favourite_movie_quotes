@@ -9,6 +9,8 @@ import { MovieName } from '../../Models/movie-name.interface';
 
 import { CharacterName } from '../../Models/character-name.interface';
 import { CharacterNamesDto } from './dto/character-names.dto';
+import { SignUpUserDto } from './dto/signup-user.dto';
+import { SignUpUserModel } from '../Auth/Models/signupUserModel.interface';
 
 
 
@@ -51,7 +53,7 @@ export class ApiService {
         httpParams = httpParams.set('sort', sort);
     }
       return this.httpClient
-        .get<QuoteResponseDto>(`${this.basicUrl_Prod}/quotes`, { params: httpParams })
+        .get<QuoteResponseDto>(`${this.basicUrl_Dev}/quotes`, { params: httpParams })
         .pipe(
           catchError((error) => {
             console.error('API Error:', error);
@@ -64,7 +66,7 @@ export class ApiService {
 
   getOneQuote(id: string): Observable<QuoteResponseDataDto> {
     return this.httpClient.get<QuoteResponseDataDto>(
-      `${this.basicUrl_Prod}/quotes/${id}`)
+      `${this.basicUrl_Dev}/quotes/${id}`)
       .pipe(
         catchError((error) => {
           console.error('API Error:', error);
@@ -75,7 +77,7 @@ export class ApiService {
 
   // filter
   getMovieNames(): Observable<MovieName[]> {
-    return this.httpClient.get<MovieNamesDto>(`${this.basicUrl_Prod}/movies`)
+    return this.httpClient.get<MovieNamesDto>(`${this.basicUrl_Dev}/movies`)
       .pipe(
         map((response: MovieNamesDto) => response.data),
         catchError((error) => {
@@ -87,7 +89,7 @@ export class ApiService {
   }
 
     getCharacterNames(): Observable<CharacterName[]> {
-    return this.httpClient.get<CharacterNamesDto>(`${this.basicUrl_Prod}/characters`)
+    return this.httpClient.get<CharacterNamesDto>(`${this.basicUrl_Dev}/characters`)
       .pipe(
         map((response: CharacterNamesDto) => response.data),
         catchError((error) => {
@@ -95,5 +97,11 @@ export class ApiService {
           return throwError(() => new Error('Error occurred during fetching character names'));
         })
       )
+  }
+
+  // SignUp
+
+  createUser(user: SignUpUserModel): Observable<SignUpUserDto> {
+    return this.httpClient.post<SignUpUserDto>(`${this.basicUrl_Dev}/auth/signup`, user);
   }
 }

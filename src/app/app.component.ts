@@ -9,6 +9,7 @@ import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { StateService } from './Services/State/state.service';
 import { FooterComponent } from './Components/footer/footer.component';
 import { BottomNavbarComponent } from "./Components/bottom-navbar/bottom-navbar.component";
+import { NotificationService } from './Services/Toastr/notification.service';
 
 @Component({
   selector: 'app-root',
@@ -31,11 +32,17 @@ export class AppComponent implements OnInit {
   private stateService: StateService = inject(StateService);
   isScrollMode = this.stateService.isScrollMode;
 
+  private notificationService: NotificationService = inject(NotificationService);
+
   
 
-  ngOnInit() {
+  ngOnInit(): void {
     // this.customBreakpointsService.getCurrentBreakpoint();
     this.customBreakpointsService.setScrollMode();
+  }
+
+  showToast(): void {
+    this.notificationService.showToast();
   }
 
 }

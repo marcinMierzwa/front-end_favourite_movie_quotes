@@ -41,8 +41,5 @@ export class AppComponent implements OnInit {
     this.customBreakpointsService.setScrollMode();
   }
 
-  showToast(): void {
-    this.notificationService.showToast();
-  }
 
 }

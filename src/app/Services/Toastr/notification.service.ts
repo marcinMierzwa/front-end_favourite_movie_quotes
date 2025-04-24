@@ -1,6 +1,6 @@
 import { inject, Injectable } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
-import { toastrConfigDefault } from "../../Config/toastr.config";
+import { toastrConfigDefault, toastrConfigSignUp } from "../../Config/toastr.config";
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +9,10 @@ import { toastrConfigDefault } from "../../Config/toastr.config";
 export class NotificationService {
     private toastr: ToastrService = inject(ToastrService);
 
-    showToast() {
-        this.toastr.success('test message', 'test title', toastrConfigDefault);
-      }
-}
+    // showError(message: string) {
+    //     this.toastr.error(message, 'Błąd', toastrConfigError);
+    //   }
+    
+      showSuccess(message: string, title: string, config: any) {
+        this.toastr.success(message, title, config);
+      }}

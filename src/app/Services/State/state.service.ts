@@ -57,14 +57,9 @@ export class StateService {
     return params;
     });
 
-  effFilter=effect(()=> { 
-    // console.log(this.filter())
-    // console.log(this.queryParams())
-    // console.log(this.paginationState())
-  })
-
-
-
+  //error message
+  public errorMessage: WritableSignal<string | null> = signal<string | null>(null);
+  errorEffect = effect(()=> console.log('error message is:', this.errorMessage()))
 
 
 }

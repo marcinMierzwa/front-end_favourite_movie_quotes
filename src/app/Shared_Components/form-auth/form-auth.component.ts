@@ -1,4 +1,4 @@
-import { Component, inject, input, InputSignal, output } from '@angular/core';
+import { Component, inject, input, InputSignal, output, Signal } from '@angular/core';
 import { StateService } from '../../Services/State/state.service';
 import { InputConfig } from '../../Models/form-config.interface';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -20,6 +20,7 @@ export class FormAuthComponent {
   readonly isMobileMode = this.stateService.isScrollMode;
   readonly heading: InputSignal<string> = input.required();
   readonly submitLabel: InputSignal<string> = input.required();
+  readonly errorMessage: Signal<string | null> = this.stateService.errorMessage;
   inputsData: InputSignal<InputConfig[]> = input<InputConfig[]>([]);
   isPasswordVisible = false;
   form!: FormGroup;
@@ -46,6 +47,7 @@ export class FormAuthComponent {
     event.preventDefault()
     const submitedForm: SubmitedForm = this.form.getRawValue();
     this.sendForm.emit(submitedForm);
+    this.form.reset();
     }
     
     

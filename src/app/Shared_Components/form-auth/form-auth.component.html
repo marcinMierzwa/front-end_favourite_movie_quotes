@@ -101,6 +101,14 @@
          [disabled]="form.invalid"
          type="submit"
          >{{ submitLabel() }}</button>
+         @if (errorMessage()) {
+          <small
+            class="bg-light text-danger fw-semibold d-block rounded-1 mt-1 text-center p-2 w-100"
+            style="font-size: 14px; word-wrap: break-word"
+            >{{ errorMessage() }}</small
+            
+          >
+          }
 
     <!-- buttons section -->
     <ng-content></ng-content>

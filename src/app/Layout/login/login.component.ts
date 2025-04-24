@@ -16,7 +16,7 @@ export class LoginComponent {
   private stateService: StateService = inject(StateService);
   isMobileMode = this.stateService.isScrollMode;
   formData: FormConfig = {
-    heading: 'Welcome back!',
+    heading: 'Log in !',
     submitLabel: 'Log in',
     inputsConfig: [
       {

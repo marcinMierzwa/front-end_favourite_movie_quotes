@@ -16,11 +16,11 @@ export class AuthService {
   private notificationService: NotificationService = inject(NotificationService);
   private router: Router = inject(Router);
 
-  createUser(user: SignUpUserModel) {
+  createUser(user: SignUpUserModel): void {
     this.apiService.createUser(user).subscribe({
       next: (response: SignUpUserDto) => {
         this.clearError();
-        this.notificationService.showSuccess(response.message, 'success!', toastrConfigSignUp );
+        this.notificationService.showSuccess(response.message, 'Success!', toastrConfigSignUp );
         this.router.navigateByUrl('/login');
 
       },
@@ -31,11 +31,16 @@ export class AuthService {
     });
   }
 
-  setError(msg: string) {
+  verifyEmailAddress(token: string): void {
+    this.apiService.verifyEmailAddress(token)
+    .subscribe()
+  }
+
+  setError(msg: string): void {
     this.stateService.errorMessage.set(msg);
   }
 
-  clearError() {
+  clearError(): void {
     this.stateService.errorMessage.set(null);
   }
 }

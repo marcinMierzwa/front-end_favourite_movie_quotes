@@ -51,12 +51,6 @@ export class FormAuthComponent {
     }
     
     
-    // const config = new MatSnackBarConfig();
-    // config.duration = 3000;  // Czas trwania SnackBar
-    // config.horizontalPosition = 'center'; // Pozycja pozioma
-    // config.verticalPosition = 'bottom';      // Pozycja pionowa
-    // config.panelClass = ["my-snackbar"];  // Klasa CSS
-    // this.snackBar.open('message', 'Close', config);
   
 
 

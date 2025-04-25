@@ -11,6 +11,7 @@ import { CharacterName } from '../../Models/character-name.interface';
 import { CharacterNamesDto } from './dto/character-names.dto';
 import { SignUpUserDto } from './dto/signup-user.dto';
 import { SignUpUserModel } from '../Auth/Models/signupUserModel.interface';
+import { VerifyEmailDto } from './dto/verify-email.dto';
 
 
 
@@ -30,10 +31,8 @@ export class ApiService {
   private httpClient: HttpClient = inject(HttpClient);
   private stateService: StateService = inject(StateService);
 
-  // private apiUrl = environment.apiUrl
-
-  private readonly basicUrl_Dev = 'http://localhost:3000';
-  private readonly basicUrl_Prod = 'https://quotes-backend-nine.vercel.app';
+  private readonly basicUrl= 'http://localhost:3000';
+  // private readonly basicUrl = 'https://quotes-backend-nine.vercel.app';
 
   getQuotes(): Observable<QuoteResponseDto> {
     const { skip, limit, search, movie, character, sort} = this.stateService.queryParams();
@@ -53,7 +52,7 @@ export class ApiService {
         httpParams = httpParams.set('sort', sort);
     }
       return this.httpClient
-        .get<QuoteResponseDto>(`${this.basicUrl_Dev}/quotes`, { params: httpParams })
+        .get<QuoteResponseDto>(`${this.basicUrl}/quotes`, { params: httpParams })
         .pipe(
           catchError((error) => {
             console.error('API Error:', error);
@@ -66,7 +65,7 @@ export class ApiService {
 
   getOneQuote(id: string): Observable<QuoteResponseDataDto> {
     return this.httpClient.get<QuoteResponseDataDto>(
-      `${this.basicUrl_Dev}/quotes/${id}`)
+      `${this.basicUrl}/quotes/${id}`)
       .pipe(
         catchError((error) => {
           console.error('API Error:', error);
@@ -77,7 +76,7 @@ export class ApiService {
 
   // filter
   getMovieNames(): Observable<MovieName[]> {
-    return this.httpClient.get<MovieNamesDto>(`${this.basicUrl_Dev}/movies`)
+    return this.httpClient.get<MovieNamesDto>(`${this.basicUrl}/movies`)
       .pipe(
         map((response: MovieNamesDto) => response.data),
         catchError((error) => {
@@ -89,7 +88,7 @@ export class ApiService {
   }
 
     getCharacterNames(): Observable<CharacterName[]> {
-    return this.httpClient.get<CharacterNamesDto>(`${this.basicUrl_Dev}/characters`)
+    return this.httpClient.get<CharacterNamesDto>(`${this.basicUrl}/characters`)
       .pipe(
         map((response: CharacterNamesDto) => response.data),
         catchError((error) => {
@@ -102,6 +101,11 @@ export class ApiService {
   // SignUp
 
   createUser(user: SignUpUserModel): Observable<SignUpUserDto> {
-    return this.httpClient.post<SignUpUserDto>(`${this.basicUrl_Dev}/auth/signup`, user);
+    return this.httpClient.post<SignUpUserDto>(`${this.basicUrl}/auth/signup`, user);
   }
+
+  verifyEmailAddress(token: string): Observable<VerifyEmailDto> {
+    return this.httpClient.post<VerifyEmailDto>(`${this.basicUrl}/auth/verify`, {token});
+}
+
 }

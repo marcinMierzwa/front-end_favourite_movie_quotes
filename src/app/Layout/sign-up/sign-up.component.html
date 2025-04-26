@@ -1,5 +1,12 @@
 <div class="page-wrapper justify-content-start">
-    <app-form-auth
+    @if (isLoading()) {
+        <div class="d-flex justify-content-center align-items-center h-100">
+          <mat-spinner
+          [strokeWidth]="5"
+          ></mat-spinner>
+        </div>
+      } @else {
+        <app-form-auth
     [class]="isMobileMode() ? 'w-100 px-3' : 'w-50'"
     style="max-width: 500px;"
     [heading]="formData.heading"
@@ -34,5 +41,6 @@
             Sign up with Facebook</button>
         </div>
     </app-form-auth>
+}
 </div>
-
+  

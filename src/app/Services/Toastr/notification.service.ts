@@ -12,7 +12,7 @@ export class NotificationService {
         this.toastr.error(message, title, config);
       }
     
-      showSuccess(message: string, title: string, config: any) {
+    showSuccess(message: string, title: string, config: any) {
         this.toastr.success(message, title, config);
       }
     }

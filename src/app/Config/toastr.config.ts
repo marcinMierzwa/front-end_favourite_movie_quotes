@@ -18,7 +18,17 @@ export const toastrConfigDefault = {
     enableHtml: true,
   };
 
-  export const ToastrConfigs: Record<'default' | 'signUp', Partial<IndividualConfig<any>>> = {
-    default: toastrConfigDefault,
-    signUp: toastrConfigSignUp,
+  export const toastrConfigVerify = {
+    positionClass: 'toast-center',
+    preventDuplicates: true,
+    timeOut: 9000,
+    closeButton: true,
+    tapToDismiss: true,
+    enableHtml: true,
   };
+
+
+  // export const ToastrConfigs: Record<'default' | 'signUp', Partial<IndividualConfig<any>>> = {
+  //   default: toastrConfigDefault,
+  //   signUp: toastrConfigSignUp,
+  // };

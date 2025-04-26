@@ -1,24 +1,25 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormAuthComponent } from '../../Shared_Components/form-auth/form-auth.component';
 import { StateService } from '../../Services/State/state.service';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { FormConfig } from '../../Models/form-config.interface';
 import { LogInFormInterface } from './Models/log-in-form.interface';
-import { AuthService } from '../../Services/Auth/auth.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormAuthComponent, RouterLink],
+  imports: [FormAuthComponent, RouterLink, MatProgressSpinnerModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   private stateService: StateService = inject(StateService);
-  private route: ActivatedRoute = inject(ActivatedRoute);
-  private authService: AuthService = inject(AuthService);
 
   readonly isMobileMode = this.stateService.isScrollMode;
+  readonly isLoading = this.stateService.isLoading;
+
   formData: FormConfig = {
     heading: 'Log in !',
     submitLabel: 'Log in',
@@ -72,13 +73,6 @@ export class LoginComponent implements OnInit {
       },
     ],
   };
-
-  ngOnInit(): void {
-    const token = this.route.snapshot.queryParamMap.get('token');
-    if (token) {
-      this.authService.verifyEmailAddress(token);
-    }
-  }
 
   reciveForm(submitedForm: LogInFormInterface): void {
     console.log(submitedForm);

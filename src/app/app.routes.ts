@@ -5,6 +5,7 @@ import { HomeComponent } from './Layout/home/home.component';
 import { QuoteDetailComponent } from './Layout/quote-detail/quote-detail.component';
 import { ForgotPasswordComponent } from './Layout/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './Layout/reset-password/reset-password.component';
+import { VerfifyEmailComponent } from './Components/verify-email/verify-email.component';
 
 export const routes: Routes = [
     {
@@ -41,6 +42,11 @@ export const routes: Routes = [
         path: 'reset-password',
         component: ResetPasswordComponent,
         title: 'Reset-Password'
+    },
+    {
+        path: 'verify',
+        component: VerfifyEmailComponent,
+        title: 'Verify'
     },
 
 

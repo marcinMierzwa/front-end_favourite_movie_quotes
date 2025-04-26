@@ -1,23 +1,26 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { FormAuthComponent } from '../../Shared_Components/form-auth/form-auth.component';
 import { StateService } from '../../Services/State/state.service';
 import { RouterLink } from '@angular/router';
 import { FormConfig } from '../../Models/form-config.interface';
 import { SignUpFormInterface } from './Models/sign-up-form.interface';
 import { AuthService } from '../../Services/Auth/auth.service';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [FormAuthComponent, RouterLink],
+  imports: [FormAuthComponent, RouterLink, MatProgressSpinnerModule],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss',
 })
-export class SignUpComponent {
+export class SignUpComponent implements OnDestroy{
   private stateService: StateService = inject(StateService);
   private authService: AuthService = inject(AuthService);
 
-  isMobileMode = this.stateService.isScrollMode;
+
+  readonly isMobileMode = this.stateService.isScrollMode;
+  readonly isLoading = this.stateService.isLoading;
   formData: FormConfig = {
     heading: 'Create an Account',
     submitLabel: 'Sign Up',
@@ -82,5 +85,9 @@ export class SignUpComponent {
 
   signUpFacebook() {
     console.log('sign up with fb');
+  }
+
+  ngOnDestroy() {
+    this.stateService.errorMessage.set(null);
   }
 }

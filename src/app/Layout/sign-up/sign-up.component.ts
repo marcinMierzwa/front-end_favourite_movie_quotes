@@ -6,6 +6,7 @@ import { FormConfig } from '../../Models/form-config.interface';
 import { SignUpFormInterface } from './Models/sign-up-form.interface';
 import { AuthService } from '../../Services/Auth/auth.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,10 +15,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss',
 })
-export class SignUpComponent implements OnDestroy{
+export class SignUpComponent implements OnDestroy {
   private stateService: StateService = inject(StateService);
   private authService: AuthService = inject(AuthService);
-
+  private toastr: ToastrService = inject(ToastrService);
 
   readonly isMobileMode = this.stateService.isScrollMode;
   readonly isLoading = this.stateService.isLoading;
@@ -89,5 +90,6 @@ export class SignUpComponent implements OnDestroy{
 
   ngOnDestroy() {
     this.stateService.errorMessage.set(null);
+    this.toastr.clear();
   }
 }

@@ -79,11 +79,34 @@ export class AuthService {
   }
 
   resendVerification(email: string): void {
+    this.stateService.isLoading.set(true);
     this.apiService.resendVerification(email).subscribe({
-      next: ((response: ResendVerificationDto) => console.log(response)
-      ),
-      error: ((err) => console.error(err.error.message)
-      )
+      next: (response: ResendVerificationDto) => {
+        this.router.navigateByUrl('/login');
+        setTimeout(() => {
+          this.notificationService.showSuccess(
+            response.message,
+            'Success!',
+            toastrConfigDisableTimeOut
+          );
+        }, 1000);
+      },
+      error: (err) => {
+        console.error(err);
+        this.router.navigateByUrl('/sign-up');
+        setTimeout(() => {
+          this.notificationService.showError(
+            err.error.message,
+            'UUUps!',
+            toastrConfigDisableTimeOut
+          );
+        }, 1000);
+
+        this.stateService.isLoading.set(false);
+      },
+      complete: () => {
+        this.stateService.isLoading.set(false);
+      },
     });
   }
 

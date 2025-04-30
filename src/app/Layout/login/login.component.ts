@@ -5,6 +5,8 @@ import { RouterLink } from '@angular/router';
 import { FormConfig } from '../../Models/form-config.interface';
 import { LogInFormInterface } from './Models/log-in-form.interface';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AuthService } from '../../Services/Auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -15,7 +17,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  private stateService: StateService = inject(StateService);
+  private readonly stateService: StateService = inject(StateService);
+  private readonly authService: AuthService = inject(AuthService);
+  private readonly toastrService: ToastrService = inject(ToastrService);
 
   readonly isMobileMode = this.stateService.isScrollMode;
   readonly isLoading = this.stateService.isLoading;
@@ -75,7 +79,12 @@ export class LoginComponent {
   };
 
   reciveForm(submitedForm: LogInFormInterface): void {
-    console.log(submitedForm);
+    this.authService.login(submitedForm);
+  }
+
+  ngOnDestroy() {
+    this.stateService.errorMessage.set(null);
+    this.toastrService.clear();
   }
 
 }

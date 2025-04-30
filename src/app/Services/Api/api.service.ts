@@ -10,8 +10,11 @@ import { MovieName } from '../../Models/movie-name.interface';
 import { CharacterName } from '../../Models/character-name.interface';
 import { CharacterNamesDto } from './dto/character-names.dto';
 import { SignUpUserDto } from './dto/signup-user.dto';
-import { SignUpUserModel } from '../Auth/Models/signupUserModel.interface';
+import { SignUpUserModel } from '../Auth/Models/signup-user-model.interface';
 import { VerifyEmailDto } from './dto/verify-email.dto';
+import { LoginUserModel } from '../Auth/Models/login-user-model.interface';
+import { LoginUserDto } from './dto/login-user.dto';
+import { ResendVerificationDto } from './dto/resend-verification.dto';
 
 
 
@@ -31,8 +34,8 @@ export class ApiService {
   private httpClient: HttpClient = inject(HttpClient);
   private stateService: StateService = inject(StateService);
 
-  // private readonly basicUrl= 'http://localhost:3000';
-  private readonly basicUrl = 'https://quotes-backend-nine.vercel.app';
+  private readonly basicUrl= 'http://localhost:3000';
+  // private readonly basicUrl = 'https://quotes-backend-nine.vercel.app';
 
   getQuotes(): Observable<QuoteResponseDto> {
     const { skip, limit, search, movie, character, sort} = this.stateService.queryParams();
@@ -87,7 +90,7 @@ export class ApiService {
       
   }
 
-    getCharacterNames(): Observable<CharacterName[]> {
+  getCharacterNames(): Observable<CharacterName[]> {
     return this.httpClient.get<CharacterNamesDto>(`${this.basicUrl}/characters`)
       .pipe(
         map((response: CharacterNamesDto) => response.data),
@@ -99,13 +102,23 @@ export class ApiService {
   }
 
   // SignUp
-
   createUser(user: SignUpUserModel): Observable<SignUpUserDto> {
     return this.httpClient.post<SignUpUserDto>(`${this.basicUrl}/auth/signup`, user);
   }
 
+  // Verify Email Address
   verifyEmailAddress(token: string): Observable<VerifyEmailDto> {
     return this.httpClient.post<VerifyEmailDto>(`${this.basicUrl}/auth/verify`, {token});
 }
+
+  // Resend Verification Email
+  resendVerification(email: string): Observable<ResendVerificationDto> {
+    return this.httpClient.post<ResendVerificationDto>(`${this.basicUrl}/auth/resend-verification`, {email});
+  }
+
+  // Login 
+  login(credentials: LoginUserModel): Observable<LoginUserDto> {
+    return this.httpClient.post<LoginUserDto>(`${this.basicUrl}/auth/login`, credentials);
+  }
 
 }

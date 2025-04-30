@@ -1,15 +1,18 @@
 import { inject, Injectable } from '@angular/core';
 import { ApiService } from '../Api/api.service';
-import { SignUpUserModel } from './Models/signupUserModel.interface';
+import { SignUpUserModel } from './Models/signup-user-model.interface';
 import { SignUpUserDto } from '../Api/dto/signup-user.dto';
 import { StateService } from '../State/state.service';
 import { NotificationService } from '../Toastr/notification.service';
 import {
-  toastrConfigSignUp,
+  toastrConfigDisableTimeOut,
   toastrConfigVerify,
 } from '../../Config/toastr.config';
 import { Router } from '@angular/router';
 import { VerifyEmailDto } from '../Api/dto/verify-email.dto';
+import { LoginUserModel } from './Models/login-user-model.interface';
+import { LoginUserDto } from '../Api/dto/login-user.dto';
+import { ResendVerificationDto } from '../Api/dto/resend-verification.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -29,7 +32,7 @@ export class AuthService {
         this.notificationService.showSuccess(
           response.message,
           'Success!',
-          toastrConfigSignUp
+          toastrConfigDisableTimeOut
         );
       },
       error: (err) => {
@@ -63,7 +66,7 @@ export class AuthService {
           this.notificationService.showError(
             err.error.message,
             'UUUps!',
-            toastrConfigSignUp
+            toastrConfigDisableTimeOut
           );
         }, 1000);
 
@@ -75,6 +78,49 @@ export class AuthService {
     });
   }
 
+  resendVerification(email: string): void {
+    this.apiService.resendVerification(email).subscribe({
+      next: ((response: ResendVerificationDto) => console.log(response)
+      ),
+      error: ((err) => console.error(err.error.message)
+      )
+    });
+  }
+
+  login(credentials: LoginUserModel): void {
+    this.apiService.login(credentials).subscribe({
+      next: (response: LoginUserDto) => {
+        this.clearError();
+      },
+      error: (err) => {
+        const message = err.error.message;
+        const code = err.error.code;
+        if (code === 'EMAIL_NOT_VERIFIED') {
+          const toast = this.notificationService.showInfo(
+            `${message} <a href="#" class="resend-link">Resend verification email</a>`,
+            'Email Address Not Verified',
+            toastrConfigDisableTimeOut
+          );
+
+          toast.onShown.subscribe(() => {
+            const link = document.querySelector('.resend-link');
+            if (link) {
+              link.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.resendVerification(credentials.email);
+              });
+            }
+          });
+
+          this.clearError();
+        } else {
+          this.setError(message);
+        }
+      },
+    });
+  }
+
+  // utils methods
   setError(msg: string): void {
     this.stateService.errorMessage.set(msg);
   }

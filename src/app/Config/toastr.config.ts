@@ -9,7 +9,7 @@ export const toastrConfigDefault = {
     enableHtml: true,
   };
 
-  export const toastrConfigSignUp = {
+  export const toastrConfigDisableTimeOut = {
     positionClass: 'toast-center',
     preventDuplicates: true,
     disableTimeOut: true,
@@ -28,7 +28,3 @@ export const toastrConfigDefault = {
   };
 
 
-  // export const ToastrConfigs: Record<'default' | 'signUp', Partial<IndividualConfig<any>>> = {
-  //   default: toastrConfigDefault,
-  //   signUp: toastrConfigSignUp,
-  // };

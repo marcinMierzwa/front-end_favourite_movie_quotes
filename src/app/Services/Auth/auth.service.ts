@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { ApiService } from '../Api/api.service';
 import { SignUpUserModel } from './Models/signup-user-model.interface';
 import { SignUpUserDto } from '../Api/dto/signup-user.dto';
@@ -13,6 +13,7 @@ import { VerifyEmailDto } from '../Api/dto/verify-email.dto';
 import { LoginUserModel } from './Models/login-user-model.interface';
 import { LoginUserDto } from '../Api/dto/login-user.dto';
 import { ResendVerificationDto } from '../Api/dto/resend-verification.dto';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +24,9 @@ export class AuthService {
   private notificationService: NotificationService =
     inject(NotificationService);
   private router: Router = inject(Router);
+  // accessTokenSubject = new BehaviorSubject<string | null>(null);
+  // public accessToken$ = this.accessTokenSubject.asObservable();
+  accessToken = signal<string>('');
 
   createUser(user: SignUpUserModel): void {
     this.stateService.isLoading.set(true);
@@ -111,8 +115,11 @@ export class AuthService {
   }
 
   login(credentials: LoginUserModel): void {
+    this.stateService.isLoading.set(true);
     this.apiService.login(credentials).subscribe({
       next: (response: LoginUserDto) => {
+        this.accessToken.set(response.accessToken);
+        this.apiService.getUser().subscribe();
         this.clearError();
       },
       error: (err) => {
@@ -124,7 +131,6 @@ export class AuthService {
             'Email Address Not Verified',
             toastrConfigDisableTimeOut
           );
-
           toast.onShown.subscribe(() => {
             const link = document.querySelector('.resend-link');
             if (link) {
@@ -134,11 +140,13 @@ export class AuthService {
               });
             }
           });
-
-          this.clearError();
         } else {
           this.setError(message);
+          this.stateService.isLoading.set(false);
         }
+      },
+      complete: () => {
+        this.stateService.isLoading.set(false);
       },
     });
   }

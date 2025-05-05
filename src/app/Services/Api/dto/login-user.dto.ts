@@ -1,4 +1,3 @@
 export interface LoginUserDto {
-    message: string;
-    id: string;
+    accessToken: string;
 }

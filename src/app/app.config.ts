@@ -4,8 +4,9 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { toastrConfigDefault } from './Config/toastr.config';
+import { authInterceptor } from './Interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,7 +19,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(
       ToastrModule.forRoot(toastrConfigDefault)
     ),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([authInterceptor])),
     
   ]
 };

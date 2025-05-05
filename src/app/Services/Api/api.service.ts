@@ -15,6 +15,7 @@ import { VerifyEmailDto } from './dto/verify-email.dto';
 import { LoginUserModel } from '../Auth/Models/login-user-model.interface';
 import { LoginUserDto } from './dto/login-user.dto';
 import { ResendVerificationDto } from './dto/resend-verification.dto';
+import { UserDto } from './dto/user.dto';
 
 
 
@@ -37,6 +38,7 @@ export class ApiService {
   private readonly basicUrl= 'http://localhost:3000';
   // private readonly basicUrl = 'https://quotes-backend-nine.vercel.app';
 
+  // Get Data
   getQuotes(): Observable<QuoteResponseDto> {
     const { skip, limit, search, movie, character, sort} = this.stateService.queryParams();
       let httpParams = new HttpParams();
@@ -64,8 +66,6 @@ export class ApiService {
         );
   }
   
-  
-
   getOneQuote(id: string): Observable<QuoteResponseDataDto> {
     return this.httpClient.get<QuoteResponseDataDto>(
       `${this.basicUrl}/quotes/${id}`)
@@ -77,7 +77,6 @@ export class ApiService {
       )
   }
 
-  // filter
   getMovieNames(): Observable<MovieName[]> {
     return this.httpClient.get<MovieNamesDto>(`${this.basicUrl}/movies`)
       .pipe(
@@ -99,6 +98,10 @@ export class ApiService {
           return throwError(() => new Error('Error occurred during fetching character names'));
         })
       )
+  }
+
+  getUser(): Observable<string> {
+    return this.httpClient.get<string>(`${this.basicUrl}/users`)
   }
 
   // SignUp

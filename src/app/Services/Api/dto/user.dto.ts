@@ -1,5 +1,6 @@
 export interface UserDto {
-    email: string;
+    message: string;
     id: string;
-    isVerified: boolean;
+    email: string;
+    role: string;
 }

@@ -119,7 +119,10 @@ export class AuthService {
     this.apiService.login(credentials).subscribe({
       next: (response: LoginUserDto) => {
         this.accessToken.set(response.accessToken);
-        this.apiService.getUser().subscribe();
+        this.apiService.getUser()
+        .subscribe({
+          
+        });
         this.clearError();
       },
       error: (err) => {

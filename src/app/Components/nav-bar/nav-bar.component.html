@@ -1,45 +1,52 @@
 <nav
-  class="navbar navbar-expand-sm navbar-dark bg-dark p-2 rounded-3 border border-secondary border-opacity-50 shadow-lg position-relative"
+  class="navbar navbar-expand-sm navbar-dark bg-dark p-2 rounded-3 border border-secondary border-opacity-50 shadow-lg"
 >
-  <div class="container-fluid p-0">
-    <!-- logo -->
-    <a class="navbar-brand m-0 scroll-mode-font" href="#">
-      <img [src]="logoUrl" alt="logo" class="logo" />
-    </a>
+  <!-- 1-logo -->
 
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="offcanvas"
-      data-bs-target="#offcanvasDarkNavbar"
-      aria-controls="offcanvasDarkNavbar"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div
-      class="offcanvas offcanvas-end text-bg-dark"
-      tabindex="-1"
-      id="offcanvasDarkNavbar"
-      aria-labelledby="offcanvasDarkNavbarLabel"
-    >
-      <div class="offcanvas-header">
-        <a class="navbar-brand m-0 scroll-mode-font" href="#">
-          <img [src]="logoUrl" alt="logo" class="logo" />
-        </a>
-        <button
-          type="button"
-          class="btn-close btn-close-white"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="offcanvas-body">
-        <!-- nav links -->
-        <!-- Home -->
-        <ul
-          class="navbar-nav justify-content-center flex-grow-1 gap-sm-3 gap-lg-5"
-        >
+  <div class="position-absolute start-0 ms-1 px-sm-2" aria-label="logo-container">
+    <a class="navbar-brand m-0 scroll-mode-font" routerLink="home">
+      <img [src]="logoUrl" alt="logo" class="opacity-75" height="70px" />
+    </a>
+  </div>
+
+  <button
+    class="navbar-toggler ms-auto"
+    type="button"
+    data-bs-toggle="offcanvas"
+    data-bs-target="#offcanvasDarkNavbar"
+    aria-controls="offcanvasDarkNavbar"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div
+    class="offcanvas offcanvas-end text-bg-dark"
+    tabindex="-1"
+    id="offcanvasDarkNavbar"
+    aria-labelledby="offcanvasDarkNavbarLabel"
+  >
+    <div class="offcanvas-header">
+      <a class="navbar-brand m-0 scroll-mode-font" routerLink="home">
+        <img [src]="logoUrl" alt="logo" class="opacity-75" height="70px" />
+      </a>
+  
+      <button
+        type="button"
+        class="btn-close btn-close-white"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      ></button>
+    </div>
+
+    <div class="offcanvas-body">
+      <!-- navbar arrangement-->
+      <div
+        class="container-fluid p-0 d-sm-flex justify-content-sm-between align-items-sm-center "
+      >
+        <!-- 2-nav links -->
+        <ul class="navbar-nav gap-sm-3 gap-lg-5">
+          <!-- Home -->
           <li class="nav-item">
             <a
               class="nav-link text-white scroll-mode-font"
@@ -53,47 +60,41 @@
           <!-- Movies -->
           <li class="nav-item dropdown">
             <a class="nav-link scroll-mode-font">
-              <app-dropdown
-                [title]="'Movies'"
-              ></app-dropdown>
+              <app-dropdown [title]="'Movies'"></app-dropdown>
             </a>
           </li>
 
           <!-- Characters -->
-
           <li class="nav-item dropdown">
             <a class="nav-link scroll-mode-font">
-              <app-dropdown
-                [title]="'Characters'"
-              ></app-dropdown>
+              <app-dropdown [title]="'Characters'"></app-dropdown>
             </a>
           </li>
         </ul>
 
-        <!-- auth scection -->
-        <ul class="navbar-nav align-items-center gap-2">
-          <li class="nav-item">
-            @if (!isScrollMode()) {
-            <button
-              class="btn btn-sm bg-warning-custom border border-secondary-subtle px-3 scroll-mode-font "
-            >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart me-1" viewBox="0 0 16 16">
-                  <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
-                </svg>
-              skip to my favourite quotes
-            </button>
-            }
-          </li>
+        <!-- 3-skip to my fav button only -->
+        @if (!isScrollMode()) {
+        <button
+          class="btn btn-sm bg-warning-custom border border-secondary-subtle px-3 scroll-mode-font ms-auto"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-heart me-1"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"
+            />
+          </svg>
+          skip to my favourite quotes
+        </button>
+        }
 
-          <li class="nav-item me-auto">
-            <a class="nav-link text-white scroll-mode-font" routerLink="sign-up"
-              >Sign Up</a
-            >
-          </li>
-          <li class="nav-item me-auto">
-            <a [class]="getClassList()" routerLink="login">Login</a>
-          </li>
-        </ul>
+        <!-- 4-navbar-auth-component -->
+         <app-navbar-auth />
       </div>
     </div>
   </div>

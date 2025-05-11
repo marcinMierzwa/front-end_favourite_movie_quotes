@@ -2,12 +2,16 @@ import {
   computed,
   effect,
   Injectable,
+  Signal,
   signal,
   WritableSignal,
 } from '@angular/core';
 import { PaginationState } from '../../Models/pagination-state.interface';
 import { FilterState } from '../../Models/filter-state.interface';
 import { QueryParams } from '../../Models/query-params.interface';
+import { UserModel } from '../../Models/user.model';
+import { MovieModel } from '../../Models/movie-model';
+import { CharacterModel } from '../../Models/character-model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,23 +19,33 @@ import { QueryParams } from '../../Models/query-params.interface';
 export class StateService {
 
 
-  public readonly isScrollMode: WritableSignal<boolean> =
-  signal<boolean>(false);
+  public  isScrollMode: WritableSignal<boolean> = signal<boolean>(false);
 
-  public isLoading: WritableSignal<boolean> = signal(false);
+  public  isLoading: WritableSignal<boolean> = signal(false);
 
-  public readonly paginationState : WritableSignal<PaginationState> = signal<PaginationState>({
+  public  user: WritableSignal<UserModel | null> = signal<UserModel | null>(null);
+
+  public movies: WritableSignal<MovieModel[]> = signal<MovieModel[]>([]);
+  public characters: WritableSignal<CharacterModel[]> = signal<CharacterModel[]>([]);
+
+  public isLoggedIn: Signal<boolean> = computed(() => {
+    return this.user() !== null; 
+  });
+
+  public errorMessage: WritableSignal<string | null> = signal<string | null>(null);
+
+  public  paginationState : WritableSignal<PaginationState> = signal<PaginationState>({
     pageIndex: 0,
     pageSize: 2,
   });
 
 
   //filter/search 
-  public readonly filter: WritableSignal<FilterState> = signal<FilterState>({});
-  public readonly sort: WritableSignal<string> = signal<string>('');
+  public  filter: WritableSignal<FilterState> = signal<FilterState>({});
+  public  sort: WritableSignal<string> = signal<string>('');
 
 
-  public readonly queryParams = computed<QueryParams>(() => {
+  public  queryParams = computed<QueryParams>(() => {
     const { pageIndex, pageSize } = this.paginationState();
     const filter = this.filter();
     const sort = this.sort();
@@ -57,9 +71,7 @@ export class StateService {
     return params;
     });
 
-  //error message
-  public errorMessage: WritableSignal<string | null> = signal<string | null>(null);
-  errorEffect = effect(()=> console.log('error message is:', this.errorMessage()))
+
 
 
 }

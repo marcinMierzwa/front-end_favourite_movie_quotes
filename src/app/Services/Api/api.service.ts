@@ -4,11 +4,6 @@ import { StateService } from '../State/state.service';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { QuoteResponseDto } from './dto/quote-response.dto';
 import { QuoteResponseDataDto } from './dto/quote-response-data.dto';
-import { MovieNamesDto } from './dto/movies-names.dto';
-import { MovieName } from '../../Models/movie-name.interface';
-
-import { CharacterName } from '../../Models/character-name.interface';
-import { CharacterNamesDto } from './dto/character-names.dto';
 import { SignUpUserDto } from './dto/signup-user.dto';
 import { SignUpUserModel } from '../Auth/Models/signup-user-model.interface';
 import { VerifyEmailDto } from './dto/verify-email.dto';
@@ -16,17 +11,9 @@ import { LoginUserModel } from '../Auth/Models/login-user-model.interface';
 import { LoginUserDto } from './dto/login-user.dto';
 import { ResendVerificationDto } from './dto/resend-verification.dto';
 import { UserDto } from './dto/user.dto';
+import { MovieModelDto } from './dto/movie-model-dto';
+import { CharacterModelDto } from './dto/character-model-dto';
 
-
-
-
-// interface GetQuotesParams {
-//   pageIndex?: number;
-//   pageSize?: number;
-//   search?: string;
-//   movie?: string;
-//   character?: string;
-// }
 
 @Injectable({
   providedIn: 'root',
@@ -77,31 +64,16 @@ export class ApiService {
       )
   }
 
-  getMovieNames(): Observable<MovieName[]> {
-    return this.httpClient.get<MovieNamesDto>(`${this.basicUrl}/movies`)
-      .pipe(
-        map((response: MovieNamesDto) => response.data),
-        catchError((error) => {
-          console.error('API Error:', error);
-          return throwError(() => new Error('Error occurred during fetching movie names'));
-        })
-      );
-      
+  getMovies(): Observable<MovieModelDto[]> {
+    return this.httpClient.get<MovieModelDto[]>(`${this.basicUrl}/movies`);
   }
 
-  getCharacterNames(): Observable<CharacterName[]> {
-    return this.httpClient.get<CharacterNamesDto>(`${this.basicUrl}/characters`)
-      .pipe(
-        map((response: CharacterNamesDto) => response.data),
-        catchError((error) => {
-          console.error('API Error:', error);
-          return throwError(() => new Error('Error occurred during fetching character names'));
-        })
-      )
+  getCharacters(): Observable<CharacterModelDto[]> {
+    return this.httpClient.get<CharacterModelDto[]>(`${this.basicUrl}/characters`)
   }
 
-  getUser(): Observable<string> {
-    return this.httpClient.get<string>(`${this.basicUrl}/users`)
+  getUser(): Observable<UserDto> {
+    return this.httpClient.get<UserDto>(`${this.basicUrl}/users`)
   }
 
   // SignUp

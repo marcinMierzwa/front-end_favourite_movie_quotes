@@ -1,4 +1,5 @@
 import { Component, inject, input, InputSignal } from '@angular/core';
+import { DropdownModel } from './dropdown.model';
 
 @Component({
   selector: 'app-dropdown',
@@ -8,5 +9,5 @@ import { Component, inject, input, InputSignal } from '@angular/core';
   styleUrl: './dropdown.component.scss'
 })
 export class DropdownComponent {
-  readonly title: InputSignal<string> = input.required();
+  readonly dropdownData: InputSignal<DropdownModel > = input.required();
 }

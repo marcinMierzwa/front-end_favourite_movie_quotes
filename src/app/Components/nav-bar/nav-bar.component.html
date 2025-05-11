@@ -3,7 +3,10 @@
 >
   <!-- 1-logo -->
 
-  <div class="position-absolute start-0 ms-1 px-sm-2" aria-label="logo-container">
+  <div
+    class="position-absolute start-0 ms-1 px-sm-2"
+    aria-label="logo-container"
+  >
     <a class="navbar-brand m-0 scroll-mode-font" routerLink="home">
       <img [src]="logoUrl" alt="logo" class="opacity-75" height="70px" />
     </a>
@@ -30,7 +33,7 @@
       <a class="navbar-brand m-0 scroll-mode-font" routerLink="home">
         <img [src]="logoUrl" alt="logo" class="opacity-75" height="70px" />
       </a>
-  
+
       <button
         type="button"
         class="btn-close btn-close-white"
@@ -42,7 +45,7 @@
     <div class="offcanvas-body">
       <!-- navbar arrangement-->
       <div
-        class="container-fluid p-0 d-sm-flex justify-content-sm-between align-items-sm-center "
+        class="container-fluid p-0 d-sm-flex justify-content-sm-between align-items-sm-center"
       >
         <!-- 2-nav links -->
         <ul class="navbar-nav gap-sm-3 gap-lg-5">
@@ -59,15 +62,27 @@
 
           <!-- Movies -->
           <li class="nav-item dropdown">
-            <a class="nav-link scroll-mode-font">
-              <app-dropdown [title]="'Movies'"></app-dropdown>
+            <a
+              class="nav-link dropdown-toggle m-0 p-0 text-white"
+              role="button"
+              data-bs-toggle="dropdown"
+            >
+              {{ "Movies" }}
             </a>
+            <ul
+              class="dropdown-menu dropdown-menu-dark bg-dark border mt-2 p-2"
+            >
+              <!-- @for (option of dropdownData()?.options; track option) {
+                <li><a class="dropdown-item pointer">{{ option }}</a></li>
+                <li><hr class="dropdown-divider border border-bottom-0" /></li>
+                } -->
+            </ul>
           </li>
 
           <!-- Characters -->
           <li class="nav-item dropdown">
             <a class="nav-link scroll-mode-font">
-              <app-dropdown [title]="'Characters'"></app-dropdown>
+              <app-dropdown [dropdownData]="dropdownMenuData[1]"></app-dropdown>
             </a>
           </li>
         </ul>
@@ -94,7 +109,7 @@
         }
 
         <!-- 4-navbar-auth-component -->
-         <app-navbar-auth />
+        <app-navbar-auth />
       </div>
     </div>
   </div>

@@ -1,12 +1,10 @@
-import { inject, Pipe, PipeTransform } from '@angular/core';
-import { StateService } from '../Services/State/state.service';
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'truncateText',
   standalone: true,
 })
 export class TruncateTextPipe implements PipeTransform {
-  private stateService: StateService = inject(StateService);
 
   transform(text: string, limit: number): string {
 

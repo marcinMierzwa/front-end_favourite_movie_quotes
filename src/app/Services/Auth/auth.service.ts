@@ -5,6 +5,7 @@ import { SignUpUserDto } from '../Api/dto/signup-user.dto';
 import { StateService } from '../State/state.service';
 import { NotificationService } from '../Toastr/notification.service';
 import {
+  toastrConfigDefault,
   toastrConfigDisableTimeOut,
   toastrConfigVerify,
 } from '../../Config/toastr.config';
@@ -13,7 +14,9 @@ import { VerifyEmailDto } from '../Api/dto/verify-email.dto';
 import { LoginUserModel } from './Models/login-user-model.interface';
 import { LoginUserDto } from '../Api/dto/login-user.dto';
 import { ResendVerificationDto } from '../Api/dto/resend-verification.dto';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, finalize, switchMap, tap } from 'rxjs';
+import { UserDto } from '../Api/dto/user.dto';
+import { UserModel } from '../../Models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -116,24 +119,29 @@ export class AuthService {
 
   login(credentials: LoginUserModel): void {
     this.stateService.isLoading.set(true);
-    this.apiService.login(credentials).subscribe({
-      next: (response: LoginUserDto) => {
-        this.accessToken.set(response.accessToken);
-        this.apiService.getUser()
-        .subscribe({
-          
-        });
+  
+    this.apiService.login(credentials).pipe(
+      tap((res: LoginUserDto) => this.accessToken.set(res.accessToken)),
+      switchMap(() => this.apiService.getUser()),
+      tap(({ id, email, role, message }) => {
+        this.notificationService.showSuccess(message, 'Success!', toastrConfigDefault);
+        this.loginSetUser({ id, email, role });
+        this.router.navigate(['home']);
         this.clearError();
-      },
+      }),
+      finalize(() => this.stateService.isLoading.set(false))
+    ).subscribe({
       error: (err) => {
-        const message = err.error.message;
-        const code = err.error.code;
+        const message = err.error?.message;
+        const code = err.error?.code;
+  
         if (code === 'EMAIL_NOT_VERIFIED') {
           const toast = this.notificationService.showInfo(
-            `${message} <a href="#" class="resend-link">Resend verification email</a>`,
-            'Email Address Not Verified',
+            `${message} <a href="#" class="resend-link">Resend Email Verification</a>`,
+            'Email is not veryfied',
             toastrConfigDisableTimeOut
           );
+  
           toast.onShown.subscribe(() => {
             const link = document.querySelector('.resend-link');
             if (link) {
@@ -145,16 +153,15 @@ export class AuthService {
           });
         } else {
           this.setError(message);
-          this.stateService.isLoading.set(false);
         }
-      },
-      complete: () => {
-        this.stateService.isLoading.set(false);
-      },
+      }
     });
   }
 
-  // utils methods
+  loginSetUser(user: UserModel): void {
+    this.stateService.user.set(user);
+
+  }  // utils methods
   setError(msg: string): void {
     this.stateService.errorMessage.set(msg);
   }

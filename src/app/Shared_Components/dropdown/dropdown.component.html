@@ -4,12 +4,12 @@
     role="button"
     data-bs-toggle="dropdown"
   >
-    {{ title() }}
+    {{ dropdownData()?.title }}
   </a>
-  <ul class="dropdown-menu dropdown-menu-dark bg-dark border m-0">
-    <li><a class="dropdown-item">Action</a></li>
+  <ul class="dropdown-menu dropdown-menu-dark bg-dark border mt-2 p-2">
+    @for (option of dropdownData()?.options; track option) {
+    <li><a class="dropdown-item pointer">{{ option }}</a></li>
     <li><hr class="dropdown-divider border border-bottom-0" /></li>
-    <li><a class="dropdown-item">Another action</a></li>
-    <li></li>
+    }
   </ul>
 </div>

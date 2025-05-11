@@ -1,26 +1,36 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { StateService } from '../../Services/State/state.service';
 import { RouterLink } from '@angular/router';
+import { UserModel } from '../../Models/user.model';
+import { TruncateUserName } from '../../CustomPipes/truncate-userName..pipe';
 
 @Component({
   selector: 'app-navbar-auth',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, TruncateUserName],
   templateUrl: './navbar-auth.component.html',
   styleUrl: './navbar-auth.component.scss'
 })
 export class NavbarAuthComponent {
 
     private readonly stateService: StateService = inject(StateService);
-    
-    isScrollMode = this.stateService.isScrollMode;
-  
 
-  getClassList(): string {
+    readonly isLoggedIn: Signal<boolean> = this.stateService.isLoggedIn;
+    
+    readonly isScrollMode = this.stateService.isScrollMode;
+
+    readonly user: Signal<UserModel | null> = this.stateService.user;
+      
+    readonly dropdownOptions = ['Account Informations', 'My Favoutite Quotes', 'Change Password', 'Logout'];
+
+    readonly userNameLimit = computed(() => this.isScrollMode() ? 30 : 20);
+
+  getClassList(): string 
+  {
     if (this.isScrollMode()) {
-      return 'nav-link text-white scroll-mode-font';
+      return "dropdown bg-black bg-opacity-25 p-2 ps-3 rounded mt-2";
     } else {
-      return 'btn btn-sm btn-secondary scroll-mode-font rounded-2 fw-medium';
+      return "dropdown bg-black bg-opacity-25 ms-sm-1 ms-lg-2 p-2 px-sm-3 rounded scroll-mode-font text-center";
     }
   }
 

@@ -22,7 +22,7 @@ export class InitService {
         this.apiService
           .getMovieNames()
           .pipe(
-            tap((movies: MovieNameDto[]) => this.stateService.movies.set(movies)),
+            tap((movieNames: MovieNameDto[]) => this.stateService.movieNames.set(movieNames)),
             finalize(() => this.stateService.isLoading.set(false))
           )
           .subscribe({
@@ -35,7 +35,7 @@ export class InitService {
         this.apiService
           .getCharacterNames()
           .pipe(
-            tap((characters: CharacterNameDto[]) => this.stateService.characters.set(characters)),
+            tap((characterNames: CharacterNameDto[]) => this.stateService.characterNames.set(characterNames)),
             finalize(() => this.stateService.isLoading.set(false))
           )
           .subscribe({

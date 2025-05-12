@@ -25,9 +25,9 @@ export class StateService {
 
   public  user: WritableSignal<UserModel | null> = signal<UserModel | null>(null);
 
-  public movies: WritableSignal<MovieNameModel[]> = signal<MovieNameModel[]>([]);
+  public movieNames: WritableSignal<MovieNameModel[]> = signal<MovieNameModel[]>([]);
 
-  public characters: WritableSignal<CharacterNameModel[]> = signal<CharacterNameModel[]>([]);
+  public characterNames: WritableSignal<CharacterNameModel[]> = signal<CharacterNameModel[]>([]);
 
   public isLoggedIn: Signal<boolean> = computed(() => {
     return this.user() !== null; 

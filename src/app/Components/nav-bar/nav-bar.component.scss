@@ -6,6 +6,11 @@
   display: none !important;
 }
 
+.scrollable-dropdown {
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
 @media (max-width: 576px) {
   .offcanvas .navbar-nav .nav-link {
     font-size: 1.5rem !important;

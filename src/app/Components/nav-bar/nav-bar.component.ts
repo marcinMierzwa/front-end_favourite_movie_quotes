@@ -7,6 +7,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { ApiService } from '../../Services/Api/api.service';
 import { JsonPipe } from '@angular/common';
 import { MovieNameModel } from '../../Models/movie-name-model';
+import { CharacterNameModel } from '../../Models/character-name-model.';
 
 @Component({
   selector: 'app-navbar',
@@ -23,8 +24,8 @@ export class NavBarComponent {
   isScrollMode = this.stateService.isScrollMode;
   logoUrl = 'https:///raw.githubusercontent.com/marcinMierzwa/images-hosting/main/logo.png';
 
-  readonly movies: Signal<MovieNameModel[]> = this.stateService.movies;
-  eff = effect(()=> console.log(this.movies()))
+  readonly moviesNames: Signal<MovieNameModel[]> = this.stateService.movieNames;
+  readonly characterNames: Signal<CharacterNameModel[]> = this.stateService.characterNames
   
   
 }

@@ -48,7 +48,7 @@
         class="container-fluid p-0 d-sm-flex justify-content-sm-between align-items-sm-center"
       >
         <!-- 2-nav links -->
-        <ul class="navbar-nav gap-sm-3 gap-lg-5">
+        <ul class="navbar-nav gap-sm-3 gap-lg-5 align-items-sm-center">
           <!-- Home -->
           <li class="nav-item">
             <a
@@ -63,7 +63,7 @@
           <!-- Movies -->
           <li class="nav-item dropdown">
             <a
-              class="nav-link dropdown-toggle m-0 p-0 text-white"
+              class="nav-link dropdown-toggle m-0 text-white scroll-mode-font"
               role="button"
               data-bs-toggle="dropdown"
             >
@@ -72,18 +72,39 @@
             <ul
               class="dropdown-menu dropdown-menu-dark bg-dark border mt-2 p-2"
             >
-            @if (movies().length > 0) {
-              @for (movie of movies(); track movie._id) {
-                <li><a class="dropdown-item pointer">{{ movie.name }}</a></li>
-                <li><hr class="dropdown-divider border border-bottom-0" /></li>
-                }
-              }
-                
+              @if (moviesNames().length > 0) { @for (movieName of moviesNames();
+              track movieName._id) {
+              <li class="p-2">
+                <a class="dropdown-item pointer p-0 pb-1">{{
+                  movieName.name
+                }}</a>
+              </li>
+              } }
             </ul>
           </li>
 
           <!-- Characters -->
-
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle m-0 text-white scroll-mode-font"
+              role="button"
+              data-bs-toggle="dropdown"
+            >
+              Characters
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-dark bg-dark border mt-2 p-2 py-sm-0 scrollable-dropdown"
+            >
+              @if (characterNames().length > 0) { @for (charactertName of
+              characterNames(); track charactertName._id) {
+              <li class="p-2">
+                <a class="dropdown-item pointer p-0 pb-1">{{
+                  charactertName.name
+                }}</a>
+              </li>
+              } }
+            </ul>
+          </li>
         </ul>
 
         <!-- 3-skip to my fav button only -->

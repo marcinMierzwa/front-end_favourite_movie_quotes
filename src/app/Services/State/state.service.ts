@@ -10,8 +10,8 @@ import { PaginationState } from '../../Models/pagination-state.interface';
 import { FilterState } from '../../Models/filter-state.interface';
 import { QueryParams } from '../../Models/query-params.interface';
 import { UserModel } from '../../Models/user.model';
-import { MovieModel } from '../../Models/movie-model';
-import { CharacterModel } from '../../Models/character-model';
+import { MovieNameModel } from '../../Models/movie-name-model';
+import { CharacterNameModel } from '../../Models/character-name-model.';
 
 @Injectable({
   providedIn: 'root',
@@ -25,8 +25,9 @@ export class StateService {
 
   public  user: WritableSignal<UserModel | null> = signal<UserModel | null>(null);
 
-  public movies: WritableSignal<MovieModel[]> = signal<MovieModel[]>([]);
-  public characters: WritableSignal<CharacterModel[]> = signal<CharacterModel[]>([]);
+  public movies: WritableSignal<MovieNameModel[]> = signal<MovieNameModel[]>([]);
+
+  public characters: WritableSignal<CharacterNameModel[]> = signal<CharacterNameModel[]>([]);
 
   public isLoggedIn: Signal<boolean> = computed(() => {
     return this.user() !== null; 

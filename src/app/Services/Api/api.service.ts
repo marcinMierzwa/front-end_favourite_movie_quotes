@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { StateService } from '../State/state.service';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { QuoteResponseDto } from './dto/quote-response.dto';
 import { QuoteResponseDataDto } from './dto/quote-response-data.dto';
 import { SignUpUserDto } from './dto/signup-user.dto';
@@ -11,8 +11,8 @@ import { LoginUserModel } from '../Auth/Models/login-user-model.interface';
 import { LoginUserDto } from './dto/login-user.dto';
 import { ResendVerificationDto } from './dto/resend-verification.dto';
 import { UserDto } from './dto/user.dto';
-import { MovieModelDto } from './dto/movie-model-dto';
-import { CharacterModelDto } from './dto/character-model-dto';
+import { MovieNameDto } from './dto/movies-name.dto';
+import { CharacterNameDto } from './dto/character-model-dto';
 
 
 @Injectable({
@@ -64,12 +64,12 @@ export class ApiService {
       )
   }
 
-  getMovies(): Observable<MovieModelDto[]> {
-    return this.httpClient.get<MovieModelDto[]>(`${this.basicUrl}/movies`);
+  getMovieNames(): Observable<MovieNameDto[]> {
+    return this.httpClient.get<MovieNameDto[]>(`${this.basicUrl}/movies/movie-name`);
   }
 
-  getCharacters(): Observable<CharacterModelDto[]> {
-    return this.httpClient.get<CharacterModelDto[]>(`${this.basicUrl}/characters`)
+  getCharacterNames(): Observable<CharacterNameDto[]> {
+    return this.httpClient.get<CharacterNameDto[]>(`${this.basicUrl}/characters/character-name`)
   }
 
   getUser(): Observable<UserDto> {

@@ -67,24 +67,23 @@
               role="button"
               data-bs-toggle="dropdown"
             >
-              {{ "Movies" }}
+              Movies
             </a>
             <ul
               class="dropdown-menu dropdown-menu-dark bg-dark border mt-2 p-2"
             >
-              <!-- @for (option of dropdownData()?.options; track option) {
-                <li><a class="dropdown-item pointer">{{ option }}</a></li>
+            @if (movies().length > 0) {
+              @for (movie of movies(); track movie._id) {
+                <li><a class="dropdown-item pointer">{{ movie.name }}</a></li>
                 <li><hr class="dropdown-divider border border-bottom-0" /></li>
-                } -->
+                }
+              }
+                
             </ul>
           </li>
 
           <!-- Characters -->
-          <li class="nav-item dropdown">
-            <a class="nav-link scroll-mode-font">
-              <app-dropdown [dropdownData]="dropdownMenuData[1]"></app-dropdown>
-            </a>
-          </li>
+
         </ul>
 
         <!-- 3-skip to my fav button only -->

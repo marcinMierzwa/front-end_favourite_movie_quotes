@@ -2,6 +2,9 @@
   outline: none;
   box-shadow: none;
 }
+.dropdown-toggle::after {
+  display: none !important;
+}
 
 @media (max-width: 576px) {
   .offcanvas .navbar-nav .nav-link {
@@ -9,22 +12,14 @@
   }
 }
 
-// .logo {
-//   // position: absolute;
-//   left: 0;
-//   top: -15%;
-//   height: 70px;
-//   opacity: 70%;
-//   margin-left: 10px;
-// }
 @media (min-width: 576px) {
-.navbar-nav {
-  margin-left: 75px;
-}
+  .navbar-nav {
+    margin-left: 75px;
+  }
 }
 
 @media (min-width: 1024px) {
   .navbar-nav {
     margin-left: 100px;
   }
-  }
+}

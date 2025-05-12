@@ -3,10 +3,10 @@ import { FormsModule} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectChange, MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { CharacterName } from '../../Models/character-name.interface';
-import { MovieName } from '../../Models/movie-name.interface';
 import { ApiService } from '../../Services/Api/api.service';
 import { StateService } from '../../Services/State/state.service';
+import { CharacterNameModel } from '../../Models/character-name-model.';
+import { MovieNameModel } from '../../Models/movie-name-model';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class SelectComponent {
   private apiService: ApiService = inject(ApiService); 
   
 
-  readonly selectOptions = input.required<CharacterName[] | MovieName[]>();
+  readonly selectOptions = input.required<CharacterNameModel[] | MovieNameModel[]>();
   readonly selectHeading = input.required<string>();
 
   onSelectionChange(option: MatSelectChange, heading: string) {

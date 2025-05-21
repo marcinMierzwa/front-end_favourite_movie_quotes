@@ -14,9 +14,9 @@ import { VerifyEmailDto } from '../Api/dto/verify-email.dto';
 import { LoginUserModel } from './Models/login-user-model.interface';
 import { LoginUserDto } from '../Api/dto/login-user.dto';
 import { ResendVerificationDto } from '../Api/dto/resend-verification.dto';
-import { BehaviorSubject, finalize, switchMap, tap } from 'rxjs';
-import { UserDto } from '../Api/dto/user.dto';
+import { catchError, finalize, mergeMap, of, switchMap, tap } from 'rxjs';
 import { UserModel } from '../../Models/user.model';
+import { UserDto } from '../Api/dto/user.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -27,8 +27,6 @@ export class AuthService {
   private notificationService: NotificationService =
     inject(NotificationService);
   private router: Router = inject(Router);
-  // accessTokenSubject = new BehaviorSubject<string | null>(null);
-  // public accessToken$ = this.accessTokenSubject.asObservable();
   accessToken = signal<string>('');
 
   createUser(user: SignUpUserModel): void {
@@ -119,49 +117,78 @@ export class AuthService {
 
   login(credentials: LoginUserModel): void {
     this.stateService.isLoading.set(true);
-  
-    this.apiService.login(credentials).pipe(
-      tap((res: LoginUserDto) => this.accessToken.set(res.accessToken)),
-      switchMap(() => this.apiService.getUser()),
-      tap(({ id, email, role, message }) => {
-        this.notificationService.showSuccess(message, 'Success!', toastrConfigDefault);
-        this.loginSetUser({ id, email, role });
-        this.router.navigate(['home']);
-        this.clearError();
-      }),
-      finalize(() => this.stateService.isLoading.set(false))
-    ).subscribe({
-      error: (err) => {
-        const message = err.error?.message;
-        const code = err.error?.code;
-  
-        if (code === 'EMAIL_NOT_VERIFIED') {
-          const toast = this.notificationService.showInfo(
-            `${message} <a href="#" class="resend-link">Resend Email Verification</a>`,
-            'Email is not veryfied',
-            toastrConfigDisableTimeOut
+
+    this.apiService
+      .login(credentials)
+      .pipe(
+        mergeMap((res: LoginUserDto) => {
+          this.accessToken.set(res.accessToken);
+          return this.apiService.getUser().pipe(
+            tap(({ id, email, role }) => {
+              this.router.navigate(['home']);
+              setTimeout(() => {
+                this.notificationService.showSuccess(
+                  res.message,
+                  'Success!',
+                  toastrConfigDefault
+                );
+              }, 1000);
+              this.loginSetUser({ id, email, role });
+              this.clearError();
+            })
           );
-  
-          toast.onShown.subscribe(() => {
-            const link = document.querySelector('.resend-link');
-            if (link) {
-              link.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.resendVerification(credentials.email);
-              });
-            }
-          });
-        } else {
-          this.setError(message);
-        }
-      }
-    });
+        }),
+        finalize(() => this.stateService.isLoading.set(false))
+      )
+      .subscribe({
+        error: (err) => {
+          const message = err.error?.message;
+          const code = err.error?.code;
+
+          if (code === 'EMAIL_NOT_VERIFIED') {
+            const toast = this.notificationService.showInfo(
+              `${message} <a href="#" class="resend-link">Resend Email Verification</a>`,
+              'Email is not veryfied',
+              toastrConfigDisableTimeOut
+            );
+
+            toast.onShown.subscribe(() => {
+              const link = document.querySelector('.resend-link');
+              if (link) {
+                link.addEventListener('click', (e) => {
+                  e.preventDefault();
+                  this.resendVerification(credentials.email);
+                });
+              }
+            });
+          } else {
+            this.setError(message);
+          }
+        },
+      });
   }
 
-  loginSetUser(user: UserModel): void {
+  loginSetUser(user: UserModel | null): void {
     this.stateService.user.set(user);
+  }
 
-  }  // utils methods
+  checkSession(): void {
+    this.stateService.isLoading.set(true);
+    this.apiService.refreshToken()
+    .pipe(
+      tap((res: LoginUserDto) => this.accessToken.set(res.accessToken)),
+      switchMap(() => this.apiService.getUser()),
+      tap((user: UserDto) => this.loginSetUser(user)),
+      catchError((err) => {
+        console.error('Session check failed:', err?.error?.message || err.message);
+        this.loginSetUser(null); 
+        return of(undefined);    
+      }),
+      finalize(() => this.stateService.isLoading.set(false))
+    ).subscribe();
+  }
+
+  // utils methods
   setError(msg: string): void {
     this.stateService.errorMessage.set(msg);
   }

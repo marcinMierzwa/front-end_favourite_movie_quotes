@@ -29,7 +29,6 @@ export class AppComponent implements OnInit {
   private customBreakpointsService: CustomBreakpointsService = inject(
     CustomBreakpointsService
   );
-
   private stateService: StateService = inject(StateService);
   private initService: InitService = inject(InitService);
   isScrollMode = this.stateService.isScrollMode;
@@ -40,6 +39,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.initService.initAppData();
     this.customBreakpointsService.setScrollMode();
+
   }
 
 

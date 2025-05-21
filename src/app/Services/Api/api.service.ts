@@ -93,7 +93,15 @@ export class ApiService {
 
   // Login 
   login(credentials: LoginUserModel): Observable<LoginUserDto> {
-    return this.httpClient.post<LoginUserDto>(`${this.basicUrl}/auth/login`, credentials);
+    return this.httpClient.post<LoginUserDto>(`${this.basicUrl}/auth/login`, credentials, {
+      withCredentials: true
+    });
   }
 
+  // Refresh Token
+  refreshToken(): Observable<LoginUserDto> {
+    return this.httpClient.post<LoginUserDto>(`${this.basicUrl}/auth/refresh`, {}, {
+      withCredentials: true
+    });
+  }
 }

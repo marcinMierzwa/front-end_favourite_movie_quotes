@@ -1,5 +1,5 @@
 
-@if (isLoggedIn()) {
+@if (!isLoggedIn()) {
 <div class="d-flex flex-sm-row flex-column mx-sm-2 mt-3 mt-sm-0 gap-4 gap-sm-2">
     <a     
     class="btn btn-dark border border-secondary-subtle  rounded-2 fw-medium"
@@ -21,8 +21,9 @@
       role="button"
       data-bs-toggle="dropdown"
     >
-      <!-- {{ user()?.email }} -->
-      {{ "marcin.mierz" | truncateUserName: userNameLimit() }}
+    
+      {{ user()!.email | truncateUserName: userNameLimit() }}
+      <!-- {{ "marcin.mierz" | truncateUserName: userNameLimit() }} -->
 
     </a>
     <ul class="dropdown-menu dropdown-menu-dark bg-dark border mt-3 mt-sm-2 p-2">

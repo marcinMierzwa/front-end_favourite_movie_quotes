@@ -11,6 +11,7 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { BottomNavbarComponent } from "./Components/bottom-navbar/bottom-navbar.component";
 import { NotificationService } from './Services/Toastr/notification.service';
 import { InitService } from './Services/Init/init.service';
+import { ApiService } from './Services/Api/api.service';
 
 @Component({
   selector: 'app-root',
@@ -39,8 +40,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.initService.initAppData();
     this.customBreakpointsService.setScrollMode();
-
   }
+
 
 
 }

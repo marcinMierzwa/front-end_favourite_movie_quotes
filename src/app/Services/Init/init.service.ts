@@ -17,7 +17,6 @@ export class InitService {
   initAppData(): void {
     this.getMovieNames();
     this.getCharacterNames();
-    this.authService.checkSession();
   }
 
   getMovieNames(): void {

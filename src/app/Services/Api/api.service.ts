@@ -13,6 +13,7 @@ import { ResendVerificationDto } from './dto/resend-verification.dto';
 import { UserDto } from './dto/user.dto';
 import { MovieNameDto } from './dto/movies-name.dto';
 import { CharacterNameDto } from './dto/character-model-dto';
+import { RefreshDto } from './dto/refresh.dto';
 
 
 @Injectable({
@@ -99,9 +100,10 @@ export class ApiService {
   }
 
   // Refresh Token
-  refreshToken(): Observable<LoginUserDto> {
-    return this.httpClient.post<LoginUserDto>(`${this.basicUrl}/auth/refresh`, {}, {
+  refreshToken(): Observable<RefreshDto> {
+    return this.httpClient.post<RefreshDto>(`${this.basicUrl}/auth/refresh`, {}, {
       withCredentials: true
     });
   }
+
 }

@@ -14,9 +14,10 @@ import { VerifyEmailDto } from '../Api/dto/verify-email.dto';
 import { LoginUserModel } from './Models/login-user-model.interface';
 import { LoginUserDto } from '../Api/dto/login-user.dto';
 import { ResendVerificationDto } from '../Api/dto/resend-verification.dto';
-import { catchError, finalize, mergeMap, of, switchMap, tap } from 'rxjs';
+import { catchError, finalize, map, mergeMap, Observable, of, switchMap, tap, throwError } from 'rxjs';
 import { UserModel } from '../../Models/user.model';
 import { UserDto } from '../Api/dto/user.dto';
+import { RefreshDto } from '../Api/dto/refresh.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -172,21 +173,43 @@ export class AuthService {
     this.stateService.user.set(user);
   }
 
-  checkSession(): void {
+tryRefreshSessionAndLoadUser(options?: { silent?: boolean; caller?: string }): Observable<UserDto | null> {
+  if (!options?.silent) {
     this.stateService.isLoading.set(true);
-    this.apiService.refreshToken()
-    .pipe(
-      tap((res: LoginUserDto) => this.accessToken.set(res.accessToken)),
-      switchMap(() => this.apiService.getUser()),
-      tap((user: UserDto) => this.loginSetUser(user)),
-      catchError((err) => {
-        console.error('Session check failed:', err?.error?.message || err.message);
-        this.loginSetUser(null); 
-        return of(undefined);    
-      }),
-      finalize(() => this.stateService.isLoading.set(false))
-    ).subscribe();
   }
+
+  return this.apiService.refreshToken().pipe( 
+    tap((res: RefreshDto) => {
+        this.accessToken.set(res.accessToken);
+      }),
+      switchMap(() => this.apiService.getUser()), 
+      tap((user: UserDto) => {
+        this.loginSetUser(user); 
+      }),
+      catchError((err) => {
+        const errorMessage = err.error?.message || err.message;
+        console.warn('AuthService: Session refresh or user load failed:', errorMessage);
+        this.clearUserSession(); 
+        return throwError(() => new Error(errorMessage)); 
+      }),
+    );
+  }
+
+   private clearUserSession(): void {
+    this.accessToken.set('');
+    this.loginSetUser(null);
+  }
+
+  logout(): void {
+    this.stateService.isLoading.set(true);
+    this.clearUserSession();
+    // Tutaj możesz dodać wywołanie API do backendu, aby unieważnić refresh token
+    // np. this.apiService.logout().subscribe(...);
+    this.router.navigate(['/login']);
+    this.stateService.isLoading.set(false);
+    this.notificationService.showInfo('You have been logged out.', 'Logged Out', toastrConfigDefault);
+  }
+
 
   // utils methods
   setError(msg: string): void {

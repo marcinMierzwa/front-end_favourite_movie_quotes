@@ -14,9 +14,11 @@
     [strokeWidth]="5"
     ></mat-spinner>
   </div>
-} @else if (pagination().length === 0) {
-  <h5 class="text-light text-center">Sorry! No quotes found.</h5>
-} @else {
+}
+ @else if (pagination().length === 0) {
+  <h5 class="text-light text-center">Sorry! There was a problem loading the quotes. Try refreshing the page</h5>
+} 
+@else {
   @for (quote of quotes(); track quote._id) {
     <app-card
       class="card-list-dimensions d-flex flex-column"

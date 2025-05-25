@@ -32,11 +32,14 @@ export class AppComponent implements OnInit {
   );
   private stateService: StateService = inject(StateService);
   private initService: InitService = inject(InitService);
+  private readonly api: ApiService = inject(ApiService);
   isScrollMode = this.stateService.isScrollMode;
 
   private notificationService: NotificationService = inject(NotificationService);
   
-
+get() {
+  this.api.getUser().subscribe()
+}
   ngOnInit(): void {
     this.initService.initAppData();
     this.customBreakpointsService.setScrollMode();

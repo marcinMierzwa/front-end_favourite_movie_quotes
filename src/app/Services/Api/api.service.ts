@@ -14,6 +14,7 @@ import { UserDto } from './dto/user.dto';
 import { MovieNameDto } from './dto/movies-name.dto';
 import { CharacterNameDto } from './dto/character-model-dto';
 import { RefreshDto } from './dto/refresh.dto';
+import { LogoutDto } from './dto/logout.dto';
 
 
 @Injectable({
@@ -102,6 +103,13 @@ export class ApiService {
   // Refresh Token
   refreshToken(): Observable<RefreshDto> {
     return this.httpClient.post<RefreshDto>(`${this.basicUrl}/auth/refresh`, {}, {
+      withCredentials: true
+    });
+  }
+
+  // Logout
+  logout(): Observable<LogoutDto> {
+    return this.httpClient.post<LogoutDto>(`${this.basicUrl}/auth/logout`, {}, {
       withCredentials: true
     });
   }

@@ -38,7 +38,12 @@ export function authInterceptor(
   }
   return next(clonedReq).pipe(
     catchError((error: HttpErrorResponse) => {
-      if (error.status === 401 && !clonedReq.url.includes('/auth/refresh')) {
+      if (error.status === 401 && 
+    !clonedReq.url.includes('/auth/refresh') && 
+    !clonedReq.url.includes('/auth/login') && 
+    !clonedReq.url.includes('/auth/logout') && 
+    authService.accessToken() 
+) {
         if (!isRefreshing) {
           isRefreshing = true;
           refreshTokenSubject.next(null);

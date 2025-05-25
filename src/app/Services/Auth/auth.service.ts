@@ -18,6 +18,7 @@ import { catchError, finalize, map, mergeMap, Observable, of, switchMap, tap, th
 import { UserModel } from '../../Models/user.model';
 import { UserDto } from '../Api/dto/user.dto';
 import { RefreshDto } from '../Api/dto/refresh.dto';
+import { LogoutDto } from '../Api/dto/logout.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -195,28 +196,31 @@ tryRefreshSessionAndLoadUser(options?: { silent?: boolean; caller?: string }): O
     );
   }
 
-   private clearUserSession(): void {
-    this.accessToken.set('');
-    this.loginSetUser(null);
-  }
 
   logout(): void {
-    this.stateService.isLoading.set(true);
     this.clearUserSession();
-    // Tutaj możesz dodać wywołanie API do backendu, aby unieważnić refresh token
-    // np. this.apiService.logout().subscribe(...);
-    this.router.navigate(['/login']);
-    this.stateService.isLoading.set(false);
+    this.apiService.logout().subscribe({
+      next: ((res: LogoutDto) => console.log(res.message)
+      ),
+      error: ((err) => console.warn(err.error.message)
+      )
+    });
+    // this.router.navigate(['/home']);
     this.notificationService.showInfo('You have been logged out.', 'Logged Out', toastrConfigDefault);
   }
 
 
   // utils methods
-  setError(msg: string): void {
+   private clearUserSession(): void {
+    this.accessToken.set('');
+    this.loginSetUser(null);
+  }
+
+  private setError(msg: string): void {
     this.stateService.errorMessage.set(msg);
   }
 
-  clearError(): void {
+  private clearError(): void {
     this.stateService.errorMessage.set(null);
   }
 }

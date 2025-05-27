@@ -1,36 +1,38 @@
-
 @if (!isLoggedIn()) {
 <div class="d-flex flex-sm-row flex-column mx-sm-2 mt-3 mt-sm-0 gap-4 gap-sm-2">
-    <a     
-    class="btn btn-dark border border-secondary-subtle  rounded-2 fw-medium"
+  <a
+    class="btn btn-dark border border-secondary-subtle rounded-2 fw-medium"
     routerLink="sign-up"
-      >Sign Up</a
-    >
-    <a
+    >Sign Up</a
+  >
+  <a
     class="btn btn-secondary rounded-2 fw-medium border border-secondary-subtle"
     routerLink="login"
-    >Log In</a>
-  </div>
-} @else {
-  <div
-  [class]="getClassList()"
+    >Log In</a
   >
-    <a
-      class="nav-link dropdown-toggle m-0 p-0 text-white"
-      style="min-width: 160px;"
-      role="button"
-      data-bs-toggle="dropdown"
-    >
-    
-      {{ user()!.email | truncateUserName: userNameLimit() }}
-      <!-- {{ "marcin.mierz" | truncateUserName: userNameLimit() }} -->
+</div>
+} @else {
+<div [class]="getClassList()">
+  <a
+    class="nav-link dropdown-toggle m-0 p-0 text-white"
+    style="min-width: 160px"
+    role="button"
+    data-bs-toggle="dropdown"
+  >
+    {{ user()!.email | truncateUserName : userNameLimit() }}
+  </a>
+  <ul class="dropdown-menu dropdown-menu-dark bg-dark border mt-3 mt-sm-2 p-2">
+    <li><a class="dropdown-item pointer">Account Informations</a></li>
+    <li><hr class="dropdown-divider border border-bottom-0" /></li>
 
-    </a>
-    <ul class="dropdown-menu dropdown-menu-dark bg-dark border mt-3 mt-sm-2 p-2">
-      @for (option of dropdownOptions; track option) {
-      <li><a class="dropdown-item pointer ">{{ option }}</a></li>
-      <li><hr class="dropdown-divider border border-bottom-0 " /></li>
-      }
-    </ul>
-  </div>
-  }
+    <li><a class="dropdown-item pointer">My Favoutite Quotes</a></li>
+    <li><hr class="dropdown-divider border border-bottom-0" /></li>
+
+    <li><a class="dropdown-item pointer">Change Password</a></li>
+    <li><hr class="dropdown-divider border border-bottom-0" /></li>
+
+    <li><a class="dropdown-item pointer" (click)="logout()">Logout</a></li>
+    <li><hr class="dropdown-divider border border-bottom-0" /></li>
+  </ul>
+</div>
+}

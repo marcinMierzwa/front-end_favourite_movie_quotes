@@ -24,8 +24,8 @@ export class ApiService {
   private httpClient: HttpClient = inject(HttpClient);
   private stateService: StateService = inject(StateService);
 
-  private readonly basicUrl= 'http://localhost:3000';
-  // private readonly basicUrl = 'https://quotes-backend-nine.vercel.app';
+  // private readonly basicUrl= 'http://localhost:3000';
+  private readonly basicUrl = 'https://quotes-backend-nine.vercel.app';
 
   // Get Data
   getQuotes(): Observable<QuoteResponseDto> {

@@ -1,4 +1,4 @@
-import { Component, computed, inject, Signal } from '@angular/core';
+import { Component, computed, inject, output, Signal } from '@angular/core';
 import { StateService } from '../../Services/State/state.service';
 import { RouterLink } from '@angular/router';
 import { UserModel } from '../../Models/user.model';
@@ -21,9 +21,9 @@ export class NavbarAuthComponent {
 
     readonly user: Signal<UserModel | null> = this.stateService.user;
       
-    readonly dropdownOptions = ['Account Informations', 'My Favoutite Quotes', 'Change Password', 'Logout'];
-
     readonly userNameLimit = computed(() => this.isScrollMode() ? 30 : 20);
+
+    logoutClick = output();
 
   getClassList(): string 
   {
@@ -32,6 +32,10 @@ export class NavbarAuthComponent {
     } else {
       return "dropdown bg-black bg-opacity-25 ms-sm-1 ms-lg-2 p-2 px-sm-3 rounded scroll-mode-font text-center";
     }
+  }
+
+  logout(): void {
+    this.logoutClick.emit();
   }
 
 

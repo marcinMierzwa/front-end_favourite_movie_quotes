@@ -200,12 +200,8 @@ tryRefreshSessionAndLoadUser(options?: { silent?: boolean; caller?: string }): O
   logout(): void {
     this.clearUserSession();
     this.apiService.logout().subscribe({
-      next: ((res: LogoutDto) => console.log(res.message)
-      ),
-      error: ((err) => console.warn(err.error.message)
-      )
+      error: ((err) => console.warn(err.error.message))
     });
-    // this.router.navigate(['/home']);
     this.notificationService.showInfo('You have been logged out.', 'Logged Out', toastrConfigDefault);
   }
 

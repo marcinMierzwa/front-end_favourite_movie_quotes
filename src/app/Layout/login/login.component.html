@@ -40,8 +40,11 @@
         <a routerLink="/sign-up">Sign up</a>
       </div>
       <button
+        type="button"
         class="w-100 btn btn-light rounded-3 border border-secondary-subtle py-1 shadow-lg"
         [style]="isMobileMode() ? 'font-size:12px;' : 'font-size:14px'"
+        (click)="googleLogin()"
+
       >
         <svg
           style="width: 15px; height: 15px"

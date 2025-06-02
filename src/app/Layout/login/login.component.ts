@@ -87,5 +87,9 @@ export class LoginComponent {
     this.toastrService.clear();
   }
 
+  googleLogin(): void {
+    this.authService.googleLogin();
+  }
+
 
 }

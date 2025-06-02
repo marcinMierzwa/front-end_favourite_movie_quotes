@@ -18,7 +18,6 @@ import { catchError, finalize, map, mergeMap, Observable, of, switchMap, tap, th
 import { UserModel } from '../../Models/user.model';
 import { UserDto } from '../Api/dto/user.dto';
 import { RefreshDto } from '../Api/dto/refresh.dto';
-import { LogoutDto } from '../Api/dto/logout.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -196,6 +195,9 @@ tryRefreshSessionAndLoadUser(options?: { silent?: boolean; caller?: string }): O
     );
   }
 
+  googleLogin(): void {
+    this.apiService.googleLogin();
+  }
 
   logout(): void {
     this.clearUserSession();

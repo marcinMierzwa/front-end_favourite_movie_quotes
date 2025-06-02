@@ -100,6 +100,11 @@ export class ApiService {
     });
   }
 
+  // login google
+  googleLogin(): void {
+    window.location.href = 'http://localhost:3000/auth/google/login';
+  }
+
   // Refresh Token
   refreshToken(): Observable<RefreshDto> {
     return this.httpClient.post<RefreshDto>(`${this.basicUrl}/auth/refresh`, {}, {

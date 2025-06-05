@@ -15,6 +15,7 @@ import { MovieNameDto } from './dto/movies-name.dto';
 import { CharacterNameDto } from './dto/character-model-dto';
 import { RefreshDto } from './dto/refresh.dto';
 import { LogoutDto } from './dto/logout.dto';
+import { environment } from '../../../enviroments/enviorment';
 
 
 @Injectable({
@@ -24,7 +25,7 @@ export class ApiService {
   private httpClient: HttpClient = inject(HttpClient);
   private stateService: StateService = inject(StateService);
 
-  private readonly basicUrl= 'http://localhost:3000';
+  private readonly basicUrl= environment.apiUrl;
   // private readonly basicUrl = 'https://quotes-backend-nine.vercel.app';
 
   // Get Data

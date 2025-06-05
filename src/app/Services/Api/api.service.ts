@@ -15,7 +15,7 @@ import { MovieNameDto } from './dto/movies-name.dto';
 import { CharacterNameDto } from './dto/character-model-dto';
 import { RefreshDto } from './dto/refresh.dto';
 import { LogoutDto } from './dto/logout.dto';
-import { environment } from '../../../enviroments/enviorment';
+import { environment } from '../../../enviroments/enviroment';
 
 
 @Injectable({

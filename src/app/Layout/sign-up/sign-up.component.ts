@@ -81,12 +81,9 @@ export class SignUpComponent implements OnDestroy {
   }
 
   signUpGoogle() {
-    console.log('sign up with google');
+    this.authService.googleLogin();
   }
 
-  signUpFacebook() {
-    console.log('sign up with fb');
-  }
 
   ngOnDestroy() {
     this.stateService.errorMessage.set(null);

@@ -14,10 +14,14 @@ import { VerifyEmailDto } from '../Api/dto/verify-email.dto';
 import { LoginUserModel } from './Models/login-user-model.interface';
 import { LoginUserDto } from '../Api/dto/login-user.dto';
 import { ResendVerificationDto } from '../Api/dto/resend-verification.dto';
-import { catchError, finalize, map, mergeMap, Observable, of, switchMap, tap, throwError } from 'rxjs';
+import { catchError, finalize, mergeMap, Observable, of, switchMap, tap, throwError } from 'rxjs';
 import { UserModel } from '../../Models/user.model';
 import { UserDto } from '../Api/dto/user.dto';
 import { RefreshDto } from '../Api/dto/refresh.dto';
+import { ResetPasswordComponent } from '../../Layout/reset-password/reset-password.component';
+import { ForgotPasswordFormModel } from '../../Models/form/forgot-password-form-model';
+import { ResetPasswordFormModel } from '../../Models/form/reset-password-form.model';
+import { ForgotPasswordResponseModel } from '../../Models/forgot-password-response-model';
 
 @Injectable({
   providedIn: 'root',
@@ -173,7 +177,7 @@ export class AuthService {
     this.stateService.user.set(user);
   }
 
-tryRefreshSessionAndLoadUser(options?: { silent?: boolean; caller?: string }): Observable<UserDto | null> {
+  tryRefreshSessionAndLoadUser(options?: { silent?: boolean; caller?: string }): Observable<UserDto | null> {
   if (!options?.silent) {
     this.stateService.isLoading.set(true);
   }
@@ -206,6 +210,18 @@ tryRefreshSessionAndLoadUser(options?: { silent?: boolean; caller?: string }): O
     });
     this.notificationService.showInfo('You have been logged out.', 'Logged Out', toastrConfigDefault);
   }
+
+  forgotPassword(payload: ForgotPasswordFormModel): void {
+    this.apiService.forgotPassword(payload)
+    .pipe(
+      tap((res: ForgotPasswordResponseModel) => console.log(res)
+      )
+    ).subscribe({
+      error: (err) => console.error(err)
+  })
+  }
+
+  resetPassword(payload: ResetPasswordFormModel): void {}
 
 
   // utils methods

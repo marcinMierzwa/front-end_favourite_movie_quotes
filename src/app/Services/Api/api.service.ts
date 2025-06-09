@@ -16,6 +16,12 @@ import { CharacterNameDto } from './dto/character-model-dto';
 import { RefreshDto } from './dto/refresh.dto';
 import { LogoutDto } from './dto/logout.dto';
 import { environment } from '../../../environments/environment';
+import { ForgotPasswordFormModel } from '../../Models/form/forgot-password-form-model';
+import { ForgotPasswordDto } from './dto/forgot-password-model.dto';
+import { ResetPasswordModelDto } from './dto/reset-password-model.dto';
+import { ResetPasswordPayloadModel } from '../../Models/reset-password-payload-model';
+import { ForgotPasswordResponseModel } from '../../Models/forgot-password-response-model';
+import { ResetPasswordResponsModel } from '../../Models/reset-password-response-model';
 
 
 @Injectable({
@@ -113,6 +119,15 @@ export class ApiService {
     });
   }
 
+  // Forgot Password
+  forgotPassword(payload: ForgotPasswordFormModel): Observable<ForgotPasswordResponseModel>{
+    return this.httpClient.post<ForgotPasswordDto>(`${this.basicUrl}/auth/forgot-password`, payload)
+  }
+
+  // Reset Password
+  resetPassword(payload: ResetPasswordPayloadModel): Observable<ResetPasswordResponsModel> {
+    return this.httpClient.post<ResetPasswordModelDto>(`${this.basicUrl}/auth/reset-password`, payload)
+  }
   // Logout
   logout(): Observable<LogoutDto> {
     return this.httpClient.post<LogoutDto>(`${this.basicUrl}/auth/logout`, {}, {

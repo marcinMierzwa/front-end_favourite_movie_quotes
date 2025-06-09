@@ -3,10 +3,11 @@ import { FormAuthComponent } from '../../Shared_Components/form-auth/form-auth.c
 import { StateService } from '../../Services/State/state.service';
 import { RouterLink } from '@angular/router';
 import { FormConfig } from '../../Models/form-config.interface';
-import { SignUpFormInterface } from './Models/sign-up-form.interface';
 import { AuthService } from '../../Services/Auth/auth.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ToastrService } from 'ngx-toastr';
+import { SignUpFormModel } from '../../Models/form/signup-form-model';
+import { SubmitForm } from '../../Models/form/submit-form.type';
 
 @Component({
   selector: 'app-sign-up',
@@ -76,8 +77,9 @@ export class SignUpComponent implements OnDestroy {
     ],
   };
 
-  reciveForm(submitedForm: SignUpFormInterface): void {
-    this.authService.createUser(submitedForm);
+  reciveForm(submitedForm: SubmitForm): void {
+    const formValue = submitedForm as SignUpFormModel
+    this.authService.createUser(formValue);
   }
 
   signUpGoogle() {

@@ -11,10 +11,10 @@
       class="mb-2 text-light text-center"
       [class]="isMobileMode() ? 'fs-5' : 'fs-4'"
     >
-      {{ heading() }}
+      {{ config().heading }}
     </h1>
 
-    @for (input of inputsData(); track input.id ) {
+    @for (input of config().inputsConfig; track input.id ) {
       <div class="position-relative" aria-label="input-container">
       <input 
       class="form-control bg-secondary-subtle scroll-mode-font pe-5"
@@ -27,7 +27,7 @@
       maxlength="50"
 
   />
-  <button type="button" (click)="togglePasswordVisibility(input.name)" class="toggle-btn-eye-icon"
+  <button type="button" (click)="togglePasswordVisibility(input)" class="toggle-btn-eye-icon"
   [hidden]="!input.isShowPasswordVisible"
   >
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye eye-icon" viewBox="0 0 16 16"
@@ -100,7 +100,7 @@
          class="w-100 btn btn-danger-custom rounded-3 border border-secondary-subtle py-1 mt-2 shadow-lg scroll-mode-font"
          [disabled]="form.invalid"
          type="submit"
-         >{{ submitLabel() }}</button>
+         >{{ config().submitLabel }}</button>
          @if (errorMessage()) {
           <small
             class="bg-light text-danger fw-semibold d-block rounded-1 mt-1 text-center p-2 w-100"

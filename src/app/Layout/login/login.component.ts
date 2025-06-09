@@ -3,10 +3,11 @@ import { FormAuthComponent } from '../../Shared_Components/form-auth/form-auth.c
 import { StateService } from '../../Services/State/state.service';
 import { RouterLink } from '@angular/router';
 import { FormConfig } from '../../Models/form-config.interface';
-import { LogInFormInterface } from './Models/log-in-form.interface';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AuthService } from '../../Services/Auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { LogInFormModel } from '../../Models/form/login-form-model';
+import { SubmitForm } from '../../Models/form/submit-form.type';
 
 
 @Component({
@@ -78,8 +79,9 @@ export class LoginComponent {
     ],
   };
 
-  reciveForm(submitedForm: LogInFormInterface): void {
-    this.authService.login(submitedForm);
+  reciveForm(submitedForm: SubmitForm): void {
+    const formValue = submitedForm as LogInFormModel;
+    this.authService.login(formValue);
   }
 
   ngOnDestroy() {

@@ -3,6 +3,9 @@ import { FormAuthComponent } from "../../Shared_Components/form-auth/form-auth.c
 import { StateService } from '../../Services/State/state.service';
 import { RouterLink } from '@angular/router';
 import { FormConfig } from '../../Models/form-config.interface';
+import { ForgotPasswordFormModel } from '../../Models/form/forgot-password-form-model';
+import { AuthService } from '../../Services/Auth/auth.service';
+import { SubmitForm } from '../../Models/form/submit-form.type';
 
 @Component({
   selector: 'app-forgot-password',
@@ -13,6 +16,7 @@ import { FormConfig } from '../../Models/form-config.interface';
 })
 export class ForgotPasswordComponent {
   private stateService: StateService = inject(StateService);
+  private readonly authService: AuthService = inject(AuthService);
   isMobileMode = this.stateService.isScrollMode;
   formData: FormConfig = {
     heading: 'Forgot Your Password?',
@@ -34,4 +38,10 @@ export class ForgotPasswordComponent {
       },
     ]
   };
+
+    reciveForm(submitedForm: SubmitForm): void {
+      const formValue = submitedForm as ForgotPasswordFormModel;
+        this.authService.forgotPassword(formValue);
+      }
+  
 }

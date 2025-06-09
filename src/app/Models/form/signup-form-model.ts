@@ -1,4 +1,5 @@
-export interface LogInFormInterface {
+export interface SignUpFormModel
+ {
     email: string;
     password: string;
 }

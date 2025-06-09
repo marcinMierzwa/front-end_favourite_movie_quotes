@@ -1,10 +1,9 @@
 import { Component, inject, input, InputSignal, output, Signal } from '@angular/core';
 import { StateService } from '../../Services/State/state.service';
-import { InputConfig } from '../../Models/form-config.interface';
+import { FormConfig, InputConfig } from '../../Models/form-config.interface';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { FormService } from '../../Services/Form/form.service';
-import { SignUpFormInterface } from '../../Layout/sign-up/Models/sign-up-form.interface';
-import { SubmitedForm } from './Models/submited-form.type';
+import { SubmitForm } from '../../Models/form/submit-form.type';
 
 
 @Component({
@@ -18,40 +17,39 @@ export class FormAuthComponent {
   private stateService: StateService = inject(StateService);
   private formService: FormService = inject(FormService);
   readonly isMobileMode = this.stateService.isScrollMode;
-  readonly heading: InputSignal<string> = input.required();
-  readonly submitLabel: InputSignal<string> = input.required();
   readonly errorMessage: Signal<string | null> = this.stateService.errorMessage;
-  inputsData: InputSignal<InputConfig[]> = input<InputConfig[]>([]);
+  config: InputSignal<FormConfig> = input.required<FormConfig>();
+  
+
   isPasswordVisible = false;
   form!: FormGroup;
-  sendForm = output<SignUpFormInterface>();
+  sendForm = output<SubmitForm>();
 
   ngOnInit() {
-    this.form = this.formService.createForm(this.inputsData());
+    this.form = this.formService.createForm(this.config());
   }
 
-  getError(field: string): string | null {
-    return this.formService.getFieldErrors(this.form, field, this.inputsData());
+  getError(fieldId: string): string | null {
+    return this.formService.getFieldErrors(this.form, fieldId, this.config().inputsConfig);
   }
 
-  togglePasswordVisibility(inputName: string): void {
-    this.isPasswordVisible = !this.isPasswordVisible;
-    this.inputsData().filter((input: InputConfig) => {
-      if(input.name === inputName) {
-        input.isContentIncrypted = !input.isContentIncrypted;
-      }
-    })
+  togglePasswordVisibility(input: InputConfig): void {
+    input.isContentIncrypted = !input.isContentIncrypted;
   } 
 
-  onSubmit(event: Event) {
-    event.preventDefault()
-    const submitedForm: SubmitedForm = this.form.getRawValue();
+  onSubmit(event: Event) {    
+    event.preventDefault();
+    if (this.form.invalid) {
+      this.form.markAllAsTouched(); 
+      return;
+    }
+    const submitedForm = this.form.getRawValue();
     this.sendForm.emit(submitedForm);
     this.form.reset();
-    }
-    
+  }
+}
     
   
 
 
-}
+

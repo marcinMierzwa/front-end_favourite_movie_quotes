@@ -1,7 +1,13 @@
+export interface GroupValidationRule {
+  validator: 'passwordsMatch'; 
+  errorMsg: string;
+}
+
 export interface FormConfig {
     heading: string;
     submitLabel: string;
-    inputsConfig : InputConfig[]
+    inputsConfig : InputConfig[],
+    groupValidation?: GroupValidationRule[];
 }
 
 export interface InputConfig {
@@ -17,7 +23,7 @@ export interface InputConfig {
 }
 
 export interface ValidationRule {
-    validator: 'required' | 'email' | 'minLength' | 'maxLength' | 'pattern';
+    validator: 'required' | 'email' | 'minLength' | 'maxLength' | 'pattern' | 'passwordsMismatch';
     value?: number | string; 
     errorMsg: string;
   }

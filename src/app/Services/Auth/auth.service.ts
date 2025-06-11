@@ -18,10 +18,9 @@ import { catchError, finalize, mergeMap, Observable, of, switchMap, tap, throwEr
 import { UserModel } from '../../Models/user.model';
 import { UserDto } from '../Api/dto/user.dto';
 import { RefreshDto } from '../Api/dto/refresh.dto';
-import { ResetPasswordComponent } from '../../Layout/reset-password/reset-password.component';
 import { ForgotPasswordFormModel } from '../../Models/form/forgot-password-form-model';
-import { ResetPasswordFormModel } from '../../Models/form/reset-password-form.model';
-import { ForgotPasswordResponseModel } from '../../Models/forgot-password-response-model';
+import { ResetPasswordResponseModel } from '../../Models/reset-password-response-model';
+import { ResetPasswordPayloadModel } from '../../Models/reset-password-payload-model';
 
 @Injectable({
   providedIn: 'root',
@@ -213,15 +212,23 @@ export class AuthService {
 
   forgotPassword(payload: ForgotPasswordFormModel): void {
     this.apiService.forgotPassword(payload)
-    .pipe(
-      tap((res: ForgotPasswordResponseModel) => console.log(res)
-      )
-    ).subscribe({
+    .subscribe({
       error: (err) => console.error(err)
   })
   }
 
-  resetPassword(payload: ResetPasswordFormModel): void {}
+  resetPassword(payload: ResetPasswordPayloadModel): void {
+    this.apiService.resetPassword(payload)
+    .pipe(
+      tap((res: ResetPasswordResponseModel) => console.log(res)
+      )
+    ).subscribe({
+      error: (err) => {
+        const message = err.error?.message;
+        this.setError(message);
+      }
+  })
+  }
 
 
   // utils methods

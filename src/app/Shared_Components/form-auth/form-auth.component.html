@@ -15,100 +15,84 @@
     </h1>
 
     @for (input of config().inputsConfig; track input.id ) {
-      <div class="position-relative" aria-label="input-container">
-      <input 
-      class="form-control bg-secondary-subtle scroll-mode-font pe-5"
-      spellcheck="false"
-      [id]="input.id"
-      [type]="input.isContentIncrypted ? 'text' : input.type"
-      [formControlName]="input.name"
-      [placeholder]="input.placeholder"
-      [ariaLabel]="input.ariaLabel"
-      maxlength="50"
-
-  />
-  <button type="button" (click)="togglePasswordVisibility(input)" class="toggle-btn-eye-icon"
-  [hidden]="!input.isShowPasswordVisible"
-  >
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye eye-icon" viewBox="0 0 16 16"
-  >
-    <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"/>
-    <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"/>
-  </svg>
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash eye-icon " viewBox="0 0 16 16"
-  [class]="isPasswordVisible ? 'd-none' : 'd-block'"
-  >
-    <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z"/>
-    <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829"/>
-    <path d="M3.35 5.47q-.27.24-.518.487A13 13 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7 7 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12z"/>
-  </svg>
-  </button>
-  
-</div>
-      @if (getError(input.name) && (form.get(input.name)?.dirty) || (form.get(input.name)?.touched)){
-      <small
-        class="bg-danger-subtle text-danger-emphasis d-block rounded-1 mt-1 px-1"
-        style="font-size: 12px; word-wrap: break-word"
-        >{{ getError(input.name) }}</small
-        
+    <div class="position-relative" aria-label="input-container">
+      <input
+        class="form-control bg-secondary-subtle scroll-mode-font pe-5"
+        spellcheck="false"
+        [id]="input.id"
+        [type]="input.isContentIncrypted ? 'text' : input.type"
+        [formControlName]="input.name"
+        [placeholder]="input.placeholder"
+        [ariaLabel]="input.ariaLabel"
+        maxlength="50"
+      />
+      <button
+        type="button"
+        (click)="togglePasswordVisibility(input)"
+        class="toggle-btn-eye-icon"
+        [hidden]="!input.isShowPasswordVisible"
       >
-      }
-    }
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-eye eye-icon"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8M1.173 8a13 13 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5s3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5s-3.879-1.168-5.168-2.457A13 13 0 0 1 1.172 8z"
+          />
+          <path
+            d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0"
+          />
+        </svg>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-eye-slash eye-icon"
+          viewBox="0 0 16 16"
+          [class]="isPasswordVisible ? 'd-none' : 'd-block'"
+        >
+          <path
+            d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z"
+          />
+          <path
+            d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829"
+          />
+          <path
+            d="M3.35 5.47q-.27.24-.518.487A13 13 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7 7 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12z"
+          />
+        </svg>
+      </button>
+    </div>
+    @if (getError(input.name) && (form.get(input.name)?.dirty) ||
+    (form.get(input.name)?.touched)){
+    <small
+      class="bg-danger-subtle text-danger-emphasis d-block rounded-1 mt-1 px-1"
+      style="font-size: 12px; word-wrap: break-word"
+      >{{ getError(input.name) }}</small
+    >
+    } }
 
-    <!--input email -->
-    <!-- <div class="container-fluid">
-        <input
-        [hidden]="isInputHidden()"
-        [type]="'formData().type[0]'"
-        [formControlName]="'formData().formControlName[0]'"
-          class="form-control bg-secondary-subtle scroll-mode-font"
-          [placeholder]="'formData().placeholder[0]'"
-          spellcheck="false"
-          aria-label="input"
-        /> -->
-    <!-- <small class="bg-danger-subtle text-danger-emphasis d-block rounded-1 mt-1 ps-1"
-        style="font-size: 12px; word-wrap: break-word;"
-        >ggasfdaaaaaaaaaaaaaafdsssss</small> -->
-
-    <!-- </div> -->
-
-    <!--input password -->
-    <!-- <div class="container-fluid">
-        <input
-          [hidden]="isInputHidden()"
-          [type]="isPasswordVisible ? 'text': 'formData().type[1]'"
-          [formControlName]="'formData().formControlName[1]'"
-          class="form-control bg-secondary-subtle scroll-mode-font"
-          [placeholder]="'formData().placeholder[1]'"
-          aria-label="input"
-          spellcheck="false"
-
-        /> -->
-    <!-- <button class="btn btn-outline-secondary" type="button" >
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M1 12S5 4 12 4s11 8 11 8-4 8-11 8S1 12 1 12Z"/>
-            <circle cx="12" cy="12" r="3"/>
-          </svg>
-        </button>
-        <small class="bg-danger-subtle text-danger-emphasis d-block rounded-1 mt-1 ps-1"
-        style="font-size: 12px; word-wrap: break-word;"
-        >ggasfdaaaaaaaaaaaaaafdsssss</small> -->
-    <!-- </div> -->
     <ng-content select="[text-slot]"></ng-content>
 
     <button
-         class="w-100 btn btn-danger-custom rounded-3 border border-secondary-subtle py-1 mt-2 shadow-lg scroll-mode-font"
-         [disabled]="form.invalid"
-         type="submit"
-         >{{ config().submitLabel }}</button>
-         @if (errorMessage()) {
-          <small
-            class="bg-light text-danger fw-semibold d-block rounded-1 mt-1 text-center p-2 w-100"
-            style="font-size: 14px; word-wrap: break-word"
-            >{{ errorMessage() }}</small
-            
-          >
-          }
+      class="w-100 btn btn-danger-custom rounded-3 border border-secondary-subtle py-1 mt-2 shadow-lg scroll-mode-font"
+      [disabled]="form.invalid"
+      type="submit"
+    >
+      {{ config().submitLabel }}
+    </button>
+    @if (errorMessage()) {
+    <small
+      class="bg-light text-danger fw-semibold d-block rounded-1 mt-1 text-center p-2 w-100"
+      style="font-size: 14px; word-wrap: break-word"
+      >{{ errorMessage() }}</small
+    >
+    }
 
     <!-- buttons section -->
     <ng-content></ng-content>

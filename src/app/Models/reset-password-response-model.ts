@@ -1,3 +1,3 @@
-export interface ResetPasswordResponsModel {
+export interface ResetPasswordResponseModel {
     message: string;
 }

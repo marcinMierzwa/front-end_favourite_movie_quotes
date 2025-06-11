@@ -63,23 +63,6 @@ export class SearchbarComponent implements OnInit, OnDestroy {
     }
   }
 
-  // loadQuotes(): void {
-  //     this.apiService.getQuotes().subscribe({
-  //       next: (response: QuoteResponseDto) => {
-  //         this.stateService.quotes.set(response.data);
-  //         this.stateService.pagination.update((state) => ({
-  //           ...state,
-  //           length: response.totalItems,
-  //           pageIndex: response.pageIndex,
-  //           pageSize: response.pageSize,
-  //         }));
-  //       },
-  //       error: (error) => {
-  //         console.error('Error occured during fetching quotes', error);
-  //       },
-  //     });
-  //   }
-
     ngOnDestroy(): void {
       this.destroy$.next();
       this.destroy$.complete();

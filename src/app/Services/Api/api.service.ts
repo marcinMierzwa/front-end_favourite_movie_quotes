@@ -21,7 +21,7 @@ import { ForgotPasswordDto } from './dto/forgot-password-model.dto';
 import { ResetPasswordModelDto } from './dto/reset-password-model.dto';
 import { ResetPasswordPayloadModel } from '../../Models/reset-password-payload-model';
 import { ForgotPasswordResponseModel } from '../../Models/forgot-password-response-model';
-import { ResetPasswordResponsModel } from '../../Models/reset-password-response-model';
+import { ResetPasswordResponseModel } from '../../Models/reset-password-response-model';
 
 
 @Injectable({
@@ -125,7 +125,7 @@ export class ApiService {
   }
 
   // Reset Password
-  resetPassword(payload: ResetPasswordPayloadModel): Observable<ResetPasswordResponsModel> {
+  resetPassword(payload: ResetPasswordPayloadModel): Observable<ResetPasswordResponseModel> {
     return this.httpClient.post<ResetPasswordModelDto>(`${this.basicUrl}/auth/reset-password`, payload)
   }
   // Logout

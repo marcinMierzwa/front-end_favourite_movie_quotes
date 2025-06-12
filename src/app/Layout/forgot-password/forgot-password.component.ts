@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnDestroy } from '@angular/core';
 import { FormAuthComponent } from "../../Shared_Components/form-auth/form-auth.component";
 import { StateService } from '../../Services/State/state.service';
 import { RouterLink } from '@angular/router';
@@ -14,7 +14,7 @@ import { SubmitForm } from '../../Models/form/submit-form.type';
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.scss'
 })
-export class ForgotPasswordComponent {
+export class ForgotPasswordComponent implements OnDestroy {
   private stateService: StateService = inject(StateService);
   private readonly authService: AuthService = inject(AuthService);
   isMobileMode = this.stateService.isScrollMode;
@@ -43,5 +43,9 @@ export class ForgotPasswordComponent {
       const formValue = submitedForm as ForgotPasswordFormModel;
         this.authService.forgotPassword(formValue);
       }
+
+      ngOnDestroy() {
+    this.stateService.errorMessage.set(null);
+  }
   
 }

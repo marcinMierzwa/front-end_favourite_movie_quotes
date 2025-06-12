@@ -14,13 +14,23 @@ import { VerifyEmailDto } from '../Api/dto/verify-email.dto';
 import { LoginUserModel } from './Models/login-user-model.interface';
 import { LoginUserDto } from '../Api/dto/login-user.dto';
 import { ResendVerificationDto } from '../Api/dto/resend-verification.dto';
-import { catchError, finalize, mergeMap, Observable, of, switchMap, tap, throwError } from 'rxjs';
+import {
+  catchError,
+  finalize,
+  mergeMap,
+  Observable,
+  of,
+  switchMap,
+  tap,
+  throwError,
+} from 'rxjs';
 import { UserModel } from '../../Models/user.model';
 import { UserDto } from '../Api/dto/user.dto';
 import { RefreshDto } from '../Api/dto/refresh.dto';
 import { ForgotPasswordFormModel } from '../../Models/form/forgot-password-form-model';
 import { ResetPasswordResponseModel } from '../../Models/reset-password-response-model';
 import { ResetPasswordPayloadModel } from '../../Models/reset-password-payload-model';
+import { ForgotPasswordResponseModel } from '../../Models/forgot-password-response-model';
 
 @Injectable({
   providedIn: 'root',
@@ -176,25 +186,31 @@ export class AuthService {
     this.stateService.user.set(user);
   }
 
-  tryRefreshSessionAndLoadUser(options?: { silent?: boolean; caller?: string }): Observable<UserDto | null> {
-  if (!options?.silent) {
-    this.stateService.isLoading.set(true);
-  }
+  tryRefreshSessionAndLoadUser(options?: {
+    silent?: boolean;
+    caller?: string;
+  }): Observable<UserDto | null> {
+    if (!options?.silent) {
+      this.stateService.isLoading.set(true);
+    }
 
-  return this.apiService.refreshToken().pipe( 
-    tap((res: RefreshDto) => {
+    return this.apiService.refreshToken().pipe(
+      tap((res: RefreshDto) => {
         this.accessToken.set(res.accessToken);
       }),
-      switchMap(() => this.apiService.getUser()), 
+      switchMap(() => this.apiService.getUser()),
       tap((user: UserDto) => {
-        this.loginSetUser(user); 
+        this.loginSetUser(user);
       }),
       catchError((err) => {
         const errorMessage = err.error?.message || err.message;
-        console.warn('AuthService: Session refresh or user load failed:', errorMessage);
-        this.clearUserSession(); 
-        return throwError(() => new Error(errorMessage)); 
-      }),
+        console.warn(
+          'AuthService: Session refresh or user load failed:',
+          errorMessage
+        );
+        this.clearUserSession();
+        return throwError(() => new Error(errorMessage));
+      })
     );
   }
 
@@ -205,34 +221,63 @@ export class AuthService {
   logout(): void {
     this.clearUserSession();
     this.apiService.logout().subscribe({
-      error: ((err) => console.warn(err.error.message))
+      error: (err) => console.warn(err.error.message),
     });
-    this.notificationService.showInfo('You have been logged out.', 'Logged Out', toastrConfigDefault);
+    this.notificationService.showInfo(
+      'You have been logged out.',
+      'Logged Out',
+      toastrConfigDefault
+    );
   }
 
-  forgotPassword(payload: ForgotPasswordFormModel): void {
-    this.apiService.forgotPassword(payload)
-    .subscribe({
-      error: (err) => console.error(err)
-  })
+  forgotPassword(payload: ForgotPasswordFormModel) {
+    this.apiService
+      .forgotPassword(payload)
+      .pipe(
+        tap((res: ForgotPasswordResponseModel) => {
+          this.router.navigate(['/login']);
+          this.notificationService.showInfo(
+            res.message,
+            'Successfuly sent',
+            toastrConfigVerify
+          );
+        })
+      )
+      .subscribe({
+        error: (err) => {
+          const errorMessage = err.error.message;
+          console.error(errorMessage);
+          this.notificationService.showError(errorMessage, 
+            'Error', toastrConfigVerify
+          );
+        },
+      });
   }
 
   resetPassword(payload: ResetPasswordPayloadModel): void {
-    this.apiService.resetPassword(payload)
-    .pipe(
-      tap((res: ResetPasswordResponseModel) => console.log(res)
-      )
-    ).subscribe({
-      error: (err) => {
-        const message = err.error?.message;
-        this.setError(message);
-      }
-  })
+    this.apiService
+      .resetPassword(payload)
+      .pipe(tap((res: ResetPasswordResponseModel) => {
+          this.router.navigate(['/login']);
+          this.notificationService.showInfo(
+            res.message,
+            'Success!',
+            toastrConfigVerify
+          );
+        }))
+      .subscribe({
+        error: (err) => {
+          const errorMessage = err.error?.message;
+          console.error(err);
+          this.notificationService.showError(errorMessage, 
+            'Error Occured', toastrConfigVerify
+          );
+        },
+      });
   }
 
-
   // utils methods
-   private clearUserSession(): void {
+  private clearUserSession(): void {
     this.accessToken.set('');
     this.loginSetUser(null);
   }

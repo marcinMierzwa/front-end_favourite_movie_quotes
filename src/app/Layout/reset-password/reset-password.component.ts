@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { FormAuthComponent } from '../../Shared_Components/form-auth/form-auth.component';
 import { StateService } from '../../Services/State/state.service';
 import { FormConfig } from '../../Models/form-config.interface';
@@ -15,10 +15,11 @@ import { ResetPasswordPayloadModel } from '../../Models/reset-password-payload-m
   templateUrl: './reset-password.component.html',
   styleUrl: './reset-password.component.scss',
 })
-export class ResetPasswordComponent implements OnInit {
+export class ResetPasswordComponent implements OnInit, OnDestroy {
   private stateService: StateService = inject(StateService);
   private readonly authService: AuthService = inject(AuthService);
   private readonly activatedRoute: ActivatedRoute = inject(ActivatedRoute);
+  
 
   isMobileMode = this.stateService.isScrollMode;
   token = signal<string>('');
@@ -94,5 +95,9 @@ export class ResetPasswordComponent implements OnInit {
       confirmPassword,
     };
     this.authService.resetPassword(payload);
+  }
+
+   ngOnDestroy() {
+    this.stateService.errorMessage.set(null);
   }
 }

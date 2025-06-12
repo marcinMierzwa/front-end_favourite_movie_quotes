@@ -66,7 +66,6 @@ export class AuthService {
   }
 
   verifyEmailAddress(token: string): void {
-    this.stateService.isLoading.set(true);
     this.apiService.verifyEmailAddress(token).subscribe({
       next: (response: VerifyEmailDto) => {
         this.router.navigateByUrl('/login');
@@ -84,15 +83,10 @@ export class AuthService {
         setTimeout(() => {
           this.notificationService.showError(
             err.error.message,
-            'UUUps!',
+            'Error!',
             toastrConfigDisableTimeOut
           );
         }, 1000);
-
-        this.stateService.isLoading.set(false);
-      },
-      complete: () => {
-        this.stateService.isLoading.set(false);
       },
     });
   }
@@ -235,7 +229,6 @@ export class AuthService {
       .forgotPassword(payload)
       .pipe(
         tap((res: ForgotPasswordResponseModel) => {
-          this.router.navigate(['/login']);
           this.notificationService.showInfo(
             res.message,
             'Successfuly sent',
@@ -259,7 +252,7 @@ export class AuthService {
       .resetPassword(payload)
       .pipe(tap((res: ResetPasswordResponseModel) => {
           this.router.navigate(['/login']);
-          this.notificationService.showInfo(
+          this.notificationService.showSuccess(
             res.message,
             'Success!',
             toastrConfigVerify

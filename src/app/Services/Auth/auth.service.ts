@@ -16,6 +16,7 @@ import { LoginUserDto } from '../Api/dto/login-user.dto';
 import { ResendVerificationDto } from '../Api/dto/resend-verification.dto';
 import {
   catchError,
+  delay,
   finalize,
   mergeMap,
   Observable,
@@ -23,6 +24,7 @@ import {
   switchMap,
   tap,
   throwError,
+  timer,
 } from 'rxjs';
 import { UserModel } from '../../Models/user.model';
 import { UserDto } from '../Api/dto/user.dto';
@@ -134,13 +136,12 @@ export class AuthService {
           return this.apiService.getUser().pipe(
             tap(({ id, email, role }) => {
               this.router.navigate(['home']);
-              setTimeout(() => {
+              delay(1000),
                 this.notificationService.showSuccess(
                   res.message,
                   'Success!',
                   toastrConfigDefault
                 );
-              }, 1000);
               this.loginSetUser({ id, email, role });
               this.clearError();
             })
@@ -240,8 +241,10 @@ export class AuthService {
         error: (err) => {
           const errorMessage = err.error.message;
           console.error(errorMessage);
-          this.notificationService.showError(errorMessage, 
-            'Error', toastrConfigVerify
+          this.notificationService.showError(
+            errorMessage,
+            'Error',
+            toastrConfigVerify
           );
         },
       });
@@ -250,20 +253,24 @@ export class AuthService {
   resetPassword(payload: ResetPasswordPayloadModel): void {
     this.apiService
       .resetPassword(payload)
-      .pipe(tap((res: ResetPasswordResponseModel) => {
+      .pipe(
+        tap((res: ResetPasswordResponseModel) => {
           this.router.navigate(['/login']);
           this.notificationService.showSuccess(
             res.message,
             'Success!',
             toastrConfigVerify
           );
-        }))
+        })
+      )
       .subscribe({
         error: (err) => {
           const errorMessage = err.error?.message;
           console.error(err);
-          this.notificationService.showError(errorMessage, 
-            'Error Occured', toastrConfigVerify
+          this.notificationService.showError(
+            errorMessage,
+            'Error Occured',
+            toastrConfigVerify
           );
         },
       });

@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, input, output, signal } from '@angular/core';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ToolTipPosition } from '../../Models/tooltip-position.enum';
 
@@ -12,6 +12,13 @@ import { ToolTipPosition } from '../../Models/tooltip-position.enum';
 export class CardIconsBarComponent {
   public triggerApiCall = signal(false);
   tooltipPositionBelow = ToolTipPosition.BELOW;
+  quoteId = input<string>();
+  onAddFavouriteQuote = output<string>();
 
-
+onAddToFavClick(){
+  const id = this.quoteId();
+  if (id) {
+    this.onAddFavouriteQuote.emit(id);
+  }
+}
 }

@@ -40,7 +40,9 @@
         </div>
       </section>
       <app-card-footer-bar card-footer>
-        <app-card-icons-bar card-icons />
+        <app-card-icons-bar card-icons
+        [quoteId]="quote._id"
+        (onAddFavouriteQuote)="addToFavouriteQuotes($event)" />
         <a
           class="card-show-more-link border-bottom ms-auto me-4"
           [routerLink]="['/quote-detail', quote._id]"

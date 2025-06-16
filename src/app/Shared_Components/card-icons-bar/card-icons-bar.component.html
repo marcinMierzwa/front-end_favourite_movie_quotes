@@ -48,11 +48,14 @@
       </svg>
     </i>
     <!-- add to favourites -->
-    <i
-      class="d-flex flex-column align-items-center card-icon bg-secondary-custom py-1 px-2 rounded-end pointer"
-      matTooltip="Add to favourites"
+     <button class="p-0 border-0 rounded-end" (click)="onAddToFavClick()"
+      matTooltip
       [matTooltipPosition]="tooltipPositionBelow"
       matTooltipClass="tooltip-custom"
+>
+    <i
+      class="d-flex flex-column align-items-center card-icon bg-secondary-custom py-1 px-2 rounded-end pointer"
+     
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -67,6 +70,7 @@
         />
       </svg>
     </i>
+    </button>
   </section>
   <!-- show more section -->
 </section>

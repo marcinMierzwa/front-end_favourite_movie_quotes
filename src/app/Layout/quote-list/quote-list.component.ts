@@ -43,7 +43,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
   providers: [{ provide: MatPaginatorIntl, useClass: PaginatorIntl }],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QuoteListComponent {
+export class QuoteListComponent  {
   private stateService: StateService = inject(StateService);
   private apiService: ApiService = inject(ApiService);
 
@@ -59,6 +59,7 @@ export class QuoteListComponent {
    });
   
   readonly pageSizeOptions = [2, 3, 4];
+
 
   loadQuotes = effect(
     () => {
@@ -91,6 +92,7 @@ export class QuoteListComponent {
     this.apiService.getQuotes()
     }
 
+
   handlePageEvent(pageEvent: PageEvent): void {
     this.stateService.paginationState.update((state) => ({
       ...state,
@@ -100,13 +102,16 @@ export class QuoteListComponent {
     this.apiService.getQuotes()
     }
 
-
-
   getQuoteList(): string {
     if (this.isScrollMode()) {
       return 'w-100 overflow-auto d-flex flex-column flex-fill justify-content-evenly gap-3 p-2 border border-light border-opacity-50 rounded';
     } else {
       return 'w-100 d-flex flex-fill flex-wrap align-items-center justify-content-evenly gap-3 py-2';
     }
+  }
+
+  addToFavouriteQuotes(quoteId: string) {
+    console.log(quoteId);
+    
   }
 }

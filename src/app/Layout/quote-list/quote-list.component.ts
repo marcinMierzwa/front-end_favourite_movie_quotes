@@ -3,6 +3,7 @@ import {
   Component,
   effect,
   inject,
+  Signal,
   signal,
   WritableSignal,
 } from '@angular/core';
@@ -24,6 +25,7 @@ import { QuoteResponseDto } from '../../Services/Api/dto/quote-response.dto';
 import { Quote } from '../../Models/quote.interface';
 import { Pagination } from '../../Models/pagination.interface';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { FavouritesService } from '../../Services/Favoutites/favourites.service';
 
 @Component({
   selector: 'app-quote-list',
@@ -46,12 +48,15 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 export class QuoteListComponent  {
   private stateService: StateService = inject(StateService);
   private apiService: ApiService = inject(ApiService);
+  private favouritesService: FavouritesService = inject(FavouritesService);
 
   public triggerApiCall = signal(false);
   readonly isScrollMode = this.stateService.isScrollMode;
   readonly isLoading = this.stateService.isLoading;
+  public readonly isLoggedIn = this.stateService.isLoggedIn;
+  public readonly tooltipFavouritesMessage = this.favouritesService.tooltipMessage;
 
- readonly quotes: WritableSignal<Quote[]> = signal<Quote[]>([]);
+ readonly quotes: Signal<Quote[]> = this.stateService.quotes;
  readonly pagination : WritableSignal<Pagination> = signal<Pagination>({
      pageIndex: 0,
      pageSize: 2,
@@ -64,11 +69,10 @@ export class QuoteListComponent  {
   loadQuotes = effect(
     () => {
       this.stateService.isLoading.set(true);
-  
       this.apiService.getQuotes().subscribe({
         next: (response: QuoteResponseDto) => {
   
-          this.quotes.set(response.data);
+          this.stateService.quotes.set(response.data);
           this.pagination.update((state) => ({
             ...state,
             length: response.totalItems,
@@ -89,7 +93,7 @@ export class QuoteListComponent  {
   );   
   
   ngOnInit(): void {
-    this.apiService.getQuotes()
+    this.apiService.getQuotes();
     }
 
 
@@ -111,7 +115,5 @@ export class QuoteListComponent  {
   }
 
   addToFavouriteQuotes(quoteId: string) {
-    console.log(quoteId);
-    
   }
 }

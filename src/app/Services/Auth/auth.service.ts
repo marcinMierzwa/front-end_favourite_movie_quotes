@@ -136,12 +136,14 @@ export class AuthService {
           return this.apiService.getUser().pipe(
             tap(({ id, email, role }) => {
               this.router.navigate(['home']);
-              delay(1000),
+              setTimeout(() => {
                 this.notificationService.showSuccess(
                   res.message,
                   'Success!',
                   toastrConfigDefault
                 );
+              }, 1000);
+
               this.loginSetUser({ id, email, role });
               this.clearError();
             })

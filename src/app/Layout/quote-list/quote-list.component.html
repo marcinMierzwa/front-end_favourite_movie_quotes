@@ -42,6 +42,8 @@
       <app-card-footer-bar card-footer>
         <app-card-icons-bar card-icons
         [quoteId]="quote._id"
+        [isLoggedIn]="isLoggedIn()"
+        [tooltipFavouritesMessage] ="tooltipFavouritesMessage()"
         (onAddFavouriteQuote)="addToFavouriteQuotes($event)" />
         <a
           class="card-show-more-link border-bottom ms-auto me-4"

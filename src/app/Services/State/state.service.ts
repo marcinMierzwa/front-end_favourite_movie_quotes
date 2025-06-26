@@ -12,26 +12,35 @@ import { QueryParams } from '../../Models/query-params.interface';
 import { UserModel } from '../../Models/user.model';
 import { MovieNameModel } from '../../Models/movie-name-model';
 import { CharacterNameModel } from '../../Models/character-name-model.';
+import { Quote } from '../../Models/quote.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StateService {
+  // constructor() {
+  //   effect(() => console.log(this.quotes())
+  //   )
+  // }
 
 
-  public  isScrollMode: WritableSignal<boolean> = signal<boolean>(false);
+  public isScrollMode: WritableSignal<boolean> = signal<boolean>(false);
 
-  public  isLoading: WritableSignal<boolean> = signal(false);
+  public isLoading: WritableSignal<boolean> = signal(false);
 
-  public  user: WritableSignal<UserModel | null> = signal<UserModel | null>(null);
-
-  public movieNames: WritableSignal<MovieNameModel[]> = signal<MovieNameModel[]>([]);
-
-  public characterNames: WritableSignal<CharacterNameModel[]> = signal<CharacterNameModel[]>([]);
+  public user: WritableSignal<UserModel | null> = signal<UserModel | null>(null);
 
   public isLoggedIn: Signal<boolean> = computed(() => {
     return this.user() !== null; 
   });
+
+
+  public quotes: WritableSignal<Quote[]> = signal<Quote[]>([]);
+  
+  public movieNames: WritableSignal<MovieNameModel[]> = signal<MovieNameModel[]>([]);
+
+  public characterNames: WritableSignal<CharacterNameModel[]> = signal<CharacterNameModel[]>([]);
+
 
   public errorMessage: WritableSignal<string | null> = signal<string | null>(null);
 

@@ -1,11 +1,10 @@
 .card-icon {
-    font-size: clamp(11px, 1.5vw, 12px);
-    transition:all ease-in-out 0.2s;
+  color: rgb(185, 174, 178);
+  font-size: 18px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+} 
+  .likes-amount {
+  font-size: 10px;
   }
-  
-  i.card-icon:hover {
-    background-color: #7a7a6b !important;
-    transition:all ease-in-out 0.2s;
-
-  }
-  

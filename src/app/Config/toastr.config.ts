@@ -27,4 +27,14 @@ export const toastrConfigDefault = {
     enableHtml: true,
   };
 
+    export const toastrConfigFavoutites = {
+    positionClass: 'toast-bottom-right',
+    preventDuplicates: true,
+    timeOut: 2500,
+    closeButton: true,
+    tapToDismiss: true,
+    enableHtml: true,
+  };
+
+
 

@@ -21,17 +21,16 @@
  
 
     <!-- add to favourites -->
-     <button  class="bg-dark border-0 p-0" (click)="onAddToFavClick()"
+     <button  class="bg-dark border-0 p-0" (click)="onFavClick()"
       [disabled]="!isLoggedIn()"
-      [matTooltip]="tooltipFavouritesMessage()"
-      
+    [matTooltip]="favouriteToolTipMessage()"      
       [matTooltipPosition]="tooltipPositionBelow"
       matTooltipClass="tooltip-custom"
       
 >
     <mat-icon
     class="card-icon"
-    >favorite_border
+    >{{ favouriteIcon() }}
 
     </mat-icon>
     </button>
@@ -56,7 +55,7 @@
 </div>
 
         <button  class="bg-dark border-0 p-0"
-      matTooltip
+      matTooltip=""
       [matTooltipPosition]="tooltipPositionBelow"
       matTooltipClass="tooltip-custom"
       

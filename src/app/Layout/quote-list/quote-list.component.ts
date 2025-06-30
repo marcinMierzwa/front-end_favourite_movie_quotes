@@ -114,6 +114,12 @@ export class QuoteListComponent  {
     }
   }
 
-  addToFavouriteQuotes(quoteId: string) {
-  }
-}
+toggleFavourite(quoteId: string): void {
+    const isCurrentlyFavourite = this.favouritesService.favouritesIds().includes(quoteId);
+
+    if (isCurrentlyFavourite) {
+      this.favouritesService.removeFavouriteQuote(quoteId);
+    } else {
+      this.favouritesService.addFavouriteQuote(quoteId);
+    }
+  }}

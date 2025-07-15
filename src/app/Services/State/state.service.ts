@@ -34,9 +34,12 @@ export class StateService {
     return this.user() !== null; 
   });
 
-
   public quotes: WritableSignal<Quote[]> = signal<Quote[]>([]);
-  
+
+  public readonly currentQuote = signal<Quote | null>(null);
+
+  public favouriteQuotesIds: WritableSignal<string[]> = signal<string[]>([]);
+
   public movieNames: WritableSignal<MovieNameModel[]> = signal<MovieNameModel[]>([]);
 
   public characterNames: WritableSignal<CharacterNameModel[]> = signal<CharacterNameModel[]>([]);

@@ -1,0 +1,10 @@
+  <button
+    class="card-icon-button"
+    [disabled]="!isLoggedIn()"
+    [matTooltip]="sharedToolTipMessage()"
+    [matTooltipPosition]="tooltipPositionBelow"
+    matTooltipClass="tooltip-custom"
+  >
+    <mat-icon class="card-icon">share</mat-icon>
+  </button>
+

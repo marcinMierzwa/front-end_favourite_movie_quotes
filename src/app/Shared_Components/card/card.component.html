@@ -6,15 +6,27 @@
     class="fade-in d-flex flex-column flex-fill background-card text-light p-1 rounded-3"
     [style.background-image]="'url(' + backgroundUrl() + ')'"
   >
+
+
     <!-- quote section -->
-    <ng-content select="[card-content]"></ng-content>
+    <section
+      class="d-flex flex-column flex-fill justify-content-between gap-1 p-2"
+    >
+      <ng-content select="[icon-bar-detail]"></ng-content>
+
+      <div
+        class="card-text-container d-flex flex-column flex-fill align-items-center justify-content-center px-3 py-2"
+      >
+        <p
+          class="fade-in card-text m-0 px-2 mt-1 d-flex flex-column justify-content-center align-items-center"
+        >
+          ... {{ dialog()! | truncateText : wordsCounter() }}
+        </p>
+      </div>
+    </section>
+
+    <!-- icons bar -->
+    <ng-content select="[icon-bar-quote-list]"></ng-content>
 
   </div>
-
-  <!-- card-footer -->
-  <section class="card-footer p-0 d-flex flex-column">
-    <ng-content select="[card-footer]">
-    </ng-content>
-
-</section>
 </div>

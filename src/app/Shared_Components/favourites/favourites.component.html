@@ -1,0 +1,12 @@
+  <!-- add to favourites -->
+  <button
+    class="card-icon-button"
+    (click)="onFavClick()"
+    [disabled]="!isLoggedIn()"
+    [matTooltip]="favouriteToolTipMessage()"
+    [matTooltipPosition]="tooltipPositionBelow"
+    matTooltipClass="tooltip-custom"
+  >
+    <mat-icon class="card-icon">{{ favouriteIcon() }} </mat-icon>
+  </button>
+

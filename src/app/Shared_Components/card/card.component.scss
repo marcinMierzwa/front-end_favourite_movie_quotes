@@ -69,18 +69,3 @@ a.card-text-link {
   font-size: 14px;
 }
 
-.card-show-more-link {
-  font-family: "Cardo", serif;
-  font-size: clamp(11px, 1.5vw, 12px) ;
-  letter-spacing: 1px;
-  word-spacing: 1px;
-  text-decoration: none;
-  color: rgb(217, 220, 223) ;
-  cursor: pointer;
-  transition:all ease-in-out 0.2s;
-
-}
-.card-show-more-link:hover {
-  transform: translateX(1px); 
-  color: #ffffff;
-}

@@ -16,16 +16,18 @@ import {
 import { PaginatorIntl } from '../../Services/Pagination/paginatorIntl.service';
 import { ApiService } from '../../Services/Api/api.service';
 import { StateService } from '../../Services/State/state.service';
-import { TruncateTextPipe } from '../../CustomPipes/truncate-text.pipe';
-import { RouterLink } from '@angular/router';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { CardIconsBarComponent } from '../../Shared_Components/card-icons-bar/card-icons-bar.component';
-import { CardFooterBarComponent } from '../../Shared_Components/card-footer-bar/card-footer-bar.component';
 import { QuoteResponseDto } from '../../Services/Api/dto/quote-response.dto';
 import { Quote } from '../../Models/quote.interface';
 import { Pagination } from '../../Models/pagination.interface';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { FavouritesService } from '../../Services/Favoutites/favourites.service';
+import { ShareComponent } from "../../Shared_Components/share/share.component";
+import { FavouritesComponent } from "../../Shared_Components/favourites/favourites.component";
+import { LikesComponent } from "../../Shared_Components/likes/likes.component";
+import { ShowMoreComponent } from "../../Shared_Components/show-more/show-more.component";
+import { LikesService } from '../../Services/Likes/likes.service';
 
 @Component({
   selector: 'app-quote-list',
@@ -33,45 +35,49 @@ import { FavouritesService } from '../../Services/Favoutites/favourites.service'
   imports: [
     CardComponent,
     MatPaginatorModule,
-    TruncateTextPipe,
-    RouterLink,
     MatTooltipModule,
     CardIconsBarComponent,
-    CardFooterBarComponent,
-    MatProgressSpinnerModule
-  ],
+    MatProgressSpinnerModule,
+    ShareComponent,
+    FavouritesComponent,
+    LikesComponent,
+    ShowMoreComponent
+],
   templateUrl: './quote-list.component.html',
   styleUrl: './quote-list.component.scss',
   providers: [{ provide: MatPaginatorIntl, useClass: PaginatorIntl }],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class QuoteListComponent  {
+export class QuoteListComponent {
   private stateService: StateService = inject(StateService);
   private apiService: ApiService = inject(ApiService);
   private favouritesService: FavouritesService = inject(FavouritesService);
+  private likesService: LikesService = inject(LikesService);
 
   public triggerApiCall = signal(false);
   readonly isScrollMode = this.stateService.isScrollMode;
   readonly isLoading = this.stateService.isLoading;
   public readonly isLoggedIn = this.stateService.isLoggedIn;
-  public readonly tooltipFavouritesMessage = this.favouritesService.tooltipMessage;
+  public readonly favouriteQuotesIds = this.stateService.favouriteQuotesIds;
+  public readonly wordsCounter = 10;
+  public readonly tooltipFavouritesMessage =
+    this.favouritesService.tooltipMessage;
 
- readonly quotes: Signal<Quote[]> = this.stateService.quotes;
- readonly pagination : WritableSignal<Pagination> = signal<Pagination>({
-     pageIndex: 0,
-     pageSize: 2,
-     length:0,
-   });
-  
+
+  readonly quotes: Signal<Quote[]> = this.stateService.quotes;
+  readonly pagination: WritableSignal<Pagination> = signal<Pagination>({
+    pageIndex: 0,
+    pageSize: 2,
+    length: 0,
+  });
+
   readonly pageSizeOptions = [2, 3, 4];
-
 
   loadQuotes = effect(
     () => {
       this.stateService.isLoading.set(true);
       this.apiService.getQuotes().subscribe({
         next: (response: QuoteResponseDto) => {
-  
           this.stateService.quotes.set(response.data);
           this.pagination.update((state) => ({
             ...state,
@@ -79,10 +85,9 @@ export class QuoteListComponent  {
             pageIndex: response.pageIndex,
             pageSize: response.pageSize,
           }));
-  
         },
         error: (error) => {
-          console.error("Error occurred during fetching quotes", error);
+          console.error('Error occurred during fetching quotes', error);
         },
         complete: () => {
           this.stateService.isLoading.set(false);
@@ -90,12 +95,11 @@ export class QuoteListComponent  {
       });
     },
     { allowSignalWrites: true }
-  );   
-  
+  );
+
   ngOnInit(): void {
     this.apiService.getQuotes();
-    }
-
+  }
 
   handlePageEvent(pageEvent: PageEvent): void {
     this.stateService.paginationState.update((state) => ({
@@ -103,8 +107,8 @@ export class QuoteListComponent  {
       pageIndex: pageEvent.pageIndex,
       pageSize: pageEvent.pageSize,
     }));
-    this.apiService.getQuotes()
-    }
+    this.apiService.getQuotes();
+  }
 
   getQuoteList(): string {
     if (this.isScrollMode()) {
@@ -114,12 +118,19 @@ export class QuoteListComponent  {
     }
   }
 
-toggleFavourite(quoteId: string): void {
-    const isCurrentlyFavourite = this.favouritesService.favouritesIds().includes(quoteId);
+  toggleFavourite(quoteId: string): void {
+    const isCurrentlyFavourite = this.favouritesService
+      .favouritesIds()
+      .includes(quoteId);
 
     if (isCurrentlyFavourite) {
       this.favouritesService.removeFavouriteQuote(quoteId);
     } else {
       this.favouritesService.addFavouriteQuote(quoteId);
     }
-  }}
+  }
+
+  toggleLike(quoteId: string): void {
+    this.likesService.toggleLike(quoteId);
+  }
+}

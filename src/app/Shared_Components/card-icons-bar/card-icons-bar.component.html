@@ -1,71 +1,11 @@
 <!-- section icons -->
-<section class="d-flex align-items-center gap-3 p-1 ms-2">
-
- 
-
-  <!-- section share/fav -->
-
-      <button  class="bg-dark border-0 p-0 d-flex "
-      matTooltip
-      [matTooltipPosition]="tooltipPositionBelow"
-      matTooltipClass="tooltip-custom"
-      
+<div
+  class="d-flex align-items-center bg-dark border border-secondary border-opacity-25 rounded-3 gap-3 p-1 ps-1"
 >
-    <mat-icon
-    class="card-icon"
-    >share
-
-    </mat-icon>
-    </button>
-
- 
-
-    <!-- add to favourites -->
-     <button  class="bg-dark border-0 p-0" (click)="onFavClick()"
-      [disabled]="!isLoggedIn()"
-    [matTooltip]="favouriteToolTipMessage()"      
-      [matTooltipPosition]="tooltipPositionBelow"
-      matTooltipClass="tooltip-custom"
-      
->
-    <mat-icon
-    class="card-icon"
-    >{{ favouriteIcon() }}
-
-    </mat-icon>
-    </button>
-
-    <!-- section likes -->
-     <div class="d-flex align-items-center">
-    <button  class="bg-dark border-0 p-0"
-      matTooltip
-      [matTooltipPosition]="tooltipPositionBelow"
-      matTooltipClass="tooltip-custom"
-      
->
-    <mat-icon
-    class="card-icon m-0 p-0"
-    >thumb_up_off_alt
-
-    </mat-icon>
-
-    </button>
-    <span class="card-icon likes-amount border-end border-secondary pe-2">120</span>
-
+  <ng-content select="[share]" />
+  <ng-content select="[favourites]" />
+  <ng-content select="[likes]" />
+  <div class="ms-auto">
+    <ng-content select="[show-more]" />
+  </div>
 </div>
-
-        <button  class="bg-dark border-0 p-0"
-      matTooltip=""
-      [matTooltipPosition]="tooltipPositionBelow"
-      matTooltipClass="tooltip-custom"
-      
->
-    <mat-icon
-    class="card-icon"
-    >thumb_down_off_alt
-
-    </mat-icon>
-    </button>
-
-
-</section>

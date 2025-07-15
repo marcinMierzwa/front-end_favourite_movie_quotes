@@ -5,8 +5,13 @@ export enum ToolTipFavourites {
 }
 
 export enum ToolTipLikes {
-    isNotLoggedInLike = 'Log in to like this',
-    isNotLoggedInUnlike = 'Log in to unlike this',
-    like = 'like this',
-    unlike = 'I dislike this'
+    isNotLoggedInLike = 'Log in to like this quote',
+    like = 'Like this quote',
+    unlike = 'Dislike this quote'
 }
+
+export enum ToolTipShare {
+    isNotLoggedInShare = 'Log in to share this quote',
+    isLoggedInShare = 'Share this quote',
+}
+

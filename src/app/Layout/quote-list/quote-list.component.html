@@ -1,76 +1,60 @@
 <div
   class="h-100 d-flex flex-column justify-content-between align-items-center p-2"
 >
-
-
-<div 
-[class]="getQuoteList()"
-[style.height]="isScrollMode() ? '320px' : 'auto'"
->
-
-@if (isLoading()) {
-  <div class="d-flex justify-content-center">
-    <mat-spinner
-    [strokeWidth]="5"
-    ></mat-spinner>
-  </div>
-}
- @else if (pagination().length === 0) {
-  <h5 class="text-light text-center">Sorry! There was a problem loading the quotes. Try refreshing the page</h5>
-} 
-@else {
-  @for (quote of quotes(); track quote._id) {
+  <div
+    [class]="getQuoteList()"
+    [style.height]="isScrollMode() ? '320px' : 'auto'"
+  >
+    @if (isLoading()) {
+    <div class="d-flex justify-content-center">
+      <mat-spinner [strokeWidth]="5"></mat-spinner>
+    </div>
+    } @else if (pagination().length === 0) {
+    <h5 class="text-light text-center">
+      Sorry! There was a problem loading the quotes. Try refreshing the page
+    </h5>
+    } @else { @for (quote of quotes(); track quote._id) {
     <app-card
       class="card-list-dimensions d-flex flex-column"
-      [likes]="quote.likes"
       [backgroundUrl]="quote.backgroundUrl"
+      [dialog]="quote.dialog"
+      [wordsCounter]="wordsCounter"
     >
-      <section
-        class="d-flex flex-column flex-fill justify-content-between gap-1 p-2"
-        card-content
-      >
-        <div
-          class="card-text-container d-flex flex-column flex-fill align-items-center justify-content-center px-3 py-2"
-        >
-          <p
-            class="fade-in card-text m-0 px-2 mt-1 d-flex flex-column justify-content-center align-items-center"
-          >
-            ... {{ quote.dialog | truncateText : 10 }}
-          </p>
-        </div>
-      </section>
-      <app-card-footer-bar card-footer>
-        <app-card-icons-bar card-icons
-        [quoteId]="quote._id"
-        [isLoggedIn]="isLoggedIn()"
-        (onToggleFavourite)="toggleFavourite($event)" />
-        <a
-          class="card-show-more-link border-bottom ms-auto me-4"
-          [routerLink]="['/quote-detail', quote._id]"
-          card-footer-bar
-          >Show more</a
-        >
-      </app-card-footer-bar>
+      <app-card-icons-bar icon-bar-quote-list>
+        <app-share share [isLoggedIn]="isLoggedIn()"
+/>
+        <app-favourites favourites
+          [favouritesIds]="favouriteQuotesIds()"
+          [quoteId]="quote._id"
+          [isLoggedIn]="isLoggedIn()"
+          (onToggleFavourite)="toggleFavourite($event)"
+        />
+        <app-likes likes
+          [isLiked]="quote.isLikedByUser"
+          [counter]="quote.likeCount"
+          [quoteId]="quote._id"
+          [isLoggedIn]="isLoggedIn()"
+          (onToggleLike)="toggleLike($event)"
+        
+        />
+        <app-show-more show-more [quoteId]="quote._id" />
+      </app-card-icons-bar>
     </app-card>
-  }
-}
-</div>
+    } }
+  </div>
 
-<!-- pagination -->
-<div class="d-flex justify-content-center mt-2">
-  <mat-paginator
-    class="rounded-4 border border-secondary border-opacity-50"
-    [length]="pagination().length"
-    [pageIndex]="pagination().pageIndex"
-    [pageSize]="pagination().pageSize"
-    [pageSizeOptions]="pageSizeOptions"
-    [showFirstLastButtons]="true"
-    (page)="handlePageEvent($event)"
-    [hidePageSize]="isScrollMode()"
-  >
-  </mat-paginator>
+  <!-- pagination -->
+  <div class="d-flex justify-content-center mt-2">
+    <mat-paginator
+      class="rounded-4 border border-secondary border-opacity-50"
+      [length]="pagination().length"
+      [pageIndex]="pagination().pageIndex"
+      [pageSize]="pagination().pageSize"
+      [pageSizeOptions]="pageSizeOptions"
+      [showFirstLastButtons]="true"
+      (page)="handlePageEvent($event)"
+      [hidePageSize]="isScrollMode()"
+    >
+    </mat-paginator>
+  </div>
 </div>
-  
-</div>
-
-

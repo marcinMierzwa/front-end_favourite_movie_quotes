@@ -2,7 +2,6 @@ import {
   effect,
   inject,
   Injectable,
-  Signal,
   signal,
   WritableSignal,
 } from '@angular/core';
@@ -16,6 +15,7 @@ import { toastrConfigFavoutites } from '../../Config/toastr.config';
 
 @Injectable({ providedIn: 'root' })
 export class FavouritesService {
+  
   constructor() {
     effect(
       () => {
@@ -40,9 +40,7 @@ export class FavouritesService {
   );
   private readonly isLoggedIn = this.stateService.isLoggedIn;
 
-  public readonly favouritesIds: WritableSignal<string[]> = signal<string[]>(
-    []
-  );
+  public readonly favouritesIds: WritableSignal<string[]> = this.stateService.favouriteQuotesIds;
 
   private loadInitialFavourites(): void {
     this.favouritesApiService

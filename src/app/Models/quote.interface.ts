@@ -3,8 +3,11 @@ export interface Quote {
     dialog: string;
     movie: string;
     character: string;
-    characterId: string;
     movieId: string;
-    likes: string[];
+    characterId: string;
     backgroundUrl: string;
+    likeCount: number;
+    isLikedByUser: boolean;
+    createdAt: string
+    updatedAt: string
 }

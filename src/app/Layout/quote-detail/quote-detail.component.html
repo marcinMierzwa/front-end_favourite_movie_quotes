@@ -1,50 +1,40 @@
-<div class="page-wrapper justify-content-start align-items-center">
- 
+<div class="page-wrapper">
   @if (isLoading()) {
-    <div class="h-100 d-flex justify-content-center align-items-center"
-    >
-      <mat-spinner
-      [strokeWidth]="5"
-      ></mat-spinner>
-    </div>
-  }
-  @else if (!quote()) {
-    <h5 class="text-light text-center">Sorry! No quotes found.</h5>
-  }
-  @else {
+  <div class="h-100 d-flex justify-content-center align-items-center">
+    <mat-spinner [strokeWidth]="5"></mat-spinner>
+  </div>
+  } @else if (!quote()) {
+  <h5 class="text-light text-center">Sorry! No quotes found.</h5>
+  } @else {
 
   <app-card
     class="card-detail-dimensions d-flex flex-column"
-    [likes]="quote()!.likes"
     [backgroundUrl]="quote()?.backgroundUrl"
+    [dialog]="quote()?.dialog"
   >
+    <app-card-icons-bar icon-bar-detail>
+      <app-share share [isLoggedIn]="isLoggedIn()" />
+      <app-favourites
+        favourites
+        [favouritesIds]="favouriteIds()"
+        [quoteId]="quote()?._id"
+        [isLoggedIn]="isLoggedIn()"
+        (click)="toggleFavourite(quote()!._id)"
+      />
+      <app-likes
+        likes
+        [isLiked]="quote()!.isLikedByUser"
+        [counter]="quote()!.likeCount"
+        [quoteId]="quote()!._id"
+        [isLoggedIn]="isLoggedIn()"
+        (onToggleLike)="toggleLike($event)"
+      />
+    </app-card-icons-bar>
+  </app-card>
 
-
-  
-    <!--card header-ngContent -->
-    <section
-      class="d-flex flex-column flex-fill justify-content-between gap-1 p-2"
-      card-content
-    >
-      <app-card-footer-bar>
-        <app-card-icons-bar card-icons class="ms-auto me-1"/>
-      </app-card-footer-bar>
-      <div
-        class="card-text-container d-flex flex-column flex-fill align-items-center justify-content-center px-3 py-2"
-      >
-        <p
-          class="card-text m-0 px-2 mt-1 d-flex flex-column justify-content-center align-items-center"
-        >
-          ... {{ quote()?.dialog + ".." }}
-        </p>
-      </div>
-    </section>
-
-    <!-- card-footer-bar-ngContent-->
-    <div class="d-flex flex-column gap-1" card-footer>
-      <app-card-footer-bar>
+  <div class="d-flex flex-column gap-2 card-detail-dimensions rounded mt-2 m-0">
         <div
-          class="container-fluid d-flex align-items-center gap-1 gap-sm-3 card-body-link-container"
+          class="container-fluid d-flex align-items-center gap-1 gap-sm-3 bg-dark p-2 rounded"
         >
           <p class="m-0 card-text-link">Which Character Said?
 
@@ -57,11 +47,9 @@
             {{ quote()?.character }}
           </a>
         </div>
-      </app-card-footer-bar>
 
-      <app-card-footer-bar>
         <div
-          class="container-fluid d-flex flex-wrap align-items-center gap-1 gap-sm-3 card-body-link-container"
+          class="container-fluid d-flex flex-wrap align-items-center gap-1 gap-sm-3 bg-dark p-2 rounded"
         >
           <p class="m-0 card-text-link">Which Movie?
 
@@ -74,14 +62,14 @@
             {{ quote()?.movie }}
           </a>
         </div>
-      </app-card-footer-bar>
 
-      <app-card-footer-bar>
 
-        <app-accordion class="w-100 h-100"></app-accordion>
-      </app-card-footer-bar>
     </div>
-  </app-card>
+
+
+
   }
+
 </div>
 
+<!-- card-footer-bar-ngContent-->

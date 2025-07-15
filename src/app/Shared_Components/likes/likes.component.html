@@ -1,0 +1,19 @@
+  <!-- section likes -->
+  <div class="d-flex align-items-center">
+    <button
+      class="card-icon-button"
+    (click)="onLikeClick()"
+    [disabled]="!isLoggedIn()"
+    [matTooltip]="likeToolTipMessage()"
+    [matTooltipPosition]="tooltipPositionBelow"
+    matTooltipClass="tooltip-custom"
+    >
+      <mat-icon class="card-icon">{{ likeIcon() }}</mat-icon>
+    </button>
+    <span class="card-icon likes-amount ps-1"
+      >{{ likesCounter() }}</span
+    >
+  </div>
+
+ 
+

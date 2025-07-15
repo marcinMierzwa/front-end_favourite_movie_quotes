@@ -6,9 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TruncateTextPipe implements PipeTransform {
 
-  transform(text: string, limit: number): string {
+  transform(text: string, limit: number | null): string {
 
     if (!text) return '';
+    if (!limit) return text;
     const words = text.split(' ');
     if (words.length <= limit) {
       return text;

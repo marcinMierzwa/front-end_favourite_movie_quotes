@@ -5,11 +5,12 @@ import { NavbarAuthComponent } from "../navbar-auth/navbar-auth.component";
 import { MovieNameModel } from '../../Models/movie-name-model';
 import { CharacterNameModel } from '../../Models/character-name-model.';
 import { AuthService } from '../../Services/Auth/auth.service';
+import { SkipToFavouritesComponent } from "../../Shared_Components/skip-to-favourites/skip-to-favourites.component";
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, NavbarAuthComponent],
+  imports: [RouterLink, RouterLinkActive, NavbarAuthComponent, SkipToFavouritesComponent],
   templateUrl: './nav-bar.component.html',
   styleUrl: './nav-bar.component.scss'
 })
@@ -20,6 +21,7 @@ export class NavBarComponent {
   
   isScrollMode = this.stateService.isScrollMode;
   logoUrl = 'https:///raw.githubusercontent.com/marcinMierzwa/images-hosting/main/logo.png';
+  isLoggedIn = this.stateService.isLoggedIn;
 
   readonly moviesNames: Signal<MovieNameModel[]> = this.stateService.movieNames;
   readonly characterNames: Signal<CharacterNameModel[]> = this.stateService.characterNames

@@ -8,11 +8,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { SignUpFormModel } from '../../Models/form/signup-form-model';
 import { SubmitForm } from '../../Models/form/submit-form.type';
+import { PageWrapperComponent } from '../../Shared_Components/page-wrapper/page-wrapper.component';
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [FormAuthComponent, RouterLink, MatProgressSpinnerModule],
+  imports: [FormAuthComponent, RouterLink, MatProgressSpinnerModule, PageWrapperComponent],
   templateUrl: './sign-up.component.html',
   styleUrl: './sign-up.component.scss',
 })

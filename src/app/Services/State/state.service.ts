@@ -13,6 +13,7 @@ import { UserModel } from '../../Models/user.model';
 import { MovieNameModel } from '../../Models/movie-name-model';
 import { CharacterNameModel } from '../../Models/character-name-model.';
 import { Quote } from '../../Models/quote.interface';
+import { Movie } from '../../Layout/movie/models/movie.model';
 
 @Injectable({
   providedIn: 'root',
@@ -40,7 +41,12 @@ export class StateService {
 
   public favouriteQuotesIds: WritableSignal<string[]> = signal<string[]>([]);
 
+  // MOVIE 
   public movieNames: WritableSignal<MovieNameModel[]> = signal<MovieNameModel[]>([]);
+  public movie: WritableSignal<Movie | null> = signal(null);
+  public isLoadingMovie: WritableSignal<boolean> = signal(false);
+  public errorMovie: WritableSignal<any | null> = signal(null);
+
 
   public characterNames: WritableSignal<CharacterNameModel[]> = signal<CharacterNameModel[]>([]);
 

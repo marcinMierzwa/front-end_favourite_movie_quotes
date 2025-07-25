@@ -48,6 +48,11 @@ export const routes: Routes = [
         component: VerfifyEmailComponent,
         title: 'Verify'
     },
+    {
+        path: 'movie/:id',
+        loadComponent: () =>
+            import('./Layout/movie/components/movie-layout/movie-layout.component').then(m => m.MovieLayoutComponent)
+    }
 
 
 

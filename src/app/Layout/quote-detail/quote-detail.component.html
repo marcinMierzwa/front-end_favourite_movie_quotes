@@ -1,4 +1,5 @@
-<div class="page-wrapper">
+<app-page-wrapper>
+  
   @if (isLoading()) {
   <div class="h-100 d-flex justify-content-center align-items-center">
     <mat-spinner [strokeWidth]="5"></mat-spinner>
@@ -33,43 +34,32 @@
   </app-card>
 
   <div class="d-flex flex-column gap-2 card-detail-dimensions rounded mt-2 m-0">
-        <div
-          class="container-fluid d-flex align-items-center gap-1 gap-sm-3 bg-dark p-2 rounded"
-        >
-          <p class="m-0 card-text-link">Which Character Said?
-
-          </p>
-          <a
-            class="card-text-link"
-            style="font-style: italic; text-decoration: underline;"
-            routerLink="character"
-          >
-            {{ quote()?.character }}
-          </a>
-        </div>
-
-        <div
-          class="container-fluid d-flex flex-wrap align-items-center gap-1 gap-sm-3 bg-dark p-2 rounded"
-        >
-          <p class="m-0 card-text-link">Which Movie?
-
-          </p>
-          <a
-            class="card-text-link"
-            style="font-style: italic; text-decoration: underline;"
-            routerLink="character"
-          >
-            {{ quote()?.movie }}
-          </a>
-        </div>
-
-
+    <div
+      class="container-fluid d-flex align-items-center gap-1 gap-sm-3 bg-dark p-2 ps-3 rounded"
+    >
+      <p class="m-0 card-text-link">Which Character Said?</p>
+      <a
+        class="card-text-link"
+        style="font-style: italic; text-decoration: underline"
+        routerLink="character"
+      >
+        {{ quote()?.character }}
+      </a>
     </div>
 
-
+    <div
+      class="container-fluid d-flex flex-wrap align-items-center gap-1 gap-sm-3 bg-dark p-2 ps-3 rounded"
+    >
+      <p class="m-0 card-text-link">Which Movie?</p>
+      <a
+        class="card-text-link"
+        style="font-style: italic; text-decoration: underline"
+        routerLink="character"
+      >
+        {{ quote()?.movie }}
+      </a>
+    </div>
+  </div>
 
   }
-
-</div>
-
-<!-- card-footer-bar-ngContent-->
+</app-page-wrapper>

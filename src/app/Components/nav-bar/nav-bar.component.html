@@ -75,7 +75,9 @@
               @if (moviesNames().length > 0) { @for (movieName of moviesNames();
               track movieName._id) {
               <li class="p-2">
-                <a class="dropdown-item pointer p-0 pb-1">{{
+                <a class="dropdown-item pointer p-0 pb-1"
+                [routerLink]="['/movie', movieName._id]"
+                >{{
                   movieName.name
                 }}</a>
               </li>

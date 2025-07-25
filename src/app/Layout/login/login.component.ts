@@ -8,12 +8,13 @@ import { AuthService } from '../../Services/Auth/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import { LogInFormModel } from '../../Models/form/login-form-model';
 import { SubmitForm } from '../../Models/form/submit-form.type';
+import { PageWrapperComponent } from "../../Shared_Components/page-wrapper/page-wrapper.component";
 
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormAuthComponent, RouterLink, MatProgressSpinnerModule],
+  imports: [FormAuthComponent, RouterLink, MatProgressSpinnerModule, PageWrapperComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })

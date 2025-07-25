@@ -7,11 +7,12 @@ import { ResetPasswordFormModel } from '../../Models/form/reset-password-form.mo
 import { SubmitForm } from '../../Models/form/submit-form.type';
 import { ActivatedRoute } from '@angular/router';
 import { ResetPasswordPayloadModel } from '../../Models/reset-password-payload-model';
+import { PageWrapperComponent } from "../../Shared_Components/page-wrapper/page-wrapper.component";
 
 @Component({
   selector: 'app-reset-password',
   standalone: true,
-  imports: [FormAuthComponent],
+  imports: [FormAuthComponent, PageWrapperComponent],
   templateUrl: './reset-password.component.html',
   styleUrl: './reset-password.component.scss',
 })

@@ -18,12 +18,13 @@ import { LikesComponent } from "../../Shared_Components/likes/likes.component";
 import { FavouritesService } from '../../Services/Favoutites/favourites.service';
 import { LikesService } from '../../Services/Likes/likes.service';
 import { Quote } from '../../Models/quote.interface';
+import { PageWrapperComponent } from "../../Shared_Components/page-wrapper/page-wrapper.component";
 
 
 @Component({
   selector: 'app-quote-detail',
   standalone: true,
-  imports: [CardComponent, CardIconsBarComponent, RouterLink, MatProgressSpinnerModule, ShareComponent, FavouritesComponent, LikesComponent],
+  imports: [CardComponent, CardIconsBarComponent, RouterLink, MatProgressSpinnerModule, ShareComponent, FavouritesComponent, LikesComponent, PageWrapperComponent],
   templateUrl: './quote-detail.component.html',
   styleUrl: './quote-detail.component.scss',
 })

@@ -6,11 +6,12 @@ import { FormConfig } from '../../Models/form-config.interface';
 import { ForgotPasswordFormModel } from '../../Models/form/forgot-password-form-model';
 import { AuthService } from '../../Services/Auth/auth.service';
 import { SubmitForm } from '../../Models/form/submit-form.type';
+import { PageWrapperComponent } from "../../Shared_Components/page-wrapper/page-wrapper.component";
 
 @Component({
   selector: 'app-forgot-password',
   standalone: true,
-  imports: [FormAuthComponent, RouterLink],
+  imports: [FormAuthComponent, RouterLink, PageWrapperComponent],
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.scss'
 })
